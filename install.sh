@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 LINK_DOTFILES=false
 INIT_VIM=false
