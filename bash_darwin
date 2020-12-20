@@ -64,7 +64,7 @@ function enable_bash_it() {
 
 	# Load Bash It
 	source "$BASH_IT"/bash_it.sh
-	source "$BASH_IT"/custom/custom.prompt
+	# source "$BASH_IT"/custom/custom.prompt
 }
 enable_bash_it
 export -f enable_bash_it
