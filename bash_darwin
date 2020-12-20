@@ -9,7 +9,7 @@ function enable_bash_it() {
 	# Lock and Load a custom theme file.
 	# Leave empty to disable theming.
 	# location /.bash_it/themes/
-	export BASH_IT_THEME='bakke'
+	export BASH_IT_THEME='bobby-python'
 	# export BASH_IT_THEME='powerline'
 	# export BASH_IT_THEME='powerline-multiline'
 
@@ -64,7 +64,7 @@ function enable_bash_it() {
 
 	# Load Bash It
 	source "$BASH_IT"/bash_it.sh
-	# source "$BASH_IT"/custom/custom.prompt
+	test -e "$BASH_IT/custom/custom-$BASH_IT_THEME.prompt" && source "$BASH_IT/custom/custom-$BASH_IT_THEME.prompt"
 }
 enable_bash_it
 export -f enable_bash_it
@@ -95,7 +95,8 @@ if [ -f '/Users/malston/tools/google-cloud-sdk/completion.bash.inc' ]; then . '/
 export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
 
 # Kubernetes prompt
-if [ -f /usr/local/opt/kube-ps1/share/kube-ps1.sh ]; then . '/usr/local/opt/kube-ps1/share/kube-ps1.sh'; fi
+# if [ -f /usr/local/opt/kube-ps1/share/kube-ps1.sh ]; then . '/usr/local/opt/kube-ps1/share/kube-ps1.sh'; fi
+# this is set in the custom.prompt now
 
 # Setup autocomplete for kubectl commands
 source <(kubectl completion bash)
