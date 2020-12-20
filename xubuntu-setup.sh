@@ -69,10 +69,7 @@ pushd ~/workspace
   rm go1.11.2.linux-amd64.tar.gz
 
   # Install dotfiles
-  git clone https://github.com/cloudfoundry/loggregator-dotfiles.git
-  pushd loggregator-dotfiles
-    ./install.sh
-  popd
+  ./install.sh
 
   # Install VeraCrypt
   wget https://launchpad.net/veracrypt/trunk/1.21/+download/veracrypt-1.21-setup.tar.bz2

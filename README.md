@@ -1,6 +1,6 @@
-# loggregator-dotfiles
+# my-dotfiles
 
-## Install Loggregator Dotfiles
+## Install Dotfiles
 
 ```
 ./install.sh
@@ -8,7 +8,7 @@
 
 ## Xubuntu Setup Script
 
-This will also install the Loggregator dotfiles.
+This will also install the dotfiles.
 
 ```
 ./xubuntu-setup.sh
