@@ -5,15 +5,26 @@ else
   alias ls="ls --color=auto"
 fi
 
-# common projects
-alias cid="cd ~/workspace/cnf-cicd-pipeline"
-alias cic="cd ~/workspace/cnf-config"
-alias amf="cd ~/workspace/nokia-amf"
-alias smf="cd ~/workspace/nokia-smf"
-alias udm="cd ~/workspace/nokia-udm"
-alias upf="cd ~/workspace/nokia-upf"
-alias zts="cd ~/workspace/nokia-zts"
-alias mat="cd ~/workspace/matrixx-chf"
+# home
+alias homelab="cd ~/workspace/homelab"
+
+# replicated
+alias r="replicated"
+
+# dish projects
+alias cid="cd ~/workspace/dishcicd/cnf-cicd-pipeline"
+alias cic="cd ~/workspace/dishcicd/cnf-config"
+alias teclib="cd ~/workspace/dishcicd/teclib"
+alias cucp="cd ~/workspace/dishcicd/cnf/altiostar-cucp"
+alias cuup="cd ~/workspace/dishcicd/cnf/altiostar-cuup"
+alias vdu="cd ~/workspace/dishcicd/cnf/altiostar-vdu"
+alias amf="cd ~/workspace/dishcicd/cnf/nokia-amf"
+alias smf="cd ~/workspace/dishcicd/cnf/nokia-smf"
+alias mrf="cd ~/workspace/dishcicd/cnf/nokia-mrf"
+alias udm="cd ~/workspace/dishcicd/cnf/nokia-udm"
+alias upf="cd ~/workspace/dishcicd/cnf/nokia-upf"
+alias zts="cd ~/workspace/dishcicd/cnf/nokia-zts"
+alias mat="cd ~/workspace/dishcicd/cnf/matrixx-chf"
 
 # system
 alias ll="ls -la"
@@ -36,6 +47,7 @@ alias tcb='source scripts/target-cp-bosh.sh'
 alias gin='ginkgo -r -race -cover -randomizeAllSpecs'
 
 # kubernetes
+alias watch='watch '
 alias k=kubectl
 alias kg='kubectl get'
 alias kl='kubectl logs '
@@ -43,6 +55,8 @@ alias kx='kubectl exec -i -t'
 alias ke='kubectl exec -i -t'
 alias kbb='kubectl run busybox-test --image=busybox -it --rm --restart=Never --'
 alias kdr='kubectl --dry-run=client -o yaml'
+alias kge="kubectl get events --sort-by='.metadata.creationTimestamp' -o 'go-template={{range .items}}{{.involvedObject.name}}{{\"\t\"}}{{.involvedObject.kind}}{{\"\t\"}}{{.message}}{{\"\t\"}}{{.reason}}{{\"\t\"}}{{.type}}{{\"\t\"}}{{.firstTimestamp}}{{\"\n\"}}{{end}}'"
+alias kgt="kubectl get no | grep dev | awk '{print $1}' | while read i; do kubectl describe no $i | grep -i taints; done"
 
 alias ksys='kubectl --namespace=kube-system'
 alias ka='kubectl apply -f'
@@ -51,7 +65,7 @@ alias kex='kubectl exec -i -t'
 alias ksysex='kubectl --namespace=kube-system exec -i -t'
 alias klo='kubectl logs -f'
 alias ksyslo='kubectl --namespace=kube-system logs -f'
-alias kp='kubectl proxy'
+# alias kp='kubectl proxy'
 alias kg='kubectl get'
 alias ksysg='kubectl --namespace=kube-system get'
 alias kd='kubectl describe'
