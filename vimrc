@@ -9,6 +9,7 @@ set hidden                    " Allow unwritten buffers
 "-----------------------------------------------------------------------------
 " VUNDLE PLUGIN MANAGEMENT
 "-----------------------------------------------------------------------------
+filetype off
 set rtp+=~/.vim/bundle/Vundle.vim    " Set the runtime path to include Vundle
 call vundle#begin()                  " Initialize vundle
 Plugin 'VundleVim/Vundle.vim'        " Let Vundle manage Vundle
@@ -107,7 +108,7 @@ map \     :NERDTreeToggle<CR> " open and close NerdTree
 map \|    :NERDTreeFind<CR>   " find the current file in the tree.
 
 let NERDTreeQuitOnOpen = 1       " automatically close NerdTree when you open a file
-let NERDTreeAutoDeleteBuffer = 1 " automatically delete the buffer of the file you 
+let NERDTreeAutoDeleteBuffer = 1 " automatically delete the buffer of the file you
                                  " just deleted with NerdTree
 let NERDTreeMinimalUI = 1
 let NERDTreeDirArrows = 1
