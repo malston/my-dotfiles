@@ -53,6 +53,7 @@ alias kg='kubectl get'
 alias kl='kubectl logs '
 alias kx='kubectl exec -i -t'
 alias ke='kubectl exec -i -t'
+alias kubecurl='kubectl run -it --rm --restart=Never busybox --image=radial/busyboxplus -- curl -vg'
 alias kbb='kubectl run busybox-test --image=busybox -it --rm --restart=Never --'
 alias kdr='kubectl --dry-run=client -o yaml'
 alias kge="kubectl get events --sort-by='.metadata.creationTimestamp' -o 'go-template={{range .items}}{{.involvedObject.name}}{{\"\t\"}}{{.involvedObject.kind}}{{\"\t\"}}{{.message}}{{\"\t\"}}{{.reason}}{{\"\t\"}}{{.type}}{{\"\t\"}}{{.firstTimestamp}}{{\"\n\"}}{{end}}'"
