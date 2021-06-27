@@ -34,3 +34,6 @@ HISTFILESIZE=20000
 # Arrow search history
 bind '"\e[A": history-search-backward'
 bind '"\e[B": history-search-forward'
+
+# Turn off bracketed paste
+bind 'set enable-bracketed-paste off'
