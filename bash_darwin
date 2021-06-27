@@ -1,6 +1,12 @@
 # Use ANSI color sequences to distinguish file types
 export CLICOLOR=1
 
+DOT_FILES="/Users/malston/my-dotfiles"
+
+function enable_completions() {
+	source "${DOT_FILES}/completions"
+}
+
 # Build our prompt
 function enable_bash_it() {
 	# Path to the bash it configuration
@@ -66,82 +72,16 @@ function enable_bash_it() {
 	source "$BASH_IT"/bash_it.sh
 	test -e "$BASH_IT/custom/custom-$BASH_IT_THEME.prompt" && source "$BASH_IT/custom/custom-$BASH_IT_THEME.prompt"
 }
-enable_bash_it
-export -f enable_bash_it
 
 export GIT_DUET_GLOBAL=true
 export GIT_DUET_ROTATE_AUTHOR=1
 export GIT_DUET_SET_GIT_USER_CONFIG=1
 export GIT_PS1_SHOWUNTRACKEDFILES=true
 
-# Add cargo to path
-export PATH="$HOME/.cargo/bin:$PATH"
-
-test -e "${HOME}/.iterm2_shell_integration.bash" && source "${HOME}/.iterm2_shell_integration.bash"
-
 # Set maxfiles and maxproc per this gist:
 # https://gist.github.com/tombigel/d503800a282fcadbee14b537735d202c
 ulimit -n 200000
 ulimit -u 2048
 
-[[ -r "/usr/local/etc/profile.d/bash_completion.sh" ]] && . "/usr/local/etc/profile.d/bash_completion.sh"
-
-# The next line updates PATH for the Google Cloud SDK.
-if [ -f '/Users/malston/tools/google-cloud-sdk/path.bash.inc' ]; then . '/Users/malston/tools/google-cloud-sdk/path.bash.inc'; fi
-
-# The next line enables shell command completion for gcloud.
-if [ -f '/Users/malston/tools/google-cloud-sdk/completion.bash.inc' ]; then . '/Users/malston/tools/google-cloud-sdk/completion.bash.inc'; fi
-
-export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
-
-# Kubernetes prompt
-# if [ -f /usr/local/opt/kube-ps1/share/kube-ps1.sh ]; then . '/usr/local/opt/kube-ps1/share/kube-ps1.sh'; fi
-# this is set in the custom.prompt now
-
-# Setup autocomplete for kubectl commands
-source <(kubectl completion bash)
-alias k=kubectl
-complete -F __start_kubectl k
-
-# Add istio cli to path
-export PATH="$PATH:$HOME/workspace/install-istio/istio-1.2.2/bin"
-
-# Setup autocomplete for minio cli commands
-complete -C /usr/local/bin/mc mc
-
-source "$HOME/.sdkman/bin/sdkman-init.sh"
-
-export PATH="$HOME/.jenv/bin:$PATH"
-eval "$(jenv init -)"
-
-eval "$(rbenv init -)"
-
-export BASH_SILENCE_DEPRECATION_WARNING=1
-
-# enable direnv
-if [ which -a direnv ]; then
-    eval "$(direnv hook bash)"
-fi
-
-# Go
-export PATH=~/bin:~/.bin:~/go/bin:/usr/local/go/bin:$PATH
-export GOPATH=$HOME/workspace/go
-export PATH=$GOPATH/bin:$PATH
-# enable ginkgo focus in editors
-export GINKGO_EDITOR_INTEGRATION=true
-
-# Python
-if command -v pyenv 1>/dev/null 2>&1; then
-  eval "$(pyenv init -)"
-fi
-
-# We want to regularly go to our virtual environment directory
-export WORKON_HOME=~/.virtualenvs
-
-# If in a given virtual environment, make a virtual environment directory
-# If one does not already exist
-mkdir -p $WORKON_HOME
-
-# Activate the new virtual environment by calling this script
-# The workon and mkvirtualenv functions are in here
-test -e "${HOME}/.pyenv/versions/$(pyenv version-name)/bin/virtualenvwrapper.sh" && source "${HOME}/.pyenv/versions/$(pyenv version-name)/bin/virtualenvwrapper.sh"
+export -f enable_bash_it
+export -f enable_completions
