@@ -52,6 +52,11 @@ export PATH=$GOPATH/bin:$PATH
 # enable ginkgo focus in editors
 export GINKGO_EDITOR_INTEGRATION=true
 
+# GNU Sed
+if [ -d /usr/local/opt/gnu-sed/libexec/gnubin ]; then
+  PATH="/usr/local/opt/gnu-sed/libexec/gnubin:$PATH"
+fi
+
 # Python
 if command -v pyenv 1>/dev/null 2>&1; then
   eval "$(pyenv init -)"
