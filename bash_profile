@@ -6,7 +6,7 @@
 [ -f ~/.bashrc ] && . ~/.bashrc
 
 enable_bash_it
-# enable_completions
+enable_completions
 
 # set +x
 # exec 2>&3 3>&-

@@ -24,7 +24,7 @@ alias k=kubectl
 complete -F __start_kubectl k
 
 # Add istio cli to path
-export PATH="$PATH:$HOME/workspace/install-istio/istio-1.2.2/bin"
+# export PATH="$PATH:$HOME/workspace/install-istio/istio-1.2.2/bin"
 
 # Setup autocomplete for minio cli commands
 complete -C /usr/local/bin/mc mc
@@ -58,6 +58,8 @@ if [ -d /usr/local/opt/gnu-sed/libexec/gnubin ]; then
 fi
 
 # Python
+# See https://github.com/pyenv/pyenv
+# See https://github.com/pyenv/pyenv-virtualenv
 if command -v pyenv 1>/dev/null 2>&1; then
   eval "$(pyenv init -)"
 fi
@@ -71,13 +73,14 @@ mkdir -p $WORKON_HOME
 
 # Activate the new virtual environment by calling this script
 # The workon and mkvirtualenv functions are in here
-test -e "${HOME}/.pyenv/versions/$(pyenv version-name)/bin/virtualenvwrapper.sh" && source "${HOME}/.pyenv/versions/$(pyenv version-name)/bin/virtualenvwrapper.sh"
+# test -e "${HOME}/.pyenv/versions/$(pyenv version-name)/bin/virtualenvwrapper.sh" && source "${HOME}/.pyenv/versions/$(pyenv version-name)/bin/virtualenvwrapper.sh"
+eval "$(pyenv virtualenv-init -)"
 
-# source <(tca completion bash)
 # export NVM_DIR="$HOME/.nvm"
 # [ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
 # [ -s "/usr/local/opt/nvm/etc/bash_completion.d/nvm" ] && . "/usr/local/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
 
+# source <(tca completion bash)
 source <(flux completion bash)
 source <(tanzu completion bash)
 source <(glab completion bash)

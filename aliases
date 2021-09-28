@@ -5,6 +5,9 @@ else
   alias ls="ls --color=auto"
 fi
 
+# Fix path issues with Python on macOS Big Sur
+alias python=/usr/local/bin/python3
+
 # home
 alias homelab="cd ~/workspace/homelab"
 
