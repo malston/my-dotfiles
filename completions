@@ -84,3 +84,4 @@ eval "$(pyenv virtualenv-init -)"
 source <(flux completion bash)
 source <(tanzu completion bash)
 source <(glab completion bash)
+source <(kp completion bash)
