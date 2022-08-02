@@ -5,6 +5,9 @@ else
   alias ls="ls --color=auto"
 fi
 
+# Vscode fix for: https://github.com/microsoft/vscode/issues/60579
+alias code='open -b com.microsoft.VSCode "$@"'
+
 # Fix path issues with Python on macOS Big Sur
 alias python=/usr/local/bin/python3
 
@@ -28,6 +31,9 @@ alias udm="cd ~/workspace/dishcicd/cnf/nokia-udm"
 alias upf="cd ~/workspace/dishcicd/cnf/nokia-upf"
 alias zts="cd ~/workspace/dishcicd/cnf/nokia-zts"
 alias mat="cd ~/workspace/dishcicd/cnf/matrixx-chf"
+
+# boeing projects
+alias boe="cd ~/workspace/boeing-tam-engagement"
 
 # system
 alias ll="ls -la"
