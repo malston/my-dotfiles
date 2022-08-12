@@ -74,12 +74,11 @@ plugins=(
   git
   bundler
   dotenv
+  golang
   macos
   rake
   rbenv
   ruby
-  kubectl
-  kubectx
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -110,4 +109,15 @@ fi
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-export PS1='$(kube_ps1)'$PS1
+export TERM=screen-256color
+# export PS1='$(kube_ps1)'$PS1
+
+# don't put duplicate lines or lines starting with space in the history.
+HISTCONTROL=ignoreboth
+
+# for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
+HISTSIZE=10000
+HISTFILESIZE=20000
+
+eval $(dircolors ~/.dir_colors)
+

@@ -1,4 +1,3 @@
-alias ls="ls -G"
 alias k=kubectl
 complete -F __start_kubectl k
 
@@ -33,13 +32,12 @@ alias mat="cd ~/workspace/dishcicd/cnf/matrixx-chf"
 alias boe="cd ~/workspace/boeing-tam-engagement"
 
 # system
-alias ll="ls -la"
+alias ls="ls --color=auto"
+alias ll="ls -ltr"
 alias grep='grep --color=auto'
 alias nocaps='/usr/bin/setxkbmap -layout us -option ctrl:nocaps'
 
-alias exa='exa --color=auto --group-directories-first'
-alias ls='exa'
-alias ll='ls -l -F -b -g -m --git --color-scale --time-style=long-iso'
+# alias ll='ls -l -F -b -g -m --git --color-scale --time-style=long-iso'
 alias la='ll -a'
 alias lh='ll --reverse --sort=size'
 alias lha='lh -a'
