@@ -22,14 +22,10 @@ Plugin 'tpope/vim-surround'          " Easily change surrounding characters
 Plugin 'tpope/vim-vinegar'           " Use `minus` to access netrw and navigate directories
 Plugin 'fatih/vim-go'                " Helpful plugin for Golang dev
 Plugin 'AndrewRadev/splitjoin.vim'   " Enable vim-go to split structs into multi lines
-" Plugin 'vim-scripts/bufkill.vim'     " Kill buffers and leave windows intact
 Plugin 'ervandew/supertab'           " Perform all completions with Tab
 Plugin 'scrooloose/nerdtree'         " Directory tree explorer
-" Plugin 'gaving/vim-textobj-argument' " Function arguments as text objects
 Plugin 'vim-airline/vim-airline'     " Status line improvements
 Plugin 'vim-airline/vim-airline-themes'
-" Plugin 'regreplop.vim'               " Replace with a specified register
-" Plugin 'rking/ag.vim'                " Add ag to vim
 call vundle#end()                    " Complete vunde initialization
 
 " detect file type, turn on that type's plugins and indent preferences
@@ -38,6 +34,7 @@ filetype plugin indent on
 "-----------------------------------------------------------------------------
 " VIM-GO CONFIG
 "-----------------------------------------------------------------------------
+let g:go_version_warning = 0
 let g:go_fmt_command = "goimports"
 
 " highlight go-vim
