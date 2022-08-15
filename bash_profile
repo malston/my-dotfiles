@@ -10,5 +10,3 @@
 
 # set +x
 # exec 2>&3 3>&-
-export GIT_TOKEN=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
-
