@@ -174,6 +174,7 @@ set smarttab
 
 " smaller indents for yaml
 autocmd Filetype yaml setlocal tabstop=2 shiftwidth=2 expandtab
+autocmd Filetype yml setlocal tabstop=2 shiftwidth=2 expandtab
 
 "------------------------------------------------------------------------------
 " LEADER MAPPINGS
