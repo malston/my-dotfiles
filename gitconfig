@@ -27,6 +27,7 @@
   rum = rebase master@{u}
   sur="submodule update --init --recursive"
   cr = clone --recursive
+	rename = branch -m
 [user]
 	name = Mark Alston
 	email = malston@vmware.com
@@ -44,3 +45,5 @@
 [mergetool "sourcetree"]
 	cmd = /Applications/Sourcetree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
 	trustExitCode = true
+[init]
+	defaultBranch = main
