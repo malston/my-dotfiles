@@ -4,6 +4,3 @@
 [submodule "rbenv"]
 	path = rbenv
 	url = https://github.com/rbenv/rbenv.git
-[submodule "oh-my-zsh/plugins/kubectx"]
-	path = oh-my-zsh/plugins/kubectx
-	url = https://github.com/unixorn/kubectx-zshplugin.git
