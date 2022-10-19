@@ -13,7 +13,7 @@ filetype off
 set rtp+=~/.vim/bundle/Vundle.vim    " Set the runtime path to include Vundle
 call vundle#begin()                  " Initialize vundle
 Plugin 'VundleVim/Vundle.vim'        " Let Vundle manage Vundle
-Plugin 'ctrlpvim/ctrlp.vim'          " Quick file navigation
+Plugin 'kien/ctrlp.vim'              " Quick file navigation
 Plugin 'tpope/vim-commentary'        " Quickly comment lines out and in
 Plugin 'tpope/vim-fugitive'          " Help formatting commit messages
 Plugin 'tpope/vim-dispatch'          " Allow background builds
