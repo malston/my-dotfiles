@@ -4,5 +4,3 @@ eval "$(direnv hook zsh)"
 source <(stern --completion=zsh)
 source <(kubectl completion zsh)
 source "/usr/local/opt/kube-ps1/share/kube-ps1.sh"
-
-export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
