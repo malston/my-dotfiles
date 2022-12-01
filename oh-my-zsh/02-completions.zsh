@@ -1,6 +1,8 @@
 eval "$(direnv hook zsh)"
-eval "$(service-instance-migrator completion zsh)"
-eval "$(app-migrator completion zsh)"
+# eval "$(service-instance-migrator completion zsh)"
+# eval "$(app-migrator completion zsh)"
 source <(stern --completion=zsh)
 source <(kubectl completion zsh)
 source "/usr/local/opt/kube-ps1/share/kube-ps1.sh"
+
+export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"

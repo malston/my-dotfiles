@@ -25,6 +25,8 @@ Plugin 'AndrewRadev/splitjoin.vim'   " Enable vim-go to split structs into multi
 Plugin 'ervandew/supertab'           " Perform all completions with Tab
 Plugin 'scrooloose/nerdtree'         " Directory tree explorer
 Plugin 'vim-airline/vim-airline'     " Status line improvements
+Plugin 'cappyzawa/starlark.vim'
+Plugin 'vmware-tanzu/ytt.vim'
 Plugin 'vim-airline/vim-airline-themes'
 call vundle#end()                    " Complete vunde initialization
 

@@ -656,3 +656,10 @@ alias kgsvcwojsonn='kubectl get service --watch -o=json --namespace'
 alias kgingwojsonn='kubectl get ingress --watch -o=json --namespace'
 alias kgcmwojsonn='kubectl get configmap --watch -o=json --namespace'
 alias kgsecwojsonn='kubectl get secret --watch -o=json --namespace'
+
+# https://github.com/corneliusweig/ketall
+alias ketall='kubectl get-all'
+# https://github.com/tohjustin/kube-lineage
+alias kln='kubectl lineage'
+# https://github.com/ahmetb/kubectl-tree
+alias kt='kubectl tree'
