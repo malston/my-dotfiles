@@ -43,6 +43,10 @@ function link_all_dotfiles {
             link $dotfile
         fi
     done
+    if [[ ! -f $HOME/.dir_colors ]]; then
+        git clone --recursive https://github.com/seebi/dircolors-solarized.git
+        ln -is ./dircolors-solarized/dircolors.256dark .dir_colors
+    fi
 }
 
 function update_submodules {
@@ -50,6 +54,7 @@ function update_submodules {
 }
 
 function initialize_vim_plugins {
+    git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
     # install vim plugins with vundle
     vim +PluginInstall +qall
     # install_powerline
