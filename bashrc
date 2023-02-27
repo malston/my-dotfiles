@@ -37,3 +37,5 @@ bind '"\e[B": history-search-forward'
 
 # Turn off bracketed paste
 bind 'set enable-bracketed-paste off'
+
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
