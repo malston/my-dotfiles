@@ -41,6 +41,5 @@ bind 'set enable-bracketed-paste off'
 eval $(dircolors ~/.dir_colors)
 eval "$(direnv hook bash)"
 
-# chsh -s $(which zsh)
-# zsh
+[[ $- = *i* ]] && source ~/liquidprompt/liquidprompt
 
