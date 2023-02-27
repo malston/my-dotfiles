@@ -6,27 +6,32 @@ set nocompatible              " Disable Vi compatability
 set mouse=a                   " Enable mouse in all modes
 set hidden                    " Allow unwritten buffers
 
+" Install vim-plug if we don't already have it
+if empty(glob('~/.vim/autoload/plug.vim'))
+silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+  \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
+
 "-----------------------------------------------------------------------------
 " VUNDLE PLUGIN MANAGEMENT
 "-----------------------------------------------------------------------------
 filetype off
-set rtp+=~/.vim/bundle/Vundle.vim    " Set the runtime path to include Vundle
-call vundle#begin()                  " Initialize vundle
-Plugin 'VundleVim/Vundle.vim'        " Let Vundle manage Vundle
-Plugin 'kien/ctrlp.vim'              " Quick file navigation
-Plugin 'tpope/vim-commentary'        " Quickly comment lines out and in
-Plugin 'tpope/vim-fugitive'          " Help formatting commit messages
-Plugin 'tpope/vim-dispatch'          " Allow background builds
-Plugin 'tpope/vim-unimpaired'        " Add normal mode aliases for commonly used ex commands
-Plugin 'tpope/vim-surround'          " Easily change surrounding characters
-Plugin 'tpope/vim-vinegar'           " Use `minus` to access netrw and navigate directories
-Plugin 'fatih/vim-go'                " Helpful plugin for Golang dev
-Plugin 'AndrewRadev/splitjoin.vim'   " Enable vim-go to split structs into multi lines
-Plugin 'ervandew/supertab'           " Perform all completions with Tab
-Plugin 'scrooloose/nerdtree'         " Directory tree explorer
-Plugin 'vim-airline/vim-airline'     " Status line improvements
-Plugin 'vim-airline/vim-airline-themes'
-call vundle#end()                    " Complete vunde initialization
+call plug#begin()                    " Initialize vim-plug
+Plug 'kien/ctrlp.vim'              " Quick file navigation
+Plug 'tpope/vim-commentary'        " Quickly comment lines out and in
+Plug 'tpope/vim-fugitive'          " Help formatting commit messages
+Plug 'tpope/vim-dispatch'          " Allow background builds
+Plug 'tpope/vim-unimpaired'        " Add normal mode aliases for commonly used ex commands
+Plug 'tpope/vim-surround'          " Easily change surrounding characters
+Plug 'tpope/vim-vinegar'           " Use `minus` to access netrw and navigate directories
+Plug 'fatih/vim-go'                " Helpful plugin for Golang dev
+Plug 'AndrewRadev/splitjoin.vim'   " Enable vim-go to split structs into multi lines
+Plug 'ervandew/supertab'           " Perform all completions with Tab
+Plug 'scrooloose/nerdtree'         " Directory tree explorer
+Plug 'vim-airline/vim-airline'     " Status line improvements
+Plug 'vim-airline/vim-airline-themes'
+call plug#end()                    " Complete vunde initialization
 
 " detect file type, turn on that type's plugins and indent preferences
 filetype plugin indent on
