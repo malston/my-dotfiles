@@ -140,6 +140,8 @@ alias kgs='/usr/local/bin/kubectl get services'
 alias kuc='/usr/local/bin/kubectl config use-context'
 
 eval "$(direnv hook bash)"
+# in case you want to change ps1 from a direnv file
+export PS1='${CUSTOM_PS1}'$PS1
 
 source ~/kube-ps1/kube-ps1.sh
 PS1=$PS1'$(kube_ps1)\$ '
