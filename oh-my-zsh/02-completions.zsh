@@ -3,8 +3,8 @@ eval "$(direnv hook zsh)"
 # eval "$(app-migrator completion zsh)"
 source <(stern --completion=zsh)
 source <(kubectl completion zsh)
-source "/usr/local/opt/kube-ps1/share/kube-ps1.sh"
-source "/opt/homebrew/opt/kube-ps1/share/kube-ps1.sh"
+if [ -f /usr/local/opt/kube-ps1/share/kube-ps1.sh ]; then source "/usr/local/opt/kube-ps1/share/kube-ps1.sh"; fi
+if [ -f /opt/homebrew/opt/kube-ps1/share/kube-ps1.sh ]; then source "/opt/homebrew/opt/kube-ps1/share/kube-ps1.sh"; fi
 
 # Python
 # See https://github.com/pyenv/pyenv

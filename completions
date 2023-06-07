@@ -15,7 +15,8 @@ if [ -f '/Users/malston/tools/google-cloud-sdk/completion.bash.inc' ]; then . '/
 export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
 
 # Kubernetes prompt
-# if [ -f /usr/local/opt/kube-ps1/share/kube-ps1.sh ]; then . '/usr/local/opt/kube-ps1/share/kube-ps1.sh'; fi
+if [ -f /usr/local/opt/kube-ps1/share/kube-ps1.sh ]; then source "/usr/local/opt/kube-ps1/share/kube-ps1.sh"; fi
+if [ -f /opt/homebrew/opt/kube-ps1/share/kube-ps1.sh ]; then source "/opt/homebrew/opt/kube-ps1/share/kube-ps1.sh"; fi
 # this is set in the custom.prompt now
 
 # Setup autocomplete for kubectl commands

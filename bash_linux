@@ -143,7 +143,9 @@ eval "$(direnv hook bash)"
 # in case you want to change ps1 from a direnv file
 export PS1='${CUSTOM_PS1}'$PS1
 
-source ~/kube-ps1/kube-ps1.sh
-PS1=$PS1'$(kube_ps1)\$ '
+if [ -f ~/kube-ps1/kube-ps1.sh ]; then
+  source ~/kube-ps1/kube-ps1.sh;
+  PS1=$PS1'$(kube_ps1)\$ '
+fi
 source <(kubectl completion bash)
 complete -o default -F __start_kubectl k
