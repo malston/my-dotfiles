@@ -5,6 +5,9 @@ else
   alias ls="ls --color=auto"
 fi
 
+# https://github.com/direnv/direnv/wiki/Tmux
+alias tmux='direnv exec / tmux'
+
 # Vscode fix for: https://github.com/microsoft/vscode/issues/60579
 alias code='open -b com.microsoft.VSCode "$@"'
 

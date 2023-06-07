@@ -85,3 +85,11 @@ source <(flux completion bash)
 source <(tanzu completion bash)
 source <(glab completion bash)
 source <(kp completion bash)
+
+eval "$(starship init bash)"
+# if command -v starship &> /dev/null; then
+#     function blastoff(){
+#         echo "🚀"
+#     }
+#     starship_precmd_user_func="blastoff"
+# fi

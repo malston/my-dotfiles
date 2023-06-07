@@ -5,8 +5,5 @@
 # login shell or osx non-login shell, just run .bashrc
 [ -f ~/.bashrc ] && . ~/.bashrc
 
-enable_bash_it
-enable_completions
-
 # set +x
 # exec 2>&3 3>&-

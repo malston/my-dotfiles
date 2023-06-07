@@ -1,7 +1,7 @@
 export PATH="/opt/homebrew/opt/go@1.17/bin:$PATH"
 export PATH="/Users/malston/bin:/Users/malston/go/bin:$PATH"
 export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
-export KUBECONFIG="$HOME/workspace/tanzu-quickstart/homelab_kubeconfig.yaml"
+# export KUBECONFIG="$HOME/workspace/tanzu-quickstart/homelab_kubeconfig.yaml"
 
 ARM_HOMEBREW_PREFIX="/opt/homebrew"
 INTEL_HOMEBREW_PREFIX="/usr/local"
@@ -19,4 +19,3 @@ case "$(uname -m)" in
   ;;
 esac
 export PATH=${HOMEBREW_PREFIX}/bin:${PATH}
-export HOMEBREW_GITHUB_API_TOKEN=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
