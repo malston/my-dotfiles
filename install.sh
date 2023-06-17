@@ -44,8 +44,8 @@ function link_all_dotfiles {
         fi
     done
     if [[ ! -f $HOME/.dir_colors ]]; then
-        git clone --recursive https://github.com/seebi/dircolors-solarized.git
-        ln -is ./dircolors-solarized/dircolors.256dark .dir_colors
+        git clone --recursive https://github.com/seebi/dircolors-solarized.git ~/dircolors-solarized
+        ln -is ~/dircolors-solarized/dircolors.256dark ~/.dir_colors
     fi
 }
 

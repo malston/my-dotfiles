@@ -30,7 +30,7 @@ fi
 
 if [ -f $HOME/.sdkman/bin/sdkman-init.sh ]; then source "$HOME/.sdkman/bin/sdkman-init.sh"; fi
 
-if [ -d $HOME/.jenv/bin ]; then 
+if [ -d $HOME/.jenv/bin ]; then
   export PATH="$HOME/.jenv/bin:$PATH"
   eval "$(jenv init -)"
 fi
