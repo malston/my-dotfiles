@@ -3,6 +3,8 @@
 LINK_DOTFILES=false
 INIT_VIM=false
 INSTALL_HOOKS=false
+INSTALL_ZSH_PLUGINS=false
+ZSH_CUSTOM="$HOME/my-dotfiles/oh-my-zsh"
 
 flag=$1
 if [[ "$flag" = "" ]]; then
@@ -13,12 +15,15 @@ if [[ "$flag" = "-a" ]]; then
     LINK_DOTFILES=true
     INIT_VIM=true
     INSTALL_HOOKS=true
+    INSTALL_ZSH_PLUGINS=true
 elif [[ "$flag" = "-h" ]]; then
     INSTALL_HOOKS=true
 elif [[ "$flag" = "-l" ]]; then
     LINK_DOTFILES=true
 elif [[ "$flag" = "-p" ]]; then
     INIT_VIM=true
+elif [[ "$flag" = "-z" ]]; then
+    INSTALL_ZSH_PLUGINS=true
 fi
 
 all_dotfiles="zprofile zshrc bashrc bash_darwin bash_profile common_profile tmux.conf vimrc vim aliases git-authors gitconfig"
@@ -60,6 +65,29 @@ function initialize_vim_plugins {
     # install_powerline
 }
 
+function initialize_zsh_plugins {
+    if [ ! -d "${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/kubectx" ]; then
+        git clone https://github.com/unixorn/kubectx-zshplugin "${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/kubectx"
+    else
+        cd "${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/kubectx" && git pull &>/dev/null && cd - &>/dev/null
+    fi
+    if [ ! -d "${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-z" ]; then
+        git clone https://github.com/agkozak/zsh-z "${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-z"
+    else
+        cd "${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-z" && git pull &>/dev/null && cd - &>/dev/null
+    fi
+    if [ ! -d "${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions" ]; then
+        git clone https://github.com/zsh-users/zsh-autosuggestions "${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions"
+    else
+        cd "${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions" && git pull &>/dev/null && cd - &>/dev/null
+    fi
+    if [ ! -d "${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting" ]; then
+        git clone https://github.com/zsh-users/zsh-syntax-highlighting.git "${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting"
+    else
+        cd "${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting" && git pull &>/dev/null && cd - &>/dev/null
+    fi
+}
+
 function install_hooks {
     hook=$(pwd)/hooks/no-push-master
     for repo in $(find ~/workspace -name .git -type d); do
@@ -94,4 +122,7 @@ if [[ "$INIT_VIM" = "true" ]]; then
 fi
 if [[ "$INSTALL_HOOKS" = "true" ]]; then
     install_hooks
+fi
+if [[ "$INSTALL_ZSH_PLUGINS" = "true" ]]; then
+    initialize_zsh_plugins
 fi
