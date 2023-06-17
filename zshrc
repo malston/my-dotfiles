@@ -66,7 +66,7 @@ DISABLE_LS_COLORS="true"
 # Would you like to use another custom folder than $ZSH/custom?
 ZSH_CUSTOM="$HOME/my-dotfiles/oh-my-zsh"
 
-# update your ~/.zshrc file
+# Use fzf to search your command history and do file searches.
 FZF_BASE="$HOME/.fzf"
 export FZF_DEFAULT_COMMAND='rg --hidden --no-ignore --files -g "!.git/"'
 export FZF_CTRL_T_COMMAND=$FZF_DEFAULT_COMMAND
