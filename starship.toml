@@ -60,6 +60,7 @@ symbol = " "
 [gcloud]
 disabled = true
 format = 'on [$symbol$account (\($project\)) in (\($region\))]($style)'
+
 [gcloud.region_aliases]
 europe-west2 = "eu-w2"
 
