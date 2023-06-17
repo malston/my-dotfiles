@@ -1,0 +1,66 @@
+format = """
+${custom.foundation}\
+$all"""
+
+add_newline = false
+
+[line_break]
+disabled = false
+
+[git_branch]
+symbol = '🌱 '
+truncation_length = 4
+truncation_symbol = ''
+format = '[$symbol$branch(:$remote_branch)]($style) '
+# format = '\[[$symbol$branch]($style)\]'
+
+[git_status]
+format = '([\[$all_status$ahead_behind\]]($style))'
+
+[aws]
+disabled = true
+format = '[$symbol($profile )(\($region\) )(\[$duration\] )]($style)'
+
+[cmd_duration]
+min_time = 10000
+format = '\[[⏱ $duration]($style)\]'
+
+[custom.foundation]
+description = "Foundation variable"
+command = "echo -n ${FOUNDATION}"
+when = """ test -n "${FOUNDATION}" """
+shell = ["bash", "--noprofile", "--norc"]
+symbol = "🪐 "
+style = "bold green"
+format = "[$symbol$output]($style) "
+
+[env_var]
+disabled = true
+symbol = ' '
+variable = 'FOUNDATION'
+style = "bold green"
+format = '[$symbol$env_value]($style)'
+
+[gcloud]
+disabled = true
+format = 'on [$symbol$account (\($project\)) in (\($region\))]($style)'
+[gcloud.region_aliases]
+europe-west2 = "eu-w2"
+
+# https://starship.rs/config/#kubernetes
+[kubernetes]
+# format = 'on [⛵ ($user on )($cluster in )$context \($namespace\)](dimmed green) '
+format = '[$symbol$context( \($namespace\))]($style) '
+disabled = false
+# detect_files = ['k8s']
+[kubernetes.context_aliases]
+'dev.local.cluster.k8s' = 'dev'
+'.*/openshift-cluster/.*' = 'openshift'
+'gke_.*_(?P<var_cluster>[\w-]+)' = 'gke-$var_cluster'
+[kubernetes.user_aliases]
+'dev.local.cluster.k8s' = 'dev'
+'root/.*' = 'root'
+
+[python]
+disabled = true
+format = 'via [${symbol}${pyenv_prefix}(${version} )(\($virtualenv\) )]($style)'

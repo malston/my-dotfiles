@@ -91,7 +91,6 @@ function initialize_zsh_plugins {
     else
         cd "${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/fzf-zsh-plugin" && git pull &>/dev/null && cd - &>/dev/null
     fi
-
 }
 
 function install_hooks {
@@ -131,4 +130,8 @@ if [[ "$INSTALL_HOOKS" = "true" ]]; then
 fi
 if [[ "$INSTALL_ZSH_PLUGINS" = "true" ]]; then
     initialize_zsh_plugins
+fi
+
+if [ ! -f ~/.config/starship.toml ]; then
+    cp starship.toml ~/.config/starship.toml
 fi
