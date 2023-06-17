@@ -6,15 +6,9 @@ unset platform_script
 export EDITOR=vim
 export TERM=screen-256color
 
-export BASH_COMPLETION_COMPAT_DIR="/usr/local/etc/bash_completion.d"
-[[ -r "/usr/local/etc/profile.d/bash_completion.sh" ]] && . "/usr/local/etc/profile.d/bash_completion.sh"
-
-# source bash_completion.d
-if [ -d /usr/local/etc/bash_completion.d ]; then
-    for line in $(echo /usr/local/etc/bash_completion.d/*.sh); do
-        source $line
-    done
-fi
+# export BASH_COMPLETION_COMPAT_DIR="/usr/local/etc/bash_completion.d"
+# [[ -r "/usr/local/etc/profile.d/bash_completion.sh" ]] && . "/usr/local/etc/profile.d/bash_completion.sh"
+[[ -r "/opt/homebrew/etc/profile.d/bash_completion.sh" ]] && . "/opt/homebrew/etc/profile.d/bash_completion.sh"
 
 # source aliases if present
 if [ -f ~/.aliases ]; then

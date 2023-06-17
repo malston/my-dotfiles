@@ -1,7 +1,7 @@
 # Use ANSI color sequences to distinguish file types
 export CLICOLOR=1
 
-DOT_FILES="/Users/malston/my-dotfiles"
+DOT_FILES="$HOME/my-dotfiles"
 
 function enable_completions() {
 	source "${DOT_FILES}/completions"
@@ -10,7 +10,7 @@ function enable_completions() {
 # Build our prompt
 function enable_bash_it() {
 	# Path to the bash it configuration
-	export BASH_IT="/Users/malston/.bash_it"
+	export BASH_IT="$HOME/.bash_it"
 
 	# Lock and Load a custom theme file.
 	# Leave empty to disable theming.
@@ -74,7 +74,7 @@ function enable_bash_it() {
 }
 
 export PATH="/opt/homebrew/opt/go@1.17/bin:$PATH"
-export PATH="/Users/malston/bin:/Users/malston/go/bin:$PATH"
+export PATH="$HOME/bin:$HOME/go/bin:$PATH"
 export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
 
 ARM_HOMEBREW_PREFIX="/opt/homebrew"

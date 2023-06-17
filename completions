@@ -1,41 +1,43 @@
 
 # Add cargo to path
-export PATH="$HOME/.cargo/bin:$PATH"
+if [ -d $HOME/.cargo/bin ]; then
+  export PATH="$HOME/.cargo/bin:$PATH"
+fi
 
 test -e "${HOME}/.iterm2_shell_integration.bash" && source "${HOME}/.iterm2_shell_integration.bash"
 
-[[ -r "/usr/local/etc/profile.d/bash_completion.sh" ]] && . "/usr/local/etc/profile.d/bash_completion.sh"
+# [[ -r "/usr/local/etc/profile.d/bash_completion.sh" ]] && . "/usr/local/etc/profile.d/bash_completion.sh"
+[[ -r "/opt/homebrew/etc/profile.d/bash_completion.sh" ]] && . "/opt/homebrew/etc/profile.d/bash_completion.sh"
 
 # The next line updates PATH for the Google Cloud SDK.
-if [ -f '/Users/malston/tools/google-cloud-sdk/path.bash.inc' ]; then . '/Users/malston/tools/google-cloud-sdk/path.bash.inc'; fi
+if [ -f '$HOME/tools/google-cloud-sdk/path.bash.inc' ]; then . '$HOME/tools/google-cloud-sdk/path.bash.inc'; fi
 
 # The next line enables shell command completion for gcloud.
-if [ -f '/Users/malston/tools/google-cloud-sdk/completion.bash.inc' ]; then . '/Users/malston/tools/google-cloud-sdk/completion.bash.inc'; fi
+if [ -f '$HOME/tools/google-cloud-sdk/completion.bash.inc' ]; then . '$HOME/tools/google-cloud-sdk/completion.bash.inc'; fi
 
 export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
 
 # Kubernetes prompt
 if [ -f /usr/local/opt/kube-ps1/share/kube-ps1.sh ]; then source "/usr/local/opt/kube-ps1/share/kube-ps1.sh"; fi
 if [ -f /opt/homebrew/opt/kube-ps1/share/kube-ps1.sh ]; then source "/opt/homebrew/opt/kube-ps1/share/kube-ps1.sh"; fi
-# this is set in the custom.prompt now
 
 # Setup autocomplete for kubectl commands
-source <(kubectl completion bash)
-alias k=kubectl
-complete -F __start_kubectl k
+if command -v kubectl &> /dev/null; then
+  source <(kubectl completion bash)
+  alias k=kubectl
+  complete -F __start_kubectl k
+fi
 
-# Add istio cli to path
-# export PATH="$PATH:$HOME/workspace/install-istio/istio-1.2.2/bin"
+if [ -f $HOME/.sdkman/bin/sdkman-init.sh ]; then source "$HOME/.sdkman/bin/sdkman-init.sh"; fi
 
-# Setup autocomplete for minio cli commands
-complete -C /usr/local/bin/mc mc
+if [ -d $HOME/.jenv/bin ]; then 
+  export PATH="$HOME/.jenv/bin:$PATH"
+  eval "$(jenv init -)"
+fi
 
-source "$HOME/.sdkman/bin/sdkman-init.sh"
-
-export PATH="$HOME/.jenv/bin:$PATH"
-eval "$(jenv init -)"
-
-eval "$(rbenv init -)"
+if command -v rbenv &> /dev/null; then
+  eval "$(rbenv init -)"
+fi
 
 export BASH_SILENCE_DEPRECATION_WARNING=1
 
@@ -45,13 +47,13 @@ if [ which -a direnv ]; then
 fi
 
 # Go
-export PATH=~/bin:~/.bin:~/go/bin:/usr/local/go/bin:$PATH
-export GOPATH=$HOME/workspace/go
-export PATH=$GOPATH/bin:$PATH
-# export PATH="/usr/local/opt/go@1.15/bin:$PATH"
-
-# enable ginkgo focus in editors
-export GINKGO_EDITOR_INTEGRATION=true
+if [ -d /usr/local/go ]; then
+  export PATH=~/bin:~/.bin:~/go/bin:/usr/local/go/bin:$PATH
+  export GOPATH=$HOME/workspace/go
+  export PATH=$GOPATH/bin:$PATH
+  # enable ginkgo focus in editors
+  export GINKGO_EDITOR_INTEGRATION=true
+fi
 
 # GNU Sed
 if [ -d /usr/local/opt/gnu-sed/libexec/gnubin ]; then
@@ -63,34 +65,36 @@ fi
 # See https://github.com/pyenv/pyenv-virtualenv
 if command -v pyenv 1>/dev/null 2>&1; then
   eval "$(pyenv init -)"
+  # We want to regularly go to our virtual environment directory
+  export WORKON_HOME=~/.virtualenvs
+
+  # If in a given virtual environment, make a virtual environment directory
+  # If one does not already exist
+  mkdir -p $WORKON_HOME
+
+  # Activate the new virtual environment by calling this script
+  # The workon and mkvirtualenv functions are in here
+  # test -e "${HOME}/.pyenv/versions/$(pyenv version-name)/bin/virtualenvwrapper.sh" && source "${HOME}/.pyenv/versions/$(pyenv version-name)/bin/virtualenvwrapper.sh"
+  eval "$(pyenv virtualenv-init -)"
 fi
-
-# We want to regularly go to our virtual environment directory
-export WORKON_HOME=~/.virtualenvs
-
-# If in a given virtual environment, make a virtual environment directory
-# If one does not already exist
-mkdir -p $WORKON_HOME
-
-# Activate the new virtual environment by calling this script
-# The workon and mkvirtualenv functions are in here
-# test -e "${HOME}/.pyenv/versions/$(pyenv version-name)/bin/virtualenvwrapper.sh" && source "${HOME}/.pyenv/versions/$(pyenv version-name)/bin/virtualenvwrapper.sh"
-eval "$(pyenv virtualenv-init -)"
 
 # export NVM_DIR="$HOME/.nvm"
 # [ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
 # [ -s "/usr/local/opt/nvm/etc/bash_completion.d/nvm" ] && . "/usr/local/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
 
-# source <(tca completion bash)
-source <(flux completion bash)
-source <(tanzu completion bash)
-source <(glab completion bash)
-source <(kp completion bash)
+if command -v flux &> /dev/null; then
+  source <(flux completion bash)
+fi
+if command -v tanzu &> /dev/null; then
+  source <(tanzu completion bash)
+fi
+if command -v glab &> /dev/null; then
+  source <(glab completion bash)
+fi
+if command -v kp &> /dev/null; then
+  source <(kp completion bash)
+fi
 
-eval "$(starship init bash)"
-# if command -v starship &> /dev/null; then
-#     function blastoff(){
-#         echo "🚀"
-#     }
-#     starship_precmd_user_func="blastoff"
-# fi
+if command -v starship &> /dev/null; then
+  eval "$(starship init bash)"
+fi

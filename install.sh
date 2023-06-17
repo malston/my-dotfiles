@@ -21,7 +21,7 @@ elif [[ "$flag" = "-p" ]]; then
     INIT_VIM=true
 fi
 
-all_dotfiles="zprofile zshrc bashrc bash_darwin bash_profile common_profile tmux.conf vimrc vim aliases git-authors gitconfig alacritty.yml"
+all_dotfiles="zprofile zshrc bashrc bash_darwin bash_profile common_profile tmux.conf vimrc vim aliases git-authors gitconfig"
 
 function link {
     echo Attempting to link $1
