@@ -103,6 +103,7 @@ symbol = " "
 format = '[$symbol$context( \($namespace\))]($style) '
 disabled = false
 # detect_files = ['k8s']
+
 [kubernetes.context_aliases]
 'dev.local.cluster.k8s' = 'dev'
 '.*/openshift-cluster/.*' = 'openshift'
