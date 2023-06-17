@@ -14,29 +14,8 @@ alias code='open -b com.microsoft.VSCode "$@"'
 # Fix path issues with Python on macOS Big Sur
 alias python=/usr/local/bin/python3
 
-# home
-alias homelab="cd ~/workspace/homelab"
-
 # replicated
 alias r="replicated"
-
-# dish projects
-alias cid="cd ~/workspace/dishcicd/cnf-cicd-pipeline"
-alias cic="cd ~/workspace/dishcicd/cnf-config"
-alias teclib="cd ~/workspace/dishcicd/teclib"
-alias cucp="cd ~/workspace/dishcicd/cnf/altiostar-cucp"
-alias cuup="cd ~/workspace/dishcicd/cnf/altiostar-cuup"
-alias vdu="cd ~/workspace/dishcicd/cnf/altiostar-vdu"
-alias amf="cd ~/workspace/dishcicd/cnf/nokia-amf"
-alias smf="cd ~/workspace/dishcicd/cnf/nokia-smf"
-alias mrf="cd ~/workspace/dishcicd/cnf/nokia-mrf"
-alias udm="cd ~/workspace/dishcicd/cnf/nokia-udm"
-alias upf="cd ~/workspace/dishcicd/cnf/nokia-upf"
-alias zts="cd ~/workspace/dishcicd/cnf/nokia-zts"
-alias mat="cd ~/workspace/dishcicd/cnf/matrixx-chf"
-
-# boeing projects
-alias boe="cd ~/workspace/boeing-tam-engagement"
 
 # system
 alias ll="ls -la"
@@ -52,9 +31,6 @@ alias lha='lh -a'
 
 # alias pbc='tmux show-buffer | DISPLAY=:0 xsel -b'
 alias pbc='tmux show-buffer | pbcopy'
-
-alias tb='source scripts/target-bosh.sh'
-alias tcb='source scripts/target-cp-bosh.sh'
 
 alias gin='ginkgo -r -race -cover -randomizeAllSpecs'
 

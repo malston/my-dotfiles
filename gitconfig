@@ -1,7 +1,5 @@
 [core]
-  editor = /usr/local/bin/vim
-  hooksPath = /Users/malston/workspace/git-hooks-core
-  excludesfile = /Users/malston/.gitignore_global
+  editor = /usr/local/bin/code
   autocrlf = input
 [transfer]
   fsckobjects = true
@@ -29,21 +27,10 @@
   sur="submodule update --init --recursive"
   cr = clone --recursive
 [user]
-	name = Mark Alston
-	email = malston@vmware.com
-[duet "env"]
-	git-author-initials = ma
-	git-author-name = Mark Alston
-	git-author-email = malston@pivotal.io
-	mtime = 1522853808
-	git-committer-initials =
-	git-committer-name =
-	git-committer-email =
+	name = Amber Alston
+	email = amber@replicated.com
 [credential]
 	credentialStore = cache
-	helper = 
-	helper = /usr/local/share/gcm-core/git-credential-manager
+	helper = osxkeychain
 [init]
 	defaultBranch = main
-[credential "https://dev.azure.com"]
-	useHttpPath = true
