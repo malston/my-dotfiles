@@ -7,8 +7,38 @@ add_newline = false
 [line_break]
 disabled = false
 
+[aws]
+symbol = "  "
+
+[buf]
+symbol = " "
+
+[c]
+symbol = " "
+
+[conda]
+symbol = " "
+
+[dart]
+symbol = " "
+
+[directory]
+read_only = " 󰌾"
+
+[docker_context]
+symbol = " "
+
+[elixir]
+symbol = " "
+
+[elm]
+symbol = " "
+
+[fossil_branch]
+symbol = " "
+
 [git_branch]
-symbol = '🌱 '
+symbol = " "
 truncation_length = 4
 truncation_symbol = ''
 format = '[$symbol$branch(:$remote_branch)]($style) '
@@ -17,50 +47,109 @@ format = '[$symbol$branch(:$remote_branch)]($style) '
 [git_status]
 format = '([\[$all_status$ahead_behind\]]($style))'
 
-[aws]
-disabled = true
-format = '[$symbol($profile )(\($region\) )(\[$duration\] )]($style)'
+[golang]
+symbol = " "
 
-[cmd_duration]
-min_time = 10000
-format = '\[[⏱ $duration]($style)\]'
+[guix_shell]
+symbol = " "
 
-[custom.foundation]
-description = "Foundation variable"
-command = "echo -n ${FOUNDATION}"
-when = """ test -n "${FOUNDATION}" """
-shell = ["bash", "--noprofile", "--norc"]
-symbol = "🪐 "
-style = "bold green"
-format = "[$symbol$output]($style) "
+[haskell]
+symbol = " "
 
-[env_var]
-disabled = true
-symbol = ' '
-variable = 'FOUNDATION'
-style = "bold green"
-format = '[$symbol$env_value]($style)'
+[haxe]
+symbol = "⌘ "
 
-[gcloud]
-disabled = true
-format = 'on [$symbol$account (\($project\)) in (\($region\))]($style)'
-[gcloud.region_aliases]
-europe-west2 = "eu-w2"
+[hg_branch]
+symbol = " "
 
-# https://starship.rs/config/#kubernetes
-[kubernetes]
-# format = 'on [⛵ ($user on )($cluster in )$context \($namespace\)](dimmed green) '
-format = '[$symbol$context( \($namespace\))]($style) '
-disabled = false
-# detect_files = ['k8s']
-[kubernetes.context_aliases]
-'dev.local.cluster.k8s' = 'dev'
-'.*/openshift-cluster/.*' = 'openshift'
-'gke_.*_(?P<var_cluster>[\w-]+)' = 'gke-$var_cluster'
-[kubernetes.user_aliases]
-'dev.local.cluster.k8s' = 'dev'
-'root/.*' = 'root'
+[hostname]
+ssh_symbol = " "
+
+[java]
+symbol = " "
+
+[julia]
+symbol = " "
+
+[lua]
+symbol = " "
+
+[memory_usage]
+symbol = "󰍛 "
+
+[meson]
+symbol = "󰔷 "
+
+[nim]
+symbol = "󰆥 "
+
+[nix_shell]
+symbol = " "
+
+[nodejs]
+symbol = " "
+
+[os.symbols]
+Alpaquita = " "
+Alpine = " "
+Amazon = " "
+Android = " "
+Arch = " "
+Artix = " "
+CentOS = " "
+Debian = " "
+DragonFly = " "
+Emscripten = " "
+EndeavourOS = " "
+Fedora = " "
+FreeBSD = " "
+Garuda = "󰛓 "
+Gentoo = " "
+HardenedBSD = "󰞌 "
+Illumos = "󰈸 "
+Linux = " "
+Mabox = " "
+Macos = " "
+Manjaro = " "
+Mariner = " "
+MidnightBSD = " "
+Mint = " "
+NetBSD = " "
+NixOS = " "
+OpenBSD = "󰈺 "
+openSUSE = " "
+OracleLinux = "󰌷 "
+Pop = " "
+Raspbian = " "
+Redhat = " "
+RedHatEnterprise = " "
+Redox = "󰀘 "
+Solus = "󰠳 "
+SUSE = " "
+Ubuntu = " "
+Unknown = " "
+Windows = "󰍲 "
+
+[package]
+symbol = "󰏗 "
+
+[pijul_channel]
+symbol = "🪺 "
 
 [python]
-disabled = true
-format = 'via [${symbol}${pyenv_prefix}(${version} )(\($virtualenv\) )]($style)'
+symbol = " "
+
+[rlang]
+symbol = "󰟔 "
+
+[ruby]
+symbol = " "
+
+[rust]
+symbol = " "
+
+[scala]
+symbol = " "
+
+[spack]
+symbol = "🅢 "
