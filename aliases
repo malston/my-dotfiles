@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-if [ $(uname -s) == 'Darwin' ]; then
+if [[ "$(uname -s)" == 'Darwin' ]]; then
   alias ls="ls -G"
 else
   alias ls="ls --color=auto"
@@ -43,9 +43,9 @@ alias ll="ls -la"
 alias grep='grep --color=auto'
 alias nocaps='/usr/bin/setxkbmap -layout us -option ctrl:nocaps'
 
-alias exa='exa --color=auto --group-directories-first'
-alias ls='exa'
-alias ll='ls -l -F -b -g -m --git --color-scale --time-style=long-iso'
+alias ls='exa --icons -F -H --group-directories-first --git -1'
+# alias ll='ls -l -b -g -m --color-scale --time-style=long-iso'
+alias ll='ls -alF'
 alias la='ll -a'
 alias lh='ll --reverse --sort=size'
 alias lha='lh -a'
