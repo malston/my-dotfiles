@@ -14,6 +14,9 @@ alias code='open -b com.microsoft.VSCode "$@"'
 # Fix path issues with Python on macOS Big Sur
 alias python=/usr/local/bin/python3
 
+# Move files to the Trash rather than removing permanently
+alias del="trash"
+
 # home
 alias homelab="cd ~/workspace/homelab"
 
