@@ -17,6 +17,11 @@ alias python=/usr/local/bin/python3
 # Move files to the Trash rather than removing permanently
 alias del="trash"
 
+# screen savers
+alias pipes="pipes.sh -p4 -t2"
+alias matrix="cmatrix"
+alias weather='curl wttr.in/Denver'
+
 # home
 alias homelab="cd ~/workspace/homelab"
 
