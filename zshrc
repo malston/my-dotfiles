@@ -64,7 +64,7 @@ DISABLE_LS_COLORS="true"
 # HIST_STAMPS="mm/dd/yyyy"
 
 # Would you like to use another custom folder than $ZSH/custom?
-ZSH_CUSTOM="$HOME/my-dotfiles/oh-my-zsh"
+export ZSH_CUSTOM="$HOME/my-dotfiles/oh-my-zsh"
 
 # Use fzf to search your command history and do file searches.
 FZF_BASE="$HOME/.fzf"

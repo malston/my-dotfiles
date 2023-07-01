@@ -66,6 +66,7 @@ function initialize_vim_plugins {
 }
 
 function initialize_zsh_plugins {
+    sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
     if [ ! -d "${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/kubectx" ]; then
         git clone https://github.com/unixorn/kubectx-zshplugin "${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/kubectx"
     else
@@ -133,10 +134,21 @@ if [[ "$INSTALL_ZSH_PLUGINS" = "true" ]]; then
     initialize_zsh_plugins
 fi
 
+(echo; echo 'eval "$(/opt/homebrew/bin/brew shellenv)"') >> $HOME/.zprofile
+eval "$(/opt/homebrew/bin/brew shellenv)"
+
+brew install --cask iterm2
+brew install fzf
+brew install kubectx
+
 if [ ! -f ~/.config/starship.toml ]; then
-    cp starship.toml ~/.config/starship.toml
+    cp $HOME/my-dotfiles/starship.toml ~/.config/starship.toml
 fi
 
 # Install all nerd fonts
 brew tap homebrew/cask-fonts
 brew search '/font-.*-nerd-font/' | awk '{ print $1 }' | xargs -I{} brew install --cask {} || true
+
+brew install starship
+brew tap microsoft/git
+brew install --cask git-credential-manager-core
