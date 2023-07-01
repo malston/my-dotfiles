@@ -1,3 +1,4 @@
+ZSH_DISABLE_COMPFIX=true
 # If you come from bash you might have to change your $PATH.
 export PATH="$HOME/bin:/opt/homebrew/bin:$PATH"
 
@@ -36,7 +37,7 @@ ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=244"
 # DISABLE_MAGIC_FUNCTIONS="true"
 
 # Uncomment the following line to disable colors in ls.
-DISABLE_LS_COLORS="true"
+# DISABLE_LS_COLORS="true"
 
 # Uncomment the following line to disable auto-setting terminal title.
 # DISABLE_AUTO_TITLE="true"
@@ -79,6 +80,7 @@ export FZF_DEFAULT_OPTS='--height 40% --layout=reverse --border'
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
   git
+  autojump
   bundler
   dotenv
   fzf
@@ -127,3 +129,11 @@ if command -v starship &> /dev/null; then
   eval "$(starship init zsh)"
 fi
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# autojump
+[ -f $(brew --prefix)/etc/profile.d/autojump.sh ] && . $(brew --prefix)/etc/profile.d/autojump.sh
+
+autoload -U +X bashcompinit && bashcompinit
+complete -o nospace -C /opt/homebrew/bin/terraform terraform
+
+test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"

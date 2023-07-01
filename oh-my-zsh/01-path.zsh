@@ -7,7 +7,7 @@ INTEL_HOMEBREW_PREFIX="/usr/local"
 case "$(uname -m)" in
   "arm64")
     HOMEBREW_PREFIX=${ARM_HOMEBREW_PREFIX}
-    echo "Start Home Brew as ARM64 M1/M2 Silicon ✅"
+    # echo "Start Home Brew as ARM64 M1/M2 Silicon ✅"
   ;;
   "i386"|"x86_64")
     HOMEBREW_PREFIX=${INTEL_HOMEBREW_PREFIX}

@@ -52,7 +52,7 @@ symbol = '🌳 '
 
 [env_var]
 disabled = true
-symbol = ' '
+# symbol = ' '
 variable = 'FOUNDATION'
 style = "bold green"
 format = '[$symbol$env_value]($style)'
@@ -60,7 +60,7 @@ format = '[$symbol$env_value]($style)'
 [gcloud]
 symbol = '☁️ '
 disabled = true
-format = ' on [$symbol$account (\($project\)) in (\($region\))]($style)'
+format = 'on [$symbol$account (\($project\)) in (\($region\))]($style)'
 
 [gcloud.region_aliases]
 europe-west2 = "eu-w2"
@@ -81,7 +81,7 @@ format = '[\($state( $progress_current of $progress_total)\)]($style) '
 cherry_pick = '[🍒 PICKING](bold red)'
 
 [git_status]
-format = '([\[$all_status$ahead_behind\]]($style))'
+format = '([\[$all_status$ahead_behind\]]($style)) '
 conflicted = '🏳'
 ahead = '🏎💨'
 behind = '😰'
@@ -113,14 +113,14 @@ truncation_symbol = ''
 ssh_symbol = '🌐 '
 ssh_only = false
 format = '[$ssh_symbol](bold blue) on [$hostname](bold red) '
-trim_at = '.companyname.com'
+trim_at = '.vmware.com'
 disabled = false
 
 [java]
-symbol = '🌟 '
+# symbol = '🌟 '
 
 [julia]
-symbol = '∴ '
+# symbol = '∴ '
 
 # https://starship.rs/config/#kubernetes
 [kubernetes]
@@ -144,11 +144,10 @@ format = 'via [🌕 $version](bold blue) '
 [memory_usage]
 disabled = false
 threshold = -1
-symbol = ' '
 style = 'bold dimmed green'
 
 [meson]
-symbol = "󰔷 "
+# symbol = "󰔷 "
 disabled = false
 truncation_symbol = '--'
 style = 'bold dimmed green'
@@ -217,7 +216,7 @@ format = 'via [🎁 $version](208 bold) '
 symbol = "🪺 "
 
 [python]
-symbol = '👾 '
+# symbol = '👾 '
 format = 'via [${symbol}${pyenv_prefix}(${version} )(\($virtualenv\) )]($style)'
 pyenv_version_name = true
 python_binary = ['./venv/bin/python', 'python', 'python3', 'python2']
@@ -232,7 +231,7 @@ symbol = '🔺 '
 format = 'via [⚙️ $version](red bold)'
 
 [scala]
-symbol = '🌟 '
+# symbol = '🌟 '
 
 [spack]
 symbol = "🅢 "
