@@ -1,33 +1,37 @@
 [core]
-  editor = /usr/local/bin/vim
-  hooksPath = /Users/malston/workspace/git-hooks-core
-  excludesfile = /Users/malston/.gitignore_global
-  autocrlf = input
+	editor = /opt/homebrew/bin/vim
+	hooksPath = /Users/malston/workspace/git-hooks-core
+	excludesfile = /Users/malston/.gitignore_global
+	autocrlf = input
+	hooksPath = /Users/malston/workspace/git-hooks-core
 [transfer]
-  fsckobjects = true
+	fsckobjects = true
 [push]
 	default = simple
 [alias]
-  pu = push
-  st = status
-  di = diff
-  co = checkout
-  ci = commit
-  br = branch
-  sta = stash
-  llog = log --date=local
-  flog = log --pretty=fuller --decorate
-  lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
-  lol = log --graph --decorate --oneline
-  lola = log --graph --decorate --oneline --all
-  blog = log origin/master... --left-right
-  ds = diff --staged
-  fixup = commit --fixup
-  squash = commit --squash
-  unstage = reset HEAD
-  rum = rebase master@{u}
-  sur="submodule update --init --recursive"
-  cr = clone --recursive
+	pu = push
+	st = status
+	di = diff
+	co = checkout
+	ci = commit
+	br = branch
+	sta = stash
+	llog = log --date=local
+	flog = log --pretty=fuller --decorate
+	lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
+	lol = log --graph --decorate --oneline
+	lola = log --graph --decorate --oneline --all
+	blog = log origin/master... --left-right
+	ds = diff --staged
+	fixup = commit --fixup
+	squash = commit --squash
+	unstage = reset HEAD
+	rum = rebase master@{u}
+	sur="submodule update --init --recursive"
+	cr = clone --recursive
+	gst = git
+	cp = cherry-pick
+	amendit = commit --amend --no-edit
 [user]
 	name = Mark Alston
 	email = malston@vmware.com
@@ -45,5 +49,6 @@
 	helper = /usr/local/share/gcm-core/git-credential-manager
 [init]
 	defaultBranch = main
+	templateDir = /Users/malston/.git_templates
 [credential "https://dev.azure.com"]
 	useHttpPath = true
