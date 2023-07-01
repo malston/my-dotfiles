@@ -152,3 +152,8 @@ brew search '/font-.*-nerd-font/' | awk '{ print $1 }' | xargs -I{} brew install
 brew install starship
 brew tap microsoft/git
 brew install --cask git-credential-manager-core
+brew install --cask visual-studio-code
+brew install vim
+brew install --cask flycut
+brew install --cask rectangle
+brew install --cask hpedrorodrigues/tools/dockutil
