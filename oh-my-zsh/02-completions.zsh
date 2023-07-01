@@ -1,4 +1,13 @@
+print_current_foundation(){
+  lt_blue='\e[1;34m'
+  clear='\e[0m'
+  if [ -n "$FOUNDATION" ]; then
+    echo -ne "$lt_blue""${FOUNDATION} ""$clear"
+  fi
+}
+
 if command -v direnv 1>/dev/null 2>&1; then
+  export PS1='$(print_current_foundation)'$PS1
   eval "$(direnv hook zsh)"
 fi
 if command -v stern 1>/dev/null 2>&1; then
