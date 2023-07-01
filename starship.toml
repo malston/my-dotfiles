@@ -40,6 +40,8 @@ symbol = '🎯 '
 
 [directory]
 read_only = " 󰌾"
+truncation_symbol = ' '
+truncate_to_repo = true
 
 [docker_context]
 symbol = '🐳 '
@@ -112,9 +114,9 @@ truncation_symbol = ''
 [hostname]
 ssh_symbol = '🌐 '
 ssh_only = false
-format = '[$ssh_symbol](bold blue) on [$hostname](bold red) '
+format = '[$ssh_symbol](bold blue) [$hostname](bold red) '
 trim_at = '.vmware.com'
-disabled = false
+disabled = true
 
 [java]
 # symbol = '🌟 '
@@ -142,7 +144,7 @@ disabled = false
 format = 'via [🌕 $version](bold blue) '
 
 [memory_usage]
-disabled = false
+disabled = true
 threshold = -1
 style = 'bold dimmed green'
 
