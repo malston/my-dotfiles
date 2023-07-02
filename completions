@@ -4,6 +4,10 @@ if [ -d $HOME/.cargo/bin ]; then
   export PATH="$HOME/.cargo/bin:$PATH"
 fi
 
+# export BASH_COMPLETION_COMPAT_DIR="/usr/local/etc/bash_completion.d"
+# [[ -r "/usr/local/etc/profile.d/bash_completion.sh" ]] && . "/usr/local/etc/profile.d/bash_completion.sh"
+[[ -r "/opt/homebrew/etc/profile.d/bash_completion.sh" ]] && . "/opt/homebrew/etc/profile.d/bash_completion.sh"
+
 test -e "${HOME}/.iterm2_shell_integration.bash" && source "${HOME}/.iterm2_shell_integration.bash"
 
 # [[ -r "/usr/local/etc/profile.d/bash_completion.sh" ]] && . "/usr/local/etc/profile.d/bash_completion.sh"
@@ -40,14 +44,6 @@ if command -v rbenv &> /dev/null; then
 fi
 
 export BASH_SILENCE_DEPRECATION_WARNING=1
-
-print_current_foundation(){
-  lt_blue='\e[1;34m'
-  clear='\e[0m'
-  if [ -n "$FOUNDATION" ]; then
-    echo -ne "$lt_blue""${FOUNDATION} ""$clear"
-  fi
-}
 
 # enable direnv
 if [ which -a direnv ]; then

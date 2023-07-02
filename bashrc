@@ -1,14 +1,23 @@
+#!/usr/bin/env bash
+
+__DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" &> /dev/null && pwd)"
+
+function print_current_foundation() {
+  lt_blue='\e[1;34m'
+  clear='\e[0m'
+  if [ -n "$FOUNDATION" ]; then
+    echo -ne "$lt_blue""${FOUNDATION} ""$clear"
+  fi
+}
+export -f print_current_foundation
+
 # platform specific script comes first!
-platform_script=~/.bash_`uname | awk '{ print tolower($0) }'`
-[ -f $platform_script ] && . $platform_script
+platform_script=~/.bash_$(uname | awk '{ print tolower($0) }')
+[ -f "$platform_script" ] && . "$platform_script"
 unset platform_script
 
 export EDITOR=vim
 export TERM=screen-256color
-
-# export BASH_COMPLETION_COMPAT_DIR="/usr/local/etc/bash_completion.d"
-# [[ -r "/usr/local/etc/profile.d/bash_completion.sh" ]] && . "/usr/local/etc/profile.d/bash_completion.sh"
-[[ -r "/opt/homebrew/etc/profile.d/bash_completion.sh" ]] && . "/opt/homebrew/etc/profile.d/bash_completion.sh"
 
 # source aliases if present
 if [ -f ~/.aliases ]; then
@@ -32,7 +41,6 @@ bind '"\e[B": history-search-forward'
 # Turn off bracketed paste
 bind 'set enable-bracketed-paste off'
 
-# enable_bash_it
-enable_completions
+source "${__DIR}/completions"
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash

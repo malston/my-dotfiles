@@ -1,12 +1,6 @@
 # Use ANSI color sequences to distinguish file types
 export CLICOLOR=1
 
-DOT_FILES="$HOME/my-dotfiles"
-
-function enable_completions() {
-	source "${DOT_FILES}/completions"
-}
-
 # Build our prompt
 function enable_bash_it() {
 	# Path to the bash it configuration
@@ -72,6 +66,7 @@ function enable_bash_it() {
 	source "$BASH_IT"/bash_it.sh
 	test -e "$BASH_IT/custom/custom-$BASH_IT_THEME.prompt" && source "$BASH_IT/custom/custom-$BASH_IT_THEME.prompt"
 }
+export -f enable_bash_it
 
 export PATH="/opt/homebrew/opt/go@1.17/bin:$PATH"
 export PATH="$HOME/bin:$HOME/go/bin:$PATH"
@@ -105,8 +100,7 @@ export GIT_PS1_SHOWUNTRACKEDFILES=true
 ulimit -n 200000
 ulimit -u 2048
 
-export -f enable_bash_it
-export -f enable_completions
-
 # in case you want to change ps1 from a direnv file
 export PS1='${CUSTOM_PS1}'$PS1
+
+# enable_bash_it
