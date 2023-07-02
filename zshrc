@@ -88,6 +88,7 @@ plugins=(
   rake
   rbenv
   ruby
+  kube-ps1
   kubectl
   kubectx
   python
@@ -123,14 +124,3 @@ fi
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-export PS1='$(kube_ps1)'$PS1
-
-function print_current_foundation() {
-  lt_blue='\e[1;34m'
-  clear='\e[0m'
-  if [ -n "$FOUNDATION" ]; then
-    echo -ne "$lt_blue""${FOUNDATION} ""$clear"
-  fi
-}
-
-export -f print_current_foundation
