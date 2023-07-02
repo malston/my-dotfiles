@@ -88,9 +88,9 @@ plugins=(
   rake
   rbenv
   ruby
-  kube-ps1
   kubectl
   kubectx
+  kube-ps1
   python
   zsh-syntax-highlighting
   zsh-autosuggestions
@@ -98,8 +98,6 @@ plugins=(
 )
 
 source $ZSH/oh-my-zsh.sh
-
-# PROMPT=$PROMPT'$(kube_ps1)'
 
 # User configuration
 
@@ -115,14 +113,18 @@ else
   export EDITOR='mvim'
 fi
 
-# Compilation flags
-# export ARCHFLAGS="-arch x86_64"
+# export PS1='$(kube_ps1)'$PS1
 
-# Set personal aliases, overriding those provided by oh-my-zsh libs,
-# plugins, and themes. Aliases can be placed here, though oh-my-zsh
-# users are encouraged to define aliases within the ZSH_CUSTOM folder.
-# For a full list of active aliases, run `alias`.
-#
-# Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
+if command -v starship &> /dev/null; then
+  eval "$(starship init zsh)"
+fi
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# autojump
+[ -f $(brew --prefix)/etc/profile.d/autojump.sh ] && . $(brew --prefix)/etc/profile.d/autojump.sh
+
+autoload -U +X bashcompinit && bashcompinit
+complete -o nospace -C /opt/homebrew/bin/terraform terraform
+
+test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"

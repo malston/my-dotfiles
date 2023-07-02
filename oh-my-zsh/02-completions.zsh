@@ -1,7 +1,5 @@
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-# export PS1='$(kube_ps1)'$PS1
-
 function print_current_foundation() {
   lt_blue='\e[1;34m'
   clear='\e[0m'
@@ -9,6 +7,10 @@ function print_current_foundation() {
     echo -ne "$lt_blue""${FOUNDATION} ""$clear"
   fi
 }
+
+if command -v starship &> /dev/null; then
+  eval "$(starship init zsh)"
+fi
 
 # autojump
 [ -f $(brew --prefix)/etc/profile.d/autojump.sh ] && . $(brew --prefix)/etc/profile.d/autojump.sh
@@ -31,9 +33,6 @@ if command -v kubectl 1>/dev/null 2>&1; then
   source <(kubectl completion zsh)
 fi
 
-if [ -f /usr/local/opt/kube-ps1/share/kube-ps1.sh ]; then source "/usr/local/opt/kube-ps1/share/kube-ps1.sh"; fi
-if [ -f /opt/homebrew/opt/kube-ps1/share/kube-ps1.sh ]; then source "/opt/homebrew/opt/kube-ps1/share/kube-ps1.sh"; fi
-
 # Python
 # See https://github.com/pyenv/pyenv
 # See https://github.com/pyenv/pyenv-virtualenv
@@ -50,8 +49,4 @@ if command -v pyenv 1>/dev/null 2>&1; then
   # The workon and mkvirtualenv functions are in here
   # test -e "${HOME}/.pyenv/versions/$(pyenv version-name)/bin/virtualenvwrapper.sh" && source "${HOME}/.pyenv/versions/$(pyenv version-name)/bin/virtualenvwrapper.sh"
   eval "$(pyenv virtualenv-init -)"
-fi
-
-if command -v starship &> /dev/null; then
-  eval "$(starship init zsh)"
 fi
