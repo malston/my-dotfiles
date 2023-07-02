@@ -1,3 +1,13 @@
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# autojump
+[ -f $(brew --prefix)/etc/profile.d/autojump.sh ] && . $(brew --prefix)/etc/profile.d/autojump.sh
+
+autoload -U +X bashcompinit && bashcompinit
+complete -o nospace -C /opt/homebrew/bin/terraform terraform
+
+test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+
 if command -v direnv 1>/dev/null 2>&1; then
   export PS1='$(print_current_foundation)'$PS1
   eval "$(direnv hook zsh)"
@@ -30,4 +40,8 @@ if command -v pyenv 1>/dev/null 2>&1; then
   # The workon and mkvirtualenv functions are in here
   # test -e "${HOME}/.pyenv/versions/$(pyenv version-name)/bin/virtualenvwrapper.sh" && source "${HOME}/.pyenv/versions/$(pyenv version-name)/bin/virtualenvwrapper.sh"
   eval "$(pyenv virtualenv-init -)"
+fi
+
+if command -v starship &> /dev/null; then
+  eval "$(starship init zsh)"
 fi

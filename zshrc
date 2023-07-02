@@ -125,15 +125,12 @@ fi
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 export PS1='$(kube_ps1)'$PS1
 
-if command -v starship &> /dev/null; then
-  eval "$(starship init zsh)"
-fi
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+function print_current_foundation() {
+  lt_blue='\e[1;34m'
+  clear='\e[0m'
+  if [ -n "$FOUNDATION" ]; then
+    echo -ne "$lt_blue""${FOUNDATION} ""$clear"
+  fi
+}
 
-# autojump
-[ -f $(brew --prefix)/etc/profile.d/autojump.sh ] && . $(brew --prefix)/etc/profile.d/autojump.sh
-
-autoload -U +X bashcompinit && bashcompinit
-complete -o nospace -C /opt/homebrew/bin/terraform terraform
-
-test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+export -f print_current_foundation
