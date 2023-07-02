@@ -99,6 +99,8 @@ plugins=(
 
 source $ZSH/oh-my-zsh.sh
 
+# PROMPT=$PROMPT'$(kube_ps1)'
+
 # User configuration
 
 # export MANPATH="/usr/local/man:$MANPATH"

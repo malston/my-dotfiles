@@ -1,6 +1,6 @@
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-export PS1='$(kube_ps1)'$PS1
+# export PS1='$(kube_ps1)'$PS1
 
 function print_current_foundation() {
   lt_blue='\e[1;34m'
