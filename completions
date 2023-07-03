@@ -25,6 +25,25 @@ export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
 if [ -f /usr/local/opt/kube-ps1/share/kube-ps1.sh ]; then source "/usr/local/opt/kube-ps1/share/kube-ps1.sh"; fi
 if [ -f /opt/homebrew/opt/kube-ps1/share/kube-ps1.sh ]; then source "/opt/homebrew/opt/kube-ps1/share/kube-ps1.sh"; fi
 
+# enable programmable completion features (you don't need to enable
+# this, if it's already enabled in /etc/bash.bashrc and /etc/profile
+# sources /etc/bash.bashrc).
+if ! shopt -oq posix; then
+  if [ -f /usr/share/bash-completion/bash_completion ]; then
+    . /usr/share/bash-completion/bash_completion
+  elif [ -f /etc/bash_completion ]; then
+    . /etc/bash_completion
+  fi
+fi
+
+# in case you want to change ps1 from a direnv file
+export PS1='${CUSTOM_PS1}'$PS1
+
+if [ -f ~/kube-ps1/kube-ps1.sh ]; then
+  source ~/kube-ps1/kube-ps1.sh;
+  PS1=$PS1'$(kube_ps1)\$ '
+fi
+
 # Setup autocomplete for kubectl commands
 if command -v kubectl &> /dev/null; then
   source <(kubectl completion bash)
@@ -32,56 +51,6 @@ if command -v kubectl &> /dev/null; then
   complete -F __start_kubectl k
 fi
 
-if [ -f $HOME/.sdkman/bin/sdkman-init.sh ]; then source "$HOME/.sdkman/bin/sdkman-init.sh"; fi
-
-if [ -d $HOME/.jenv/bin ]; then
-  export PATH="$HOME/.jenv/bin:$PATH"
-  eval "$(jenv init -)"
-fi
-
-if command -v rbenv &> /dev/null; then
-  eval "$(rbenv init -)"
-fi
-
-export BASH_SILENCE_DEPRECATION_WARNING=1
-
-# enable direnv
-if [ which -a direnv ]; then
-  export PS1='$(print_current_foundation)'$PS1
-  eval "$(direnv hook bash)"
-fi
-
-# Go
-if [ -d /usr/local/go ]; then
-  export PATH=~/bin:~/.bin:~/go/bin:/usr/local/go/bin:$PATH
-  export GOPATH=$HOME/workspace/go
-  export PATH=$GOPATH/bin:$PATH
-  # enable ginkgo focus in editors
-  export GINKGO_EDITOR_INTEGRATION=true
-fi
-
-# GNU Sed
-if [ -d /usr/local/opt/gnu-sed/libexec/gnubin ]; then
-  PATH="/usr/local/opt/gnu-sed/libexec/gnubin:$PATH"
-fi
-
-# Python
-# See https://github.com/pyenv/pyenv
-# See https://github.com/pyenv/pyenv-virtualenv
-if command -v pyenv 1>/dev/null 2>&1; then
-  eval "$(pyenv init -)"
-  # We want to regularly go to our virtual environment directory
-  export WORKON_HOME=~/.virtualenvs
-
-  # If in a given virtual environment, make a virtual environment directory
-  # If one does not already exist
-  mkdir -p $WORKON_HOME
-
-  # Activate the new virtual environment by calling this script
-  # The workon and mkvirtualenv functions are in here
-  # test -e "${HOME}/.pyenv/versions/$(pyenv version-name)/bin/virtualenvwrapper.sh" && source "${HOME}/.pyenv/versions/$(pyenv version-name)/bin/virtualenvwrapper.sh"
-  eval "$(pyenv virtualenv-init -)"
-fi
 
 # export NVM_DIR="$HOME/.nvm"
 # [ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
@@ -98,8 +67,4 @@ if command -v glab &> /dev/null; then
 fi
 if command -v kp &> /dev/null; then
   source <(kp completion bash)
-fi
-
-if command -v starship &> /dev/null; then
-  eval "$(starship init bash)"
 fi

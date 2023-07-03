@@ -121,31 +121,3 @@ alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo
 if [ -f ~/.bash_aliases ]; then
   . ~/.bash_aliases
 fi
-
-# enable programmable completion features (you don't need to enable
-# this, if it's already enabled in /etc/bash.bashrc and /etc/profile
-# sources /etc/bash.bashrc).
-if ! shopt -oq posix; then
-  if [ -f /usr/share/bash-completion/bash_completion ]; then
-    . /usr/share/bash-completion/bash_completion
-  elif [ -f /etc/bash_completion ]; then
-    . /etc/bash_completion
-  fi
-fi
-
-alias k=/usr/local/bin/kubectl
-alias kgc='/usr/local/bin/kubectl config get-contexts'
-alias kgp='/usr/local/bin/kubectl get pods'
-alias kgs='/usr/local/bin/kubectl get services'
-alias kuc='/usr/local/bin/kubectl config use-context'
-
-eval "$(direnv hook bash)"
-# in case you want to change ps1 from a direnv file
-export PS1='${CUSTOM_PS1}'$PS1
-
-if [ -f ~/kube-ps1/kube-ps1.sh ]; then
-  source ~/kube-ps1/kube-ps1.sh;
-  PS1=$PS1'$(kube_ps1)\$ '
-fi
-source <(kubectl completion bash)
-complete -o default -F __start_kubectl k
