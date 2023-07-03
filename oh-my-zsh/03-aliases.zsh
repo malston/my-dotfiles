@@ -1,15 +1,26 @@
-alias ls="ls -G"
-alias k=kubectl
-complete -F __start_kubectl k
-
-# Vscode fix for: https://github.com/microsoft/vscode/issues/60579
-alias code='open -b com.microsoft.VSCode "$@"'
+#!/usr/bin/env bash
+if [[ "$(uname -s)" == 'Darwin' ]]; then
+  alias ls="ls -G"
+else
+  alias ls="ls --color=auto"
+fi
 
 # https://github.com/direnv/direnv/wiki/Tmux
 alias tmux='direnv exec / tmux'
 
+# Vscode fix for: https://github.com/microsoft/vscode/issues/60579
+# alias code='open -b com.microsoft.VSCode "$@"'
+
 # Fix path issues with Python on macOS Big Sur
 alias python=/usr/local/bin/python3
+
+# Move files to the Trash rather than removing permanently
+alias del="trash"
+
+# screen savers
+alias pipes="pipes.sh -p4 -t2"
+alias matrix="cmatrix"
+alias weather='curl wttr.in/Denver'
 
 # home
 alias homelab="cd ~/workspace/homelab"
@@ -35,16 +46,15 @@ alias mat="cd ~/workspace/dishcicd/cnf/matrixx-chf"
 # boeing projects
 alias boe="cd ~/workspace/boeing-tam-engagement"
 
+# python
+alias python=python3
+
 # system
 alias ll="ls -la"
 alias grep='grep --color=auto'
 alias nocaps='/usr/bin/setxkbmap -layout us -option ctrl:nocaps'
 
-
-# aliases
-alias python=python3
-alias gs="git status"
-
+alias ls='exa --icons -F -H --group-directories-first --git -1'
 alias fp="fzf --preview 'bat --style=numbers --color=always --line-range :500 {}'"
 alias gt='starship toggle gcloud disabled'
 
@@ -52,7 +62,8 @@ alias exa='exa --color=auto --group-directories-first'
 alias ls='exa --icons'
 alias ll="exa -l -g --icons"
 alias lt="exa --tree --icons -a -I '.git|__pycache__|.mypy_cache|.ipynb_checkpoints'"
-# alias ll='ls -l -F -b -g -m --git --color-scale --time-style=long-iso'
+# alias ll='ls -l -b -g -m --color-scale --time-style=long-iso'
+alias ll='ls -alF'
 alias la='ll -a'
 alias lh='ll --reverse --sort=size'
 alias lha='lh -a'

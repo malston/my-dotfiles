@@ -113,7 +113,12 @@ else
   export EDITOR='mvim'
 fi
 
-# export PS1='$(kube_ps1)'$PS1
+# Setup autocomplete for kubectl commands
+if command -v kubectl &> /dev/null; then
+  source <(kubectl completion zsh)
+  alias k=kubectl
+  complete -F __start_kubectl k
+fi
 
 if command -v starship &> /dev/null; then
   eval "$(starship init zsh)"

@@ -9,7 +9,7 @@ fi
 alias tmux='direnv exec / tmux'
 
 # Vscode fix for: https://github.com/microsoft/vscode/issues/60579
-alias code='open -b com.microsoft.VSCode "$@"'
+# alias code='open -b com.microsoft.VSCode "$@"'
 
 # Fix path issues with Python on macOS Big Sur
 alias python=/usr/local/bin/python3
@@ -46,12 +46,22 @@ alias mat="cd ~/workspace/dishcicd/cnf/matrixx-chf"
 # boeing projects
 alias boe="cd ~/workspace/boeing-tam-engagement"
 
+# python
+alias python=python3
+
 # system
 alias ll="ls -la"
 alias grep='grep --color=auto'
 alias nocaps='/usr/bin/setxkbmap -layout us -option ctrl:nocaps'
 
 alias ls='exa --icons -F -H --group-directories-first --git -1'
+alias fp="fzf --preview 'bat --style=numbers --color=always --line-range :500 {}'"
+alias gt='starship toggle gcloud disabled'
+
+alias exa='exa --color=auto --group-directories-first'
+alias ls='exa --icons'
+alias ll="exa -l -g --icons"
+alias lt="exa --tree --icons -a -I '.git|__pycache__|.mypy_cache|.ipynb_checkpoints'"
 # alias ll='ls -l -b -g -m --color-scale --time-style=long-iso'
 alias ll='ls -alF'
 alias la='ll -a'
@@ -67,6 +77,10 @@ alias tcb='source scripts/target-cp-bosh.sh'
 alias gin='ginkgo -r -race -cover -randomizeAllSpecs'
 
 # kubernetes
+
+export do="--dry-run=client -o yaml"
+export now="--force --grace-period 0"
+
 alias watch='watch '
 alias k=kubectl
 alias kg='kubectl get'
@@ -666,3 +680,10 @@ alias kgsvcwojsonn='kubectl get service --watch -o=json --namespace'
 alias kgingwojsonn='kubectl get ingress --watch -o=json --namespace'
 alias kgcmwojsonn='kubectl get configmap --watch -o=json --namespace'
 alias kgsecwojsonn='kubectl get secret --watch -o=json --namespace'
+
+# https://github.com/corneliusweig/ketall
+alias ketall='kubectl get-all'
+# https://github.com/tohjustin/kube-lineage
+alias kln='kubectl lineage'
+# https://github.com/ahmetb/kubectl-tree
+alias kt='kubectl tree'
