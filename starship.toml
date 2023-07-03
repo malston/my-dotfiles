@@ -115,7 +115,7 @@ truncation_symbol = ''
 ssh_symbol = '🌐 '
 ssh_only = false
 format = '[$ssh_symbol](bold blue) [$hostname](bold red) '
-trim_at = '.vmware.com'
+trim_at = 'L6MFC.vmware.com'
 disabled = false
 
 [java]
