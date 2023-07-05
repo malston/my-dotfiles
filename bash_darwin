@@ -4,7 +4,7 @@ export CLICOLOR=1
 DOT_FILES="$HOME/my-dotfiles"
 
 function enable_completions() {
-	source "${DOT_FILES}/completions"
+  source "${DOT_FILES}/completions"
 }
 
 # Build our prompt

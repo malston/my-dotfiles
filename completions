@@ -42,7 +42,7 @@ fi
 export BASH_SILENCE_DEPRECATION_WARNING=1
 
 # enable direnv
-if [ which -a direnv ]; then
+if command -v direnv &> /dev/null; then
     eval "$(direnv hook bash)"
 fi
 
@@ -82,18 +82,18 @@ fi
 # [ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
 # [ -s "/usr/local/opt/nvm/etc/bash_completion.d/nvm" ] && . "/usr/local/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
 
-if command -v flux &> /dev/null; then
-  source <(flux completion bash)
-fi
-if command -v tanzu &> /dev/null; then
-  source <(tanzu completion bash)
-fi
-if command -v glab &> /dev/null; then
-  source <(glab completion bash)
-fi
-if command -v kp &> /dev/null; then
-  source <(kp completion bash)
-fi
+# if command -v flux &> /dev/null; then
+#   source <(flux completion bash)
+# fi
+# if command -v tanzu &> /dev/null; then
+#   source <(tanzu completion bash)
+# fi
+# if command -v glab &> /dev/null; then
+#   source <(glab completion bash)
+# fi
+# if command -v kp &> /dev/null; then
+#   source <(kp completion bash)
+# fi
 
 if command -v starship &> /dev/null; then
   eval "$(starship init bash)"

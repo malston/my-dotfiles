@@ -7,6 +7,17 @@ case $- in
     *i*) ;;
       *) return;;
 esac
+#
+# Use ANSI color sequences to distinguish file types
+export CLICOLOR=1
+
+DOT_FILES="$HOME/my-dotfiles"
+
+function enable_completions() {
+  source "${DOT_FILES}/completions"
+}
+
+export -f enable_completions
 
 # append to the history file, don't overwrite it
 shopt -s histappend

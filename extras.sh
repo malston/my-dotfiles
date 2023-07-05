@@ -3,6 +3,9 @@
 # install direnv
 curl -sfL https://direnv.net/install.sh | sudo bash
 
+# install starship
+curl -sS https://starship.rs/install.sh | sudo sh
+
 # install liquidprompt the new way
 https://liquidprompt.readthedocs.io/en/stable/install.html
 git clone --branch stable https://github.com/nojhan/liquidprompt.git ~/liquidprompt

@@ -5,47 +5,12 @@ else
   alias ls="ls --color=auto"
 fi
 
-# https://github.com/direnv/direnv/wiki/Tmux
-alias tmux='direnv exec / tmux'
-
-# Vscode fix for: https://github.com/microsoft/vscode/issues/60579
-alias code='open -b com.microsoft.VSCode "$@"'
-
-# Fix path issues with Python on macOS Big Sur
-alias python=/usr/local/bin/python3
-
-# home
-alias homelab="cd ~/workspace/homelab"
-
-# replicated
-alias r="replicated"
-
-# dish projects
-alias cid="cd ~/workspace/dishcicd/cnf-cicd-pipeline"
-alias cic="cd ~/workspace/dishcicd/cnf-config"
-alias teclib="cd ~/workspace/dishcicd/teclib"
-alias cucp="cd ~/workspace/dishcicd/cnf/altiostar-cucp"
-alias cuup="cd ~/workspace/dishcicd/cnf/altiostar-cuup"
-alias vdu="cd ~/workspace/dishcicd/cnf/altiostar-vdu"
-alias amf="cd ~/workspace/dishcicd/cnf/nokia-amf"
-alias smf="cd ~/workspace/dishcicd/cnf/nokia-smf"
-alias mrf="cd ~/workspace/dishcicd/cnf/nokia-mrf"
-alias udm="cd ~/workspace/dishcicd/cnf/nokia-udm"
-alias upf="cd ~/workspace/dishcicd/cnf/nokia-upf"
-alias zts="cd ~/workspace/dishcicd/cnf/nokia-zts"
-alias mat="cd ~/workspace/dishcicd/cnf/matrixx-chf"
-
-# boeing projects
-alias boe="cd ~/workspace/boeing-tam-engagement"
-
 # system
 alias ll="ls -la"
 alias grep='grep --color=auto'
 alias nocaps='/usr/bin/setxkbmap -layout us -option ctrl:nocaps'
 
-alias exa='exa --color=auto --group-directories-first'
-alias ls='exa'
-alias ll='ls -l -F -b -g -m --git --color-scale --time-style=long-iso'
+#alias ll='ls -l -F -b -g -m --time-style=long-iso'
 alias la='ll -a'
 alias lh='ll --reverse --sort=size'
 alias lha='lh -a'

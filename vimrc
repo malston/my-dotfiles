@@ -20,13 +20,13 @@ Plugin 'tpope/vim-dispatch'          " Allow background builds
 Plugin 'tpope/vim-unimpaired'        " Add normal mode aliases for commonly used ex commands
 Plugin 'tpope/vim-surround'          " Easily change surrounding characters
 Plugin 'tpope/vim-vinegar'           " Use `minus` to access netrw and navigate directories
-Plugin 'fatih/vim-go'                " Helpful plugin for Golang dev
+" Plugin 'fatih/vim-go'                " Helpful plugin for Golang dev
 Plugin 'AndrewRadev/splitjoin.vim'   " Enable vim-go to split structs into multi lines
 Plugin 'ervandew/supertab'           " Perform all completions with Tab
 Plugin 'scrooloose/nerdtree'         " Directory tree explorer
 Plugin 'vim-airline/vim-airline'     " Status line improvements
 Plugin 'cappyzawa/starlark.vim'
-Plugin 'vmware-tanzu/ytt.vim'
+" Plugin 'vmware-tanzu/ytt.vim'
 Plugin 'vim-airline/vim-airline-themes'
 call vundle#end()                    " Complete vunde initialization
 
@@ -137,6 +137,7 @@ set list                " enable display of invisible characters
 highlight NonText ctermfg=239
 highlight SpecialKey ctermfg=239
 
+color slate
 
 "------------------------------------------------------------------------------
 " supertab config
