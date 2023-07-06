@@ -38,14 +38,13 @@
 [duet "env"]
 	git-author-initials = ma
 	git-author-name = Mark Alston
-	git-author-email = malston@pivotal.io
+	git-author-email = malston@vmware.com
 	mtime = 1522853808
 	git-committer-initials =
 	git-committer-name =
 	git-committer-email =
 [credential]
 	credentialStore = cache
-	helper = 
 	helper = /usr/local/share/gcm-core/git-credential-manager
 [init]
 	defaultBranch = main
