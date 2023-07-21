@@ -1,7 +1,5 @@
 [core]
-  editor = /usr/local/bin/vim
-  hooksPath = /Users/malston/workspace/git-hooks-core
-  excludesfile = /Users/malston/.gitignore_global
+  editor = /usr/bin/vim
 [transfer]
   fsckobjects = true
 [push]
@@ -31,19 +29,5 @@
 [user]
 	name = Mark Alston
 	email = malston@vmware.com
-[duet "env"]
-	git-author-initials = ma
-	git-author-name = Mark Alston
-	git-author-email = malston@pivotal.io
-	mtime = 1522853808
-	git-committer-initials =
-	git-committer-name =
-	git-committer-email =
-[difftool "sourcetree"]
-	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
-	path =
-[mergetool "sourcetree"]
-	cmd = /Applications/Sourcetree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
-	trustExitCode = true
 [init]
 	defaultBranch = main

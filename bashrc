@@ -44,3 +44,8 @@ eval "$(direnv hook bash)"
 # chsh -s $(which zsh)
 # zsh
 
+
+# Tanzu shell completion
+source '/home/azureuser/.config/tanzu/completion.bash.inc'
+source '/home/azureuser/.config/tanzu/kubectl-completion.bash.inc'
+
