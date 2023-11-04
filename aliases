@@ -9,7 +9,7 @@ fi
 alias tmux='direnv exec / tmux'
 
 # Vscode fix for: https://github.com/microsoft/vscode/issues/60579
-# alias code='open -b com.microsoft.VSCode "$@"'
+alias code='open -b com.microsoft.VSCode "$@"'
 
 # Fix path issues with Python on macOS Big Sur
 alias python=/usr/local/bin/python3
