@@ -4,6 +4,7 @@
 	excludesfile = /Users/malston/.gitignore_global
 	autocrlf = input
 	hooksPath = /Users/malston/workspace/git-hooks-core
+	pager = less -FRSX
 [transfer]
 	fsckobjects = true
 [push]
