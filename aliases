@@ -28,6 +28,8 @@ alias homelab="cd ~/workspace/homelab"
 # replicated
 alias r="replicated"
 
+alias argo=argocd
+
 # dish projects
 alias cid="cd ~/workspace/dishcicd/cnf-cicd-pipeline"
 alias cic="cd ~/workspace/dishcicd/cnf-config"
