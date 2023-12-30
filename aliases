@@ -54,14 +54,13 @@ alias ll="ls -la"
 alias grep='grep --color=auto'
 alias nocaps='/usr/bin/setxkbmap -layout us -option ctrl:nocaps'
 
-alias ls='exa --icons -F -H --group-directories-first --git -1'
 alias fp="fzf --preview 'bat --style=numbers --color=always --line-range :500 {}'"
 alias gt='starship toggle gcloud disabled'
 
-alias exa='exa --color=auto --group-directories-first'
-alias ls='exa --icons'
-alias ll="exa -l -g --icons"
-alias lt="exa --tree --icons -a -I '.git|__pycache__|.mypy_cache|.ipynb_checkpoints'"
+alias eza='eza --color=auto --group-directories-first'
+alias ls='eza --icons -F -H --group-directories-first --git -1'
+alias ll="eza -l -g --icons"
+alias lt="eza --tree --icons -a -I '.git|__pycache__|.mypy_cache|.ipynb_checkpoints'"
 # alias ll='ls -l -b -g -m --color-scale --time-style=long-iso'
 alias ll='ls -alF'
 alias la='ll -a'
