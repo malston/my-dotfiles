@@ -2,7 +2,7 @@
 
 ## Install Dotfiles
 
-```
+```sh
 ./install.sh
 ```
 
@@ -10,6 +10,17 @@
 
 This will also install the dotfiles.
 
-```
+```sh
 ./xubuntu-setup.sh
 ```
+
+## MacOS Setup Script
+
+
+Run the script
+
+```sh
+zsh $HOME/my-dotfiles/macsetup.sh
+```
+
+Have fun!
