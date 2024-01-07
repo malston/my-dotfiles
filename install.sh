@@ -4,6 +4,7 @@ LINK_DOTFILES=false
 INIT_VIM=false
 INSTALL_HOOKS=false
 INSTALL_ZSH_PLUGINS=false
+BACKUP_DOTFILES=false
 INSTALL_BREW=false
 ZSH_CUSTOM="$HOME/my-dotfiles/oh-my-zsh"
 INSTALL_POWERLINE=false
@@ -20,8 +21,11 @@ if [[ "$flag" = "-a" ]]; then
     INSTALL_ZSH_PLUGINS=true
     INSTALL_BREW=true
     INSTALL_POWERLINE=true
+    BACKUP_DOTFILES=true
 elif [[ "$flag" = "-h" ]]; then
     INSTALL_HOOKS=true
+elif [[ "$flag" = "-b" ]]; then
+    BACKUP_DOTFILES=true
 elif [[ "$flag" = "-l" ]]; then
     LINK_DOTFILES=true
 elif [[ "$flag" = "-p" ]]; then
@@ -32,7 +36,7 @@ elif [[ "$flag" = "-z" ]]; then
     INSTALL_ZSH_PLUGINS=true
 fi
 
-all_dotfiles="zprofile zshrc bashrc bash_darwin bash_profile common_profile tmux.conf vimrc vim aliases git-authors gitconfig"
+all_dotfiles=(zprofile zshrc bashrc bash_darwin bash_profile common_profile tmux.conf vimrc vim aliases git-authors gitconfig)
 protected_repos=(homelab home-vpn)
 
 function link {
@@ -41,17 +45,32 @@ function link {
 }
 
 function print_error {
-    echo Failed to link "$1"
+    2>&1 echo "$@"
+}
+
+function die() {
+    print_error
+    exit 1
+}
+
+function backup_dotfiles {
+    echo "Backing up dotfiles"
+    for dotfile in "${all_dotfiles[@]}"; do
+        echo "${dotfile}"
+        if [[ -f "$HOME/.$dotfile" && ! -L "$HOME/.$dotfile" ]]; then
+            # file exists
+            cp "$HOME/.$dotfile" "$HOME/.${dotfile}.bak"
+        fi
+    done
 }
 
 function link_all_dotfiles {
-    local dotfile=$1
-    for dotfile in $all_dotfiles; do
-        if [[ -f "$HOME/.$1" ]]; then
-            # file exists
-            print_error "$dotfile"
+    for dotfile in "${all_dotfiles[@]}"; do
+        if [[ -L "$HOME/.$dotfile" ]]; then
+            # link exists
+            print_error "WARN: $dotfile already linked"
         else
-            # file does not exist
+            # link does not exist
             link "$dotfile"
         fi
     done
@@ -143,10 +162,13 @@ fi
 EOF
 }
 
-# update_submodules
+update_submodules
 
+if [[ "$BACKUP_DOTFILES" == "true" ]]; then
+    backup_dotfiles
+fi
 if [[ "$LINK_DOTFILES" == "true" ]]; then
-    link_all_dotfiles "$@"
+    link_all_dotfiles
 fi
 if [[ "$INIT_VIM" == "true" ]]; then
     initialize_vim_plugins
@@ -167,15 +189,17 @@ if [[ $INSTALL_BREW == true ]]; then
 
     brew install --cask iterm2
     brew install fzf
+    brew install eza
     brew install kubectx
 
     # Install all nerd fonts
     brew tap homebrew/cask-fonts
     brew search '/font-.*-nerd-font/' | awk '{ print $1 }' | xargs -I{} brew install --cask {} || true
+    brew install --cask font-fira-code
 
     brew install starship
     brew tap microsoft/git
-    brew install --cask git-credential-manager-core
+    brew install --cask git-credential-manager
     brew install --cask visual-studio-code
     brew install vim
     brew install --cask flycut

@@ -34,7 +34,6 @@ bind 'set enable-bracketed-paste off'
 
 source "${__DIR}/completions"
 
-
 if command -v starship &> /dev/null; then
   eval "$(starship init bash)"
 fi

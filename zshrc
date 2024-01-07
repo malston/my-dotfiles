@@ -166,3 +166,44 @@ fi
 
 export PATH="/opt/homebrew/opt/openjdk/bin:$PATH"
 export CPPFLAGS="-I/opt/homebrew/opt/openjdk/include"
+
+# autojump
+[ -f $(brew --prefix)/etc/profile.d/autojump.sh ] && . $(brew --prefix)/etc/profile.d/autojump.sh
+
+# Created by `pipx` on 2024-01-04 03:26:13
+export PATH="$PATH:/Users/$USER/.local/bin"
+
+. /opt/homebrew/opt/asdf/libexec/asdf.sh
+
+function powerline_precmd() {
+    PS1=""
+}
+
+function install_powerline_precmd() {
+  for s in ""; do
+    if [ "" = "powerline_precmd" ]; then
+      return
+    fi
+  done
+  precmd_functions+=(powerline_precmd)
+}
+
+if [ "xterm-256color" != "linux" -a -x "" ]; then
+    install_powerline_precmd
+fi
+function powerline_precmd() {
+    PS1=""
+}
+
+function install_powerline_precmd() {
+  for s in ""; do
+    if [ "" = "powerline_precmd" ]; then
+      return
+    fi
+  done
+  precmd_functions+=(powerline_precmd)
+}
+
+if [ "xterm-256color" != "linux" -a -x "" ]; then
+    install_powerline_precmd
+fi
