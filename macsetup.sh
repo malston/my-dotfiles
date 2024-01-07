@@ -766,6 +766,7 @@ if [[ "$(isAppInstalled iTerm)" = "false" ]]; then
     installcask iterm2
     giveFullDiskAccessPermission iTerm
     dockutil --add /Applications/iTerm.app/ --allhomes
+    cp prefs/iterm2/com.googlecode.iterm2.plist ~/Library/Preferences/com.googlecode.iterm2.plist
 
     curl -L https://iterm2.com/shell_integration/install_shell_integration.sh | bash
     open -a iTerm
