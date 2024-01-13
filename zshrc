@@ -78,19 +78,24 @@ export FZF_DEFAULT_OPTS='--height 40% --layout=reverse --border'
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
+# https://github.com/ohmyzsh/ohmyzsh/wiki/Plugins
 plugins=(
-  git
   autojump
+  brew
   bundler
+  colored-man-pages
+  colorize
   dotenv
   fzf
+  git
+  kubectl
+  kubectx
+  kube-ps1
   macos
   rake
   rbenv
   ruby
-  kubectl
-  kubectx
-  kube-ps1
+  pip
   python
   zsh-syntax-highlighting
   zsh-autosuggestions
