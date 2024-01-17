@@ -46,9 +46,9 @@
 	git-committer-email =
 [credential]
 	credentialStore = cache
-	helper = /usr/local/share/gcm-core/git-credential-manager
+	# helper = /usr/local/share/gcm-core/git-credential-manager
 [init]
 	defaultBranch = main
-	templateDir = /Users/malston/.git_templates
+    # templateDir = /Users/malston/.git_templates
 [credential "https://dev.azure.com"]
 	useHttpPath = true

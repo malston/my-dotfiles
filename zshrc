@@ -212,3 +212,7 @@ function install_powerline_precmd() {
 if [ "xterm-256color" != "linux" -a -x "" ]; then
     install_powerline_precmd
 fi
+
+if command -v op 1>/dev/null 2>&1; then
+  eval "$(op completion zsh)"; compdef _op op
+fi
