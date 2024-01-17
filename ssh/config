@@ -11,4 +11,8 @@ Host jumpbox-homelab
 	User ubuntu
 	ForwardAgent yes
     IdentityFile ~/workspace/homelab/jumpbox/.ssh/id_rsa
+    ConnectTimeout 120
+    ServerAliveInterval 10
+    StrictHostKeyChecking no
+    UserKnownHostsFile /dev/null
 
