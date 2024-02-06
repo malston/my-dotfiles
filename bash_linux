@@ -118,6 +118,14 @@ if ! shopt -oq posix; then
   fi
 fi
 
+function print_current_foundation() {
+  lt_blue='\e[1;34m'
+  clear='\e[0m'
+  if [ -n "$FOUNDATION" ]; then
+    echo -ne "$lt_blue""${FOUNDATION} ""$clear"
+  fi
+}
+
 # enable direnv
 if command -v direnv &> /dev/null; then
   export PS1='$(print_current_foundation)'$PS1
