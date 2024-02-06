@@ -26,6 +26,9 @@ Plugin 'ervandew/supertab'           " Perform all completions with Tab
 Plugin 'scrooloose/nerdtree'         " Directory tree explorer
 Plugin 'vim-airline/vim-airline'     " Status line improvements
 Plugin 'vim-airline/vim-airline-themes'
+Plugin 'altercation/vim-colors-solarized'
+Plugin 'morhetz/gruvbox'
+Plugin 'flazz/vim-colorschemes'
 call vundle#end()                    " Complete vunde initialization
 
 " detect file type, turn on that type's plugins and indent preferences
@@ -124,6 +127,9 @@ set nowrap              " don't wrap lines eva!
 set cursorline          " highlight current line
 set highlight=sbr       " invert and bold status line
 let loaded_matchparen = 1
+
+set background=dark
+colorscheme stefan
 
 set t_Co=256            " set 256 color
 set colorcolumn=80      " highlight col 80
