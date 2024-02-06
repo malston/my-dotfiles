@@ -72,13 +72,15 @@ xterm*|rxvt*)
     ;;
 esac
 
+# enable dircolors
+if command -v dircolors &> /dev/null; then
+  eval "$(dircolors ~/.dir_colors)"
+fi
+
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
     test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
     alias ls='ls --color=auto'
-    #alias dir='dir --color=auto'
-    #alias vdir='vdir --color=auto'
-
     alias grep='grep --color=auto'
     alias fgrep='fgrep --color=auto'
     alias egrep='egrep --color=auto'
@@ -116,8 +118,12 @@ if ! shopt -oq posix; then
   fi
 fi
 
-# source /opt/kube-ps1/kube-ps1.sh
+# enable direnv
+if command -v direnv &> /dev/null; then
+  export PS1='$(print_current_foundation)'$PS1
+  eval "$(direnv hook bash)"
+fi
+
 source /opt/vmware/arcas/tools/intall_K_alias_and_autocompletion.sh
 export PS1='$(kube-ps1)'$PS1
-#export PS1='$(kube_ps1)'$PS1
 export KUBECONFIG=/tmp/supervisor_admin_kubeconfig.yaml
