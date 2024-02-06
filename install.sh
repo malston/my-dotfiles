@@ -14,8 +14,8 @@ fi
 if [[ "$flag" = "-a" ]]; then
     LINK_DOTFILES=true
     INIT_VIM=true
-    INSTALL_HOOKS=true
-    INSTALL_ZSH_PLUGINS=true
+    INSTALL_HOOKS=false
+    INSTALL_ZSH_PLUGINS=false
 elif [[ "$flag" = "-h" ]]; then
     INSTALL_HOOKS=true
 elif [[ "$flag" = "-l" ]]; then
@@ -134,26 +134,7 @@ if [[ "$INSTALL_ZSH_PLUGINS" = "true" ]]; then
     initialize_zsh_plugins
 fi
 
-# (echo; echo 'eval "$(/opt/homebrew/bin/brew shellenv)"') >> $HOME/.zprofile
-# eval "$(/opt/homebrew/bin/brew shellenv)"
-
-# brew install --cask iterm2
-# brew install fzf
-# brew install kubectx
-
 if [ ! -f ~/.config/starship.toml ]; then
     cp $HOME/my-dotfiles/starship.toml ~/.config/starship.toml
 fi
 
-# Install all nerd fonts
-# brew tap homebrew/cask-fonts
-# brew search '/font-.*-nerd-font/' | awk '{ print $1 }' | xargs -I{} brew install --cask {} || true
-
-# brew install starship
-# brew tap microsoft/git
-# brew install --cask git-credential-manager-core
-# brew install --cask visual-studio-code
-# brew install vim
-# brew install --cask flycut
-# brew install --cask rectangle
-# brew install --cask hpedrorodrigues/tools/dockutil

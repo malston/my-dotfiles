@@ -6,7 +6,6 @@ unset platform_script
 export EDITOR=vim
 export TERM=screen-256color
 
-export BASH_COMPLETION_COMPAT_DIR="/usr/local/etc/bash_completion.d"
 [[ -r "/usr/local/etc/profile.d/bash_completion.sh" ]] && . "/usr/local/etc/profile.d/bash_completion.sh"
 
 # source bash_completion.d
@@ -46,6 +45,6 @@ eval "$(direnv hook bash)"
 
 
 # Tanzu shell completion
-source '/home/azureuser/.config/tanzu/completion.bash.inc'
-source '/home/azureuser/.config/tanzu/kubectl-completion.bash.inc'
+[[ -f /root/.config/tanzu/completion.bash.inc ]] && source '/root/.config/tanzu/completion.bash.inc'
+[[ -f /root/.config/tanzu/kubectl-completion.bash.inc ]] && source '/root/.config/tanzu/kubectl-completion.bash.inc'
 
