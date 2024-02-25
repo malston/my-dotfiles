@@ -4,6 +4,10 @@ export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
 export GOPATH=$HOME/workspace/go
 export PATH=$GOPATH/bin:$PATH
 
+# GNU Sed
+if [ -d /opt/homebrew/opt/gnu-sed/libexec/gnubin ]; then
+  PATH="/opt/homebrew/opt/gnu-sed/libexec/gnubin:$PATH"
+fi
 
 ARM_HOMEBREW_PREFIX="/opt/homebrew"
 INTEL_HOMEBREW_PREFIX="/usr/local"
