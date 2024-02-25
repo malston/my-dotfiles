@@ -1,6 +1,9 @@
 export PATH="/opt/homebrew/opt/go@1.17/bin:$PATH"
 export PATH="$HOME/bin:$HOME/go/bin:$PATH"
 export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
+export GOPATH=$HOME/workspace/go
+export PATH=$GOPATH/bin:$PATH
+
 
 ARM_HOMEBREW_PREFIX="/opt/homebrew"
 INTEL_HOMEBREW_PREFIX="/usr/local"
