@@ -6,7 +6,7 @@ Host github.com
 Host gitlab.com
     AddKeysToAgent yes
     IdentityFile ~/.ssh/id_ed25519
-Host 192.168.12.10
+Host jumpbox
 	HostName 192.168.10.12
 	User ubuntu
 	ForwardAgent yes
