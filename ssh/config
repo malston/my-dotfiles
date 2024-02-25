@@ -1,18 +1,17 @@
 # Host *
-# 	IdentityAgent "~/Library/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock"
+#   IdentityAgent "~/Library/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock"
 Host github.com
-    AddKeysToAgent yes
-    IdentityFile ~/.ssh/github_com_rsa
+  AddKeysToAgent yes
+  IdentityFile ~/.ssh/github_com_rsa
 Host gitlab.com
-    AddKeysToAgent yes
-    IdentityFile ~/.ssh/id_ed25519
+  AddKeysToAgent yes
+  IdentityFile ~/.ssh/id_ed25519
 Host jumpbox
-	HostName 192.168.10.12
-	User ubuntu
-	ForwardAgent yes
-    IdentityFile /Users/malston/workspace/homelab/jumpbox/.ssh/id_rsa
-    ConnectTimeout 120
-    ServerAliveInterval 10
-    StrictHostKeyChecking no
-    UserKnownHostsFile /dev/null
-
+  HostName 192.168.10.12
+  User ubuntu
+  IdentityFile /Users/malston/workspace/homelab/jumpbox/.ssh/id_rsa
+  StrictHostKeyChecking no
+  UserKnownHostsFile /dev/null
+  ForwardAgent yes
+  ConnectTimeout 120
+  ServerAliveInterval 10
