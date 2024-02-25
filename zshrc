@@ -172,9 +172,6 @@ fi
 export PATH="/opt/homebrew/opt/openjdk/bin:$PATH"
 export CPPFLAGS="-I/opt/homebrew/opt/openjdk/include"
 
-# autojump
-[ -f $(brew --prefix)/etc/profile.d/autojump.sh ] && . $(brew --prefix)/etc/profile.d/autojump.sh
-
 # Created by `pipx` on 2024-01-04 03:26:13
 export PATH="$PATH:/Users/$USER/.local/bin"
 
