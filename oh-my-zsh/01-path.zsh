@@ -9,6 +9,10 @@ if [ -d /opt/homebrew/opt/gnu-sed/libexec/gnubin ]; then
   PATH="/opt/homebrew/opt/gnu-sed/libexec/gnubin:$PATH"
 fi
 
+# My scripts
+export PATH="$HOME/workspace/my-scripts:$PATH"
+export PATH="$HOME/workspace/k8s-scripts:$PATH"
+
 ARM_HOMEBREW_PREFIX="/opt/homebrew"
 INTEL_HOMEBREW_PREFIX="/usr/local"
 case "$(uname -m)" in
