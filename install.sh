@@ -26,7 +26,7 @@ elif [[ "$flag" = "-z" ]]; then
     INSTALL_ZSH_PLUGINS=true
 fi
 
-all_dotfiles="zprofile zshrc bashrc bash_linux bash_profile common_profile tmux.conf vimrc aliases git-authors gitconfig"
+all_dotfiles="zprofile zshrc bashrc bash_linux bash_profile common_profile tmux.conf vim vimrc aliases git-authors gitconfig"
 
 function link {
     echo Attempting to link $1
