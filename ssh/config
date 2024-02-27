@@ -1,0 +1,10 @@
+# GitHub
+Host github.com
+  PreferredAuthentications publickey
+  IdentityFile ~/.ssh/github_com_rsa
+
+# Private GitLab instance
+Host gitlab.eng.vmware.com
+  PreferredAuthentications publickey
+  IdentityFile ~/.ssh/gitlab_eng_vmware_com_rsa
+
