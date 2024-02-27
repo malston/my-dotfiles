@@ -75,7 +75,6 @@ plugins=(
   bundler
   dotenv
   golang
-  macos
   rake
   rbenv
   ruby
@@ -122,3 +121,20 @@ HISTFILESIZE=20000
 eval $(dircolors ~/.dir_colors)
 
 export GIT_TOKEN=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
+
+function powerline_precmd() {
+    PS1="$(powerline-shell --shell zsh 0)"
+}
+
+function install_powerline_precmd() {
+  for s in "${precmd_functions[@]}"; do
+    if [ "$s" = "powerline_precmd" ]; then
+      return
+    fi
+  done
+  precmd_functions+=(powerline_precmd)
+}
+
+if [ "$TERM" != "linux" -a -x "$(command -v powerline-shell)" ]; then
+    install_powerline_precmd
+fi
