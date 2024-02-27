@@ -1,5 +1,6 @@
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
+ZSH_DISABLE_COMPFIX=true
 
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
@@ -8,7 +9,8 @@ export ZSH="$HOME/.oh-my-zsh"
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-ZSH_THEME="af-magic"
+ZSH_THEME="robbyrussell"
+ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=244"
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -65,19 +67,36 @@ ZSH_THEME="af-magic"
 # Would you like to use another custom folder than $ZSH/custom?
 ZSH_CUSTOM="$HOME/my-dotfiles/oh-my-zsh"
 
+# Use fzf to search your command history and do file searches.
+FZF_BASE="$HOME/.fzf"
+export FZF_DEFAULT_COMMAND='rg --hidden --no-ignore --files -g "!.git/"'
+export FZF_CTRL_T_COMMAND=$FZF_DEFAULT_COMMAND
+export FZF_DEFAULT_OPTS='--height 40% --layout=reverse --border'
+
 # Which plugins would you like to load?
 # Standard plugins can be found in $ZSH/plugins/
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
-  git
+  autojump
   bundler
+  colored-man-pages
+  colorize
   dotenv
-  golang
+  fzf
+  git
+  kubectl
+  kubectx
+  kube-ps1
   rake
   rbenv
   ruby
+  pip
+  python
+  zsh-syntax-highlighting
+  zsh-autosuggestions
+  zsh-z
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -117,6 +136,57 @@ HISTCONTROL=ignoreboth
 # for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
 HISTSIZE=10000
 HISTFILESIZE=20000
+
+# Setup autocomplete for kubectl commands
+if command -v kubectl &> /dev/null; then
+  source <(kubectl completion zsh)
+  alias k=kubectl
+  complete -F __start_kubectl k
+fi
+
+if command -v starship &> /dev/null; then
+  eval "$(starship init zsh)"
+fi
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+function print_current_foundation() {
+  lt_blue='\e[1;34m'
+  clear='\e[0m'
+  if [ -n "$FOUNDATION" ]; then
+    echo -ne "$lt_blue""${FOUNDATION} ""$clear"
+  fi
+}
+
+if command -v direnv 1>/dev/null 2>&1; then
+  export PS1='$(print_current_foundation)'$PS1
+  eval "$(direnv hook zsh)"
+fi
+
+if command -v starship &> /dev/null; then
+  eval "$(starship init zsh)"
+fi
+
+# autojump
+[ -f /etc/profile.d/autojump.sh ] && . /etc/profile.d/autojump.sh
+
+# Python
+# See https://github.com/pyenv/pyenv
+# See https://github.com/pyenv/pyenv-virtualenv
+if command -v pyenv 1>/dev/null 2>&1; then
+  eval "$(pyenv init -)"
+  # We want to regularly go to our virtual environment directory
+  # export WORKON_HOME=~/.virtualenvs
+
+  # If in a given virtual environment, make a virtual environment directory
+  # If one does not already exist
+  # mkdir -p $WORKON_HOME
+
+  # Activate the new virtual environment by calling this script
+  # The workon and mkvirtualenv functions are in here
+  # test -e "${HOME}/.pyenv/versions/$(pyenv version-name)/bin/virtualenvwrapper.sh" && source "${HOME}/.pyenv/versions/$(pyenv version-name)/bin/virtualenvwrapper.sh"
+  eval "$(pyenv virtualenv-init -)"
+fi
 
 eval $(dircolors ~/.dir_colors)
 
