@@ -9,6 +9,11 @@ if [ -d /opt/homebrew/opt/gnu-sed/libexec/gnubin ]; then
   PATH="/opt/homebrew/opt/gnu-sed/libexec/gnubin:$PATH"
 fi
 
+# GNU Grep
+if [ -d /opt/homebrew/opt/grep/libexec/gnubin ]; then
+  PATH="/opt/homebrew/opt/grep/libexec/gnubin:$PATH"
+fi
+
 # My scripts
 export PATH="$HOME/workspace/my-scripts:$PATH"
 export PATH="$HOME/workspace/k8s-scripts:$PATH"
