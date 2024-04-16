@@ -1,10 +1,11 @@
+export EDITOR=vim
+export SHELL=/usr/bin/bash
+export TERM=xterm-256color
+
 # platform specific script comes first!
 platform_script=~/.bash_`uname | awk '{ print tolower($0) }'`
 [ -f $platform_script ] && . $platform_script
 unset platform_script
-
-export EDITOR=vim
-export TERM=screen-256color
 
 export BASH_COMPLETION_COMPAT_DIR="/usr/local/etc/bash_completion.d"
 [[ -r "/usr/local/etc/profile.d/bash_completion.sh" ]] && . "/usr/local/etc/profile.d/bash_completion.sh"
@@ -21,7 +22,6 @@ if [ -f ~/.aliases ]; then
     source ~/.aliases
 fi
 
-# Tanzu shell completion
-source '/home/azureuser/.config/tanzu/completion.bash.inc'
-source '/home/azureuser/.config/tanzu/kubectl-completion.bash.inc'
+# Load bash completeions
+enable_completions
 

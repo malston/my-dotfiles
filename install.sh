@@ -17,10 +17,10 @@ fi
 if [[ "$flag" = "-a" ]]; then
     LINK_DOTFILES=true
     INIT_VIM=true
-    INSTALL_HOOKS=true
-    INSTALL_ZSH_PLUGINS=true
+    INSTALL_HOOKS=false
+    INSTALL_ZSH_PLUGINS=false
     INSTALL_BREW=false
-    INSTALL_POWERLINE=true
+    INSTALL_POWERLINE=false
     BACKUP_DOTFILES=true
 elif [[ "$flag" = "-h" ]]; then
     INSTALL_HOOKS=true
@@ -36,7 +36,7 @@ elif [[ "$flag" = "-z" ]]; then
     INSTALL_ZSH_PLUGINS=true
 fi
 
-all_dotfiles=(zprofile zshrc bashrc bash_darwin bash_profile common_profile tmux.conf vimrc vim aliases git-authors gitconfig ssh/config)
+all_dotfiles=(zprofile zshrc bashrc bash_profile common_profile bash_linux tmux.conf vimrc vim aliases git-authors gitconfig ssh/config)
 protected_repos=(homelab home-vpn)
 
 function link {
