@@ -27,7 +27,17 @@
     cr = clone --recursive
     rename = branch -m
 [user]
-	name = Mark Alston
-	email = malston@vmware.com
+    name = Mark T Alston
+    email = Mark.T.Alston@company.com
 [init]
-	defaultBranch = main
+    defaultBranch = master
+[credential]
+    credentialStore = cache
+[filter "lfs"]
+    smudge = git-lfs smudge -- %f
+    process = git-lfs filter-process
+    required = true
+    clean = git-lfs clean -- %f
+[http]
+    sslVerify = false
+    proxy = http://proxy.company.com:8080
