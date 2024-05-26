@@ -1,36 +1,28 @@
-export PATH="/opt/homebrew/opt/go@1.17/bin:$PATH"
+# Go
+export PATH="$(brew --prefix)/opt/go@1.17/bin:$PATH"
 export PATH="$HOME/bin:$HOME/go/bin:$PATH"
-export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
 export GOPATH=$HOME/workspace/go
 export PATH=$GOPATH/bin:$PATH
 
-# GNU Sed
-if [ -d /opt/homebrew/opt/gnu-sed/libexec/gnubin ]; then
-  PATH="/opt/homebrew/opt/gnu-sed/libexec/gnubin:$PATH"
+# Krew
+export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
+
+# GNU sed
+if [ -d "$(brew --prefix)/opt/gnu-sed/libexec/gnubin" ]; then
+  PATH="$(brew --prefix)/opt/gnu-sed/libexec/gnubin:$PATH"
 fi
 
-# GNU Grep
-if [ -d /opt/homebrew/opt/grep/libexec/gnubin ]; then
-  PATH="/opt/homebrew/opt/grep/libexec/gnubin:$PATH"
+# GNU grep
+if [ -d "$(brew --prefix)/opt/grep/libexec/gnubin" ]; then
+  PATH="$(brew --prefix)/opt/grep/libexec/gnubin:$PATH"
+fi
+
+# GNU find
+if [ -d "$(brew --prefix)/opt/findutils/libexec/gnubin" ]; then
+  PATH="$(brew --prefix)/opt/findutils/libexec/gnubin:$PATH"
 fi
 
 # My scripts
 export PATH="$HOME/workspace/my-scripts:$PATH"
 export PATH="$HOME/workspace/k8s-scripts:$PATH"
-
-ARM_HOMEBREW_PREFIX="/opt/homebrew"
-INTEL_HOMEBREW_PREFIX="/usr/local"
-case "$(uname -m)" in
-  "arm64")
-    HOMEBREW_PREFIX=${ARM_HOMEBREW_PREFIX}
-    # echo "Start Home Brew as ARM64 M1/M2 Silicon ✅"
-  ;;
-  "i386"|"x86_64")
-    HOMEBREW_PREFIX=${INTEL_HOMEBREW_PREFIX}
-    echo "Start Home Brew under Rosetta 2 Intel Emulation x86_64 🤔"
-  ;;
-  *)
-    echo "Which Processor Architecture is that? [$(uname -m)]"
-  ;;
-esac
-export PATH=${HOMEBREW_PREFIX}/bin:${PATH}
+export PATH="$(brew --prefix)/bin:${PATH}"
