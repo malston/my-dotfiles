@@ -76,9 +76,19 @@ if [ -d /usr/local/go ]; then
   export GINKGO_EDITOR_INTEGRATION=true
 fi
 
-# GNU Sed
-if [ -d /usr/local/opt/gnu-sed/libexec/gnubin ]; then
-  PATH="/usr/local/opt/gnu-sed/libexec/gnubin:$PATH"
+# GNU sed
+if [ -d "$(brew --prefix)/opt/gnu-sed/libexec/gnubin" ]; then
+  PATH="$(brew --prefix)/opt/gnu-sed/libexec/gnubin:$PATH"
+fi
+
+# GNU grep
+if [ -d "$(brew --prefix)/opt/grep/libexec/gnubin" ]; then
+  PATH="$(brew --prefix)/opt/grep/libexec/gnubin:$PATH"
+fi
+
+# GNU find
+if [ -d "$(brew --prefix)/opt/findutils/libexec/gnubin" ]; then
+  PATH="$(brew --prefix)/opt/findutils/libexec/gnubin:$PATH"
 fi
 
 # Python

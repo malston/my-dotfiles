@@ -5,6 +5,8 @@ export CLICOLOR=1
 export PATH="/opt/homebrew/opt/go@1.17/bin:$PATH"
 export PATH="$HOME/bin:$HOME/go/bin:$PATH"
 export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
+export PATH="$HOME/workspace/my-scripts:$PATH"
+export PATH="$HOME/workspace/k8s-scripts:$PATH"
 
 ARM_HOMEBREW_PREFIX="/opt/homebrew"
 INTEL_HOMEBREW_PREFIX="/usr/local"
