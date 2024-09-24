@@ -81,6 +81,7 @@ export FZF_DEFAULT_OPTS='--height 40% --layout=reverse --border'
 # https://github.com/ohmyzsh/ohmyzsh/wiki/Plugins
 plugins=(
   autojump
+  asdf
   brew
   bundler
   colored-man-pages
@@ -139,7 +140,7 @@ function print_current_foundation() {
   fi
 }
 
-if command -v direnv 1>/dev/null 2>&1; then
+if command -v direnv 1> /dev/null 2>&1; then
   export PS1='$(print_current_foundation)'$PS1
   eval "$(direnv hook zsh)"
 fi
@@ -154,7 +155,7 @@ fi
 # Python
 # See https://github.com/pyenv/pyenv
 # See https://github.com/pyenv/pyenv-virtualenv
-if command -v pyenv 1>/dev/null 2>&1; then
+if command -v pyenv 1> /dev/null 2>&1; then
   eval "$(pyenv init -)"
   # We want to regularly go to our virtual environment directory
   # export WORKON_HOME=~/.virtualenvs
@@ -175,10 +176,10 @@ export CPPFLAGS="-I/opt/homebrew/opt/openjdk/include"
 # Created by `pipx` on 2024-01-04 03:26:13
 export PATH="$PATH:/Users/$USER/.local/bin"
 
-. /opt/homebrew/opt/asdf/libexec/asdf.sh
+# . "$HOME/.asdf/asdf.sh"
 
 function powerline_precmd() {
-    PS1=""
+  PS1=""
 }
 
 function install_powerline_precmd() {
@@ -191,10 +192,10 @@ function install_powerline_precmd() {
 }
 
 if [ "xterm-256color" != "linux" -a -x "" ]; then
-    install_powerline_precmd
+  install_powerline_precmd
 fi
 function powerline_precmd() {
-    PS1=""
+  PS1=""
 }
 
 function install_powerline_precmd() {
@@ -207,9 +208,10 @@ function install_powerline_precmd() {
 }
 
 if [ "xterm-256color" != "linux" -a -x "" ]; then
-    install_powerline_precmd
+  install_powerline_precmd
 fi
 
-if command -v op 1>/dev/null 2>&1; then
-  eval "$(op completion zsh)"; compdef _op op
+if command -v op 1> /dev/null 2>&1; then
+  eval "$(op completion zsh)"
+  compdef _op op
 fi

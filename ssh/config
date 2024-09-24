@@ -15,3 +15,8 @@ Host jumpbox
   ForwardAgent yes
   ConnectTimeout 120
   ServerAliveInterval 10
+Host sivt
+  HostName sivt.homelab.io
+  User root
+  IdentityFile /Users/malston/.ssh/id_rsa_sivt
+  ServerAliveInterval 10

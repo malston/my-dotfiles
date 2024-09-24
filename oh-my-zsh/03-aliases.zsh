@@ -63,7 +63,7 @@ alias eza='eza --color=auto --group-directories-first'
 alias ls='eza --icons -F -H --group-directories-first --git -1'
 alias ll="eza -l -g --icons"
 alias lt="eza --tree --icons -a -I '.git|__pycache__|.mypy_cache|.ipynb_checkpoints'"
-# alias ll='ls -l -b -g -m --color-scale --time-style=long-iso'
+alias ll='ls -l -b -g -m --color-scale --time-style=long-iso'
 alias ll='ls -alF'
 alias la='ll -a'
 alias lh='ll --reverse --sort=size'

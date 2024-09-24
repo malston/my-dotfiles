@@ -46,6 +46,8 @@
 	git-committer-email =
 [credential]
 	credentialStore = cache
+	helper = 
+	helper = /usr/local/share/gcm-core/git-credential-manager
 	# helper = /usr/local/share/gcm-core/git-credential-manager
 [init]
 	defaultBranch = main
