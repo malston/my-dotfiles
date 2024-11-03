@@ -149,8 +149,16 @@ if command -v starship &> /dev/null; then
   eval "$(starship init zsh)"
 fi
 
+# shellcheck source=/dev/null
+
+# asdf
+if [ -d "$(brew --prefix)/opt/asdf" ]; then
+  . "$(brew --prefix)/opt/asdf/libexec/asdf.sh"
+  . "$(brew --prefix)/opt/asdf/etc/bash_completion.d/asdf.bash"
+fi
+
 # autojump
-[ -f $(brew --prefix)/etc/profile.d/autojump.sh ] && . $(brew --prefix)/etc/profile.d/autojump.sh
+[ -f "$(brew --prefix)/etc/profile.d/autojump.sh" ] && . "$(brew --prefix)/etc/profile.d/autojump.sh"
 
 # Python
 # See https://github.com/pyenv/pyenv
@@ -175,8 +183,6 @@ export CPPFLAGS="-I/opt/homebrew/opt/openjdk/include"
 
 # Created by `pipx` on 2024-01-04 03:26:13
 export PATH="$PATH:/Users/$USER/.local/bin"
-
-# . "$HOME/.asdf/asdf.sh"
 
 function powerline_precmd() {
   PS1=""
@@ -222,5 +228,5 @@ if [[ -f "$HOME/.config/op/plugins.sh" ]]; then
 fi
 
 export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"                   # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion" # This loads nvm bash_completion
