@@ -1,4 +1,3 @@
-
 # Add cargo to path
 if [ -d $HOME/.cargo/bin ]; then
   export PATH="$HOME/.cargo/bin:$PATH"
@@ -40,7 +39,7 @@ fi
 export PS1='${CUSTOM_PS1}'$PS1
 
 if [ -f ~/kube-ps1/kube-ps1.sh ]; then
-  source ~/kube-ps1/kube-ps1.sh;
+  source ~/kube-ps1/kube-ps1.sh
   PS1=$PS1'$(kube_ps1)\$ '
 fi
 
@@ -51,10 +50,10 @@ if command -v kubectl &> /dev/null; then
   complete -F __start_kubectl k
 fi
 
-
+# Use asdf to install nodejs instead of nvm
 # export NVM_DIR="$HOME/.nvm"
-# [ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
-# [ -s "/usr/local/opt/nvm/etc/bash_completion.d/nvm" ] && . "/usr/local/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
+# [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"                   # This loads nvm
+# [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion" # This loads nvm bash_completion
 
 if command -v flux &> /dev/null; then
   source <(flux completion bash)
