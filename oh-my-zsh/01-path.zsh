@@ -7,6 +7,7 @@ export PATH="$HOME/bin:$PATH"
 # Golang GOROOT
 if [ -f ~/.asdf/plugins/golang/set-env.zsh ]; then
   . ~/.asdf/plugins/golang/set-env.zsh
+  export ASDF_GOLANG_MOD_VERSION_ENABLED=true
 fi
 
 # Go

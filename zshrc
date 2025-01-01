@@ -98,6 +98,7 @@ plugins=(
   ruby
   pip
   python
+  pyenv
   zsh-syntax-highlighting
   zsh-autosuggestions
   zsh-z
@@ -226,3 +227,7 @@ if [[ -f "$HOME/.config/op/plugins.sh" ]]; then
   # shellcheck disable=SC1091
   source "$HOME/.config/op/plugins.sh"
 fi
+
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+export SDKMAN_DIR="$HOME/.sdkman"
+[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"

@@ -11,9 +11,6 @@ alias tmux='direnv exec / tmux'
 # Vscode fix for: https://github.com/microsoft/vscode/issues/60579
 alias code='open -b com.microsoft.VSCode "$@"'
 
-# Fix path issues with Python on macOS Big Sur
-alias python=/usr/local/bin/python3
-
 # Move files to the Trash rather than removing permanently
 alias del="trash"
 
@@ -48,8 +45,8 @@ alias mat="cd ~/workspace/dishcicd/cnf/matrixx-chf"
 # boeing projects
 alias boe="cd ~/workspace/boeing-tam-engagement"
 
-# python
-alias python=python3
+# python (use pyenv and pyenv-virtualenv)
+# alias python=python3
 
 # system
 alias ll="ls -la"

@@ -12,7 +12,7 @@ export TERM=screen-256color
 
 # source aliases if present
 if [ -f ~/.aliases ]; then
-    source ~/.aliases
+  source ~/.aliases
 fi
 
 # don't put duplicate lines or lines starting with space in the history.
@@ -94,14 +94,14 @@ fi
 # Python
 # See https://github.com/pyenv/pyenv
 # See https://github.com/pyenv/pyenv-virtualenv
-if command -v pyenv 1>/dev/null 2>&1; then
+if command -v pyenv 1> /dev/null 2>&1; then
   eval "$(pyenv init -)"
   # We want to regularly go to our virtual environment directory
-  export WORKON_HOME=~/.virtualenvs
+  # export WORKON_HOME=~/.virtualenvs
 
   # If in a given virtual environment, make a virtual environment directory
   # If one does not already exist
-  mkdir -p $WORKON_HOME
+  # mkdir -p $WORKON_HOME
 
   # Activate the new virtual environment by calling this script
   # The workon and mkvirtualenv functions are in here
@@ -109,6 +109,10 @@ if command -v pyenv 1>/dev/null 2>&1; then
   eval "$(pyenv virtualenv-init -)"
 fi
 
-if command -v op 1>/dev/null 2>&1; then
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+export SDKMAN_DIR="$HOME/.sdkman"
+[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
+
+if command -v op 1> /dev/null 2>&1; then
   source <(op completion bash)
 fi
