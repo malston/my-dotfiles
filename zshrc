@@ -81,7 +81,6 @@ export FZF_DEFAULT_OPTS='--height 40% --layout=reverse --border'
 # https://github.com/ohmyzsh/ohmyzsh/wiki/Plugins
 plugins=(
   autojump
-  asdf
   brew
   bundler
   colored-man-pages
@@ -93,12 +92,13 @@ plugins=(
   kubectx
   kube-ps1
   macos
-  rake
-  rbenv
-  ruby
+  mise
   pip
   python
   pyenv
+  rake
+  rbenv
+  ruby
   zsh-syntax-highlighting
   zsh-autosuggestions
   zsh-z
@@ -150,13 +150,11 @@ if command -v starship &> /dev/null; then
   eval "$(starship init zsh)"
 fi
 
-# shellcheck source=/dev/null
-
 # asdf
-if [ -d "$(brew --prefix)/opt/asdf" ]; then
-  . "$(brew --prefix)/opt/asdf/libexec/asdf.sh"
-  . "$(brew --prefix)/opt/asdf/etc/bash_completion.d/asdf.bash"
-fi
+# if [ -d "$(brew --prefix)/opt/asdf" ]; then
+#   . "$(brew --prefix)/opt/asdf/libexec/asdf.sh"
+#   . "$(brew --prefix)/opt/asdf/etc/bash_completion.d/asdf.bash"
+# fi
 
 # autojump
 [ -f "$(brew --prefix)/etc/profile.d/autojump.sh" ] && . "$(brew --prefix)/etc/profile.d/autojump.sh"
@@ -231,3 +229,4 @@ fi
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="$HOME/.sdkman"
 [[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
+eval "$(/Users/malston/.local/bin/mise activate zsh)"
