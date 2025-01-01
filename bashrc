@@ -116,3 +116,6 @@ export SDKMAN_DIR="$HOME/.sdkman"
 if command -v op 1> /dev/null 2>&1; then
   source <(op completion bash)
 fi
+if command -v mise 1> /dev/null 2>&1; then
+  eval "$(mise activate bash)"
+fi
