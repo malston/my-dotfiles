@@ -204,7 +204,7 @@ if [[ $INSTALL_BREW == true ]]; then
     brew install vim
     brew install --cask flycut
     brew install --cask rectangle
-    brew install --cask hpedrorodrigues/tools/dockutil
+    brew install dockutil
 fi
 
 if [ ! -f ~/.config/starship.toml ]; then
