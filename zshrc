@@ -1,5 +1,6 @@
 # If you come from bash you might have to change your $PATH.
-export PATH="$HOME/bin:$PATH"
+# export PATH=$HOME/bin:/usr/local/bin:$PATH
+ZSH_DISABLE_COMPFIX=true
 
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
@@ -36,7 +37,7 @@ ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=244"
 # DISABLE_MAGIC_FUNCTIONS="true"
 
 # Uncomment the following line to disable colors in ls.
-DISABLE_LS_COLORS="true"
+# DISABLE_LS_COLORS="true"
 
 # Uncomment the following line to disable auto-setting terminal title.
 # DISABLE_AUTO_TITLE="true"
@@ -78,16 +79,20 @@ export FZF_DEFAULT_OPTS='--height 40% --layout=reverse --border'
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
-  git
+  autojump
   bundler
+  colored-man-pages
+  colorize
   dotenv
   fzf
-  macos
+  git
+  kubectl
+  kubectx
+  kube-ps1
   rake
   rbenv
   ruby
-  kubectl
-  kubectx
+  pip
   python
   zsh-syntax-highlighting
   zsh-autosuggestions
@@ -121,9 +126,85 @@ fi
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-export PS1='$(kube_ps1)'$PS1
+
+export TERM=screen-256color
+# export PS1='$(kube_ps1)'$PS1
+
+# don't put duplicate lines or lines starting with space in the history.
+HISTCONTROL=ignoreboth
+
+# for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
+HISTSIZE=10000
+HISTFILESIZE=20000
+
+# Setup autocomplete for kubectl commands
+if command -v kubectl &> /dev/null; then
+  source <(kubectl completion zsh)
+  alias k=kubectl
+  complete -F __start_kubectl k
+fi
 
 if command -v starship &> /dev/null; then
   eval "$(starship init zsh)"
 fi
+
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+function print_current_foundation() {
+  lt_blue='\e[1;34m'
+  clear='\e[0m'
+  if [ -n "$FOUNDATION" ]; then
+    echo -ne "$lt_blue""${FOUNDATION} ""$clear"
+  fi
+}
+
+if command -v direnv 1>/dev/null 2>&1; then
+  export PS1='$(print_current_foundation)'$PS1
+  eval "$(direnv hook zsh)"
+fi
+
+if command -v starship &> /dev/null; then
+  eval "$(starship init zsh)"
+fi
+
+# autojump
+[ -f /etc/profile.d/autojump.sh ] && . /etc/profile.d/autojump.sh
+
+# Python
+# See https://github.com/pyenv/pyenv
+# See https://github.com/pyenv/pyenv-virtualenv
+if command -v pyenv 1>/dev/null 2>&1; then
+  eval "$(pyenv init -)"
+  # We want to regularly go to our virtual environment directory
+  # export WORKON_HOME=~/.virtualenvs
+
+  # If in a given virtual environment, make a virtual environment directory
+  # If one does not already exist
+  # mkdir -p $WORKON_HOME
+
+  # Activate the new virtual environment by calling this script
+  # The workon and mkvirtualenv functions are in here
+  # test -e "${HOME}/.pyenv/versions/$(pyenv version-name)/bin/virtualenvwrapper.sh" && source "${HOME}/.pyenv/versions/$(pyenv version-name)/bin/virtualenvwrapper.sh"
+  eval "$(pyenv virtualenv-init -)"
+fi
+
+eval $(dircolors ~/.dir_colors)
+
+export GIT_TOKEN=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
+
+function powerline_precmd() {
+    PS1="$(powerline-shell --shell zsh 0)"
+}
+
+function install_powerline_precmd() {
+  for s in "${precmd_functions[@]}"; do
+    if [ "$s" = "powerline_precmd" ]; then
+      return
+    fi
+  done
+  precmd_functions+=(powerline_precmd)
+}
+
+if [ "$TERM" != "linux" -a -x "$(command -v powerline-shell)" ]; then
+    install_powerline_precmd
+fi

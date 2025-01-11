@@ -1,0 +1,42 @@
+#!/bin/bash
+
+PATH=$HOME/git/cli-tools:$HOME/git/cli-tools/utils:$HOME/bin:$PATH
+PATH=$HOME/git/utility-scripts:$HOME/git/utility-scripts/utils:$HOME/bin:$PATH
+
+export not=NOTICKET
+export LOCAL_GIT_DIR="${LOCAL_GIT_DIR:-$HOME/git}"
+
+function oml { eval $(tinaa $1 oml) $2 $3 $4 $5 $6 $7 $8 $9 ${10} ${11} ${12} ${13} ${14} ${15} ${16} ${17} ${18} ${19} ${20}; }
+function bcl { eval $(tinaa $1 bcl) $2 $3 $4 $5 $6 $7 $8 $9 ${10} ${11} ${12} ${13} ${14} ${15} ${16} ${17} ${18} ${19} ${20}; }
+
+kns() {
+  kubectl config set-context --current --namespace=${1}
+}
+
+#klogin() {
+#  get-pks-k8s-config.sh --API=pks-api.${1}.cf.example.net --CLUSTER=${2}.${1}.cf.example.net --USER=${4:-ru665158} --NS=${3}
+#}
+
+#klogin() {
+#  get-pks-k8s-config.sh --API=pks-api.${1}.cf.example.net --CLUSTER=${2}.${1}.cf.example.net --USER=${4:-ru665158} --NS=${3:-default}
+#}
+
+function findns {
+  find ${HOME}/git/k8s-management-* -name ${1}
+}
+
+k8login() {
+  get-pks-k8s-config.sh --API=pks-api.${1}.k8s.example.net --CLUSTER=${2}.${1}.k8s.example.net --USER=${4:-rk089059} --NS=${3:-default}
+}
+
+rproxy_on() {
+  export http_proxy=http://proxy.example.com:8080
+  export https_proxy=http://proxy.example.com:8080
+  export no_proxy=localhost,127.0.0.1,".wachovia.net",".example.com",".example.net",".ent.wfb.bank.corp",10.245.2.135
+}
+
+rproxy_off() {
+  unset http_proxy
+  unset https_proxy
+  unset no_proxy
+}

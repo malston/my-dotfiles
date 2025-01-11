@@ -1,49 +1,44 @@
 [core]
-  editor = /usr/local/bin/vim
-  hooksPath = /Users/malston/workspace/git-hooks-core
-  excludesfile = /Users/malston/.gitignore_global
-  autocrlf = input
+editor = /usr/bin/vim
+hookspath = /home/k089059/.git/hooks
 [transfer]
-  fsckobjects = true
+fsckobjects = true
 [push]
-	default = simple
+default = simple
 [alias]
-  pu = push
-  st = status
-  di = diff
-  co = checkout
-  ci = commit
-  br = branch
-  sta = stash
-  llog = log --date=local
-  flog = log --pretty=fuller --decorate
-  lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
-  lol = log --graph --decorate --oneline
-  lola = log --graph --decorate --oneline --all
-  blog = log origin/master... --left-right
-  ds = diff --staged
-  fixup = commit --fixup
-  squash = commit --squash
-  unstage = reset HEAD
-  rum = rebase master@{u}
-  sur="submodule update --init --recursive"
-  cr = clone --recursive
+pu = push
+st = status
+di = diff
+co = checkout
+ci = commit
+br = branch
+sta = stash
+llog = log --date=local
+flog = log --pretty=fuller --decorate
+lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
+lol = log --graph --decorate --oneline
+lola = log --graph --decorate --oneline --all
+blog = log origin/master... --left-right
+ds = diff --staged
+fixup = commit --fixup
+squash = commit --squash
+unstage = reset HEAD
+rum = rebase master@{u}
+sur="submodule update --init --recursive"
+cr = clone --recursive
+rename = branch -m
 [user]
-	name = Mark Alston
-	email = malston@vmware.com
-[duet "env"]
-	git-author-initials = ma
-	git-author-name = Mark Alston
-	git-author-email = malston@pivotal.io
-	mtime = 1522853808
-	git-committer-initials =
-	git-committer-name =
-	git-committer-email =
-[credential]
-	credentialStore = cache
-	helper = 
-	helper = /usr/local/share/gcm-core/git-credential-manager
+name = Mark T Alston
+email = Mark.T.Alston@example.com
 [init]
-	defaultBranch = main
-[credential "https://dev.azure.com"]
-	useHttpPath = true
+defaultBranch = master
+[credential]
+credentialStore = cache
+[filter "lfs"]
+smudge = git-lfs smudge -- %f
+process = git-lfs filter-process
+required = true
+clean = git-lfs clean -- %f
+[http]
+sslVerify = false
+proxy = http://proxy.example.com:8080

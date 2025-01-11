@@ -8,19 +8,20 @@ add_newline = false
 disabled = false
 
 [aws]
-symbol = "  "
+symbol = '☁️  '
 disabled = false
 format = ' on [$symbol($profile )(\($region\) )(\[$duration\] )]($style)'
 
 [buf]
-symbol = " "
+symbol = '🦬 '
 
 [c]
-symbol = " "
+format = 'via [$name $version]($style)'
 
 [cmd_duration]
 min_time = 10000
-format = '\[[⏱ $duration]($style)\]'
+format = "[$duration]($style) "
+style = "yellow"
 
 [custom.foundation]
 description = "Foundation variable"
@@ -32,73 +33,96 @@ style = "bold green"
 format = "[$symbol$output]($style) "
 
 [conda]
-symbol = " "
+symbol = '🅒 '
 
 [dart]
-symbol = " "
+symbol = '🎯 '
 
 [directory]
 read_only = " 󰌾"
+truncation_symbol = ' '
+truncate_to_repo = false
 
 [docker_context]
-symbol = " "
+symbol = '🐳 '
 
 [elixir]
-symbol = " "
+symbol = '💧 '
 
 [elm]
-symbol = " "
+symbol = '🌳 '
 
 [env_var]
 disabled = true
-symbol = ' '
+# symbol = ' '
 variable = 'FOUNDATION'
 style = "bold green"
 format = '[$symbol$env_value]($style)'
 
-[fossil_branch]
-symbol = " "
-
 [gcloud]
+symbol = '☁️ '
 disabled = true
-format = ' on [$symbol$account (\($project\)) in (\($region\))]($style)'
+format = 'on [$symbol$account (\($project\)) in (\($region\))]($style)'
 
 [gcloud.region_aliases]
 europe-west2 = "eu-w2"
 
 [git_branch]
-symbol = " "
+symbol = '🌱 '
 truncation_length = 4
 truncation_symbol = ''
 format = '[$symbol$branch(:$remote_branch)]($style) '
 # format = '\[[$symbol$branch]($style)\]'
 
+[git_commit]
+commit_hash_length = 4
+tag_symbol = '🔖 '
+
+[git_state]
+format = '[\($state( $progress_current of $progress_total)\)]($style) '
+cherry_pick = '[🍒 PICKING](bold red)'
+
 [git_status]
-format = '([\[$all_status$ahead_behind\]]($style))'
+format = '([\[$all_status$ahead_behind\]]($style)) '
+conflicted = '🏳'
+ahead = '🏎💨'
+behind = '😰'
+diverged = '😵'
+up_to_date = '✓'
+untracked = '🤷'
+stashed = '📦'
+modified = '📝'
+staged = '[++\($count\)](green)'
+renamed = '👅'
+deleted = '🗑'
 
 [golang]
-symbol = " "
+format = 'via [🏎💨 $version](bold cyan) '
 
 [guix_shell]
-symbol = " "
-
-[haskell]
-symbol = " "
+disabled = true
+format = 'via [🐂](yellow bold) '
 
 [haxe]
-symbol = "⌘ "
+format = "via [⌘ $version](bold fg:202) "
 
 [hg_branch]
-symbol = " "
+format = 'on [🌱 $branch](bold purple)'
+truncation_length = 4
+truncation_symbol = ''
 
 [hostname]
-ssh_symbol = " "
+ssh_symbol = '🌐 '
+ssh_only = false
+format = '[$ssh_symbol](bold blue) [$hostname](bold red) '
+trim_at = 'L6MFC.vmware.com'
+disabled = false
 
 [java]
-symbol = " "
+# symbol = '🌟 '
 
 [julia]
-symbol = " "
+# symbol = '∴ '
 
 # https://starship.rs/config/#kubernetes
 [kubernetes]
@@ -117,86 +141,101 @@ disabled = false
 'root/.*' = 'root'
 
 [lua]
-symbol = " "
+format = 'via [🌕 $version](bold blue) '
 
 [memory_usage]
-symbol = "󰍛 "
+disabled = true
+threshold = -1
+style = 'bold dimmed green'
 
 [meson]
-symbol = "󰔷 "
+# symbol = "󰔷 "
+disabled = false
+truncation_symbol = '--'
+style = 'bold dimmed green'
 
 [nim]
-symbol = "󰆥 "
+style = 'yellow'
+symbol = '🎣 '
 
 [nix_shell]
-symbol = " "
+disabled = true
+impure_msg = '[impure shell](bold red)'
+pure_msg = '[pure shell](bold green)'
+unknown_msg = '[unknown shell](bold yellow)'
+format = 'via [☃️ $state( \($name\))](bold blue) '
 
 [nodejs]
-symbol = " "
+format = 'via [🤖 $version](bold green) '
 
 [os.symbols]
-Alpaquita = " "
-Alpine = " "
-Amazon = " "
-Android = " "
-Arch = " "
-Artix = " "
-CentOS = " "
-Debian = " "
-DragonFly = " "
-Emscripten = " "
-EndeavourOS = " "
-Fedora = " "
-FreeBSD = " "
-Garuda = "󰛓 "
-Gentoo = " "
-HardenedBSD = "󰞌 "
-Illumos = "󰈸 "
-Linux = " "
-Mabox = " "
-Macos = " "
-Manjaro = " "
-Mariner = " "
-MidnightBSD = " "
-Mint = " "
-NetBSD = " "
-NixOS = " "
-OpenBSD = "󰈺 "
-openSUSE = " "
-OracleLinux = "󰌷 "
-Pop = " "
-Raspbian = " "
-Redhat = " "
-RedHatEnterprise = " "
-Redox = "󰀘 "
-Solus = "󰠳 "
-SUSE = " "
-Ubuntu = " "
-Unknown = " "
-Windows = "󰍲 "
+Alpaquita = "🔔 "
+Alpine = "🏔️ "
+Amazon = "🙂 "
+Android = "🤖 "
+Arch = "🎗️ "
+Artix = "🎗️ "
+CentOS = "💠 "
+Debian = "🌀 "
+DragonFly = "🐉 "
+Emscripten = "🔗 "
+EndeavourOS = "🚀 "
+Fedora = "🎩 "
+FreeBSD = "😈 "
+Garuda = "🦅 "
+Gentoo = "🗜️ "
+HardenedBSD = "🛡️ "
+Illumos = "🐦 "
+Linux = "🐧 "
+Mabox = "📦 "
+Macos = "🍎 "
+Manjaro = "🥭 "
+Mariner = "🌊 "
+MidnightBSD = "🌘 "
+Mint = "🌿 "
+NetBSD = "🚩 "
+NixOS = "❄️ "
+OpenBSD = "🐡 "
+OpenCloudOS = "☁️ "
+openEuler = "🦉 "
+openSUSE = "🦎 "
+OracleLinux = "🦴 "
+Pop = "🍭 "
+Raspbian = "🍓 "
+Redhat = "🎩 "
+RedHatEnterprise = "🎩 "
+Redox = "🧪 "
+Solus = "⛵ "
+SUSE = "🦎 "
+Ubuntu = "🎯 "
+Unknown = "❓ "
+Windows = "🪟 "
 
 [package]
-symbol = "󰏗 "
+format = 'via [🎁 $version](208 bold) '
 
 [pijul_channel]
 symbol = "🪺 "
 
 [python]
-symbol = " "
-disabled = true
+# symbol = '👾 '
 format = 'via [${symbol}${pyenv_prefix}(${version} )(\($virtualenv\) )]($style)'
+pyenv_version_name = true
+python_binary = ['./venv/bin/python', 'python', 'python3', 'python2']
 
 [rlang]
-symbol = "󰟔 "
+format = 'with [📐 $version](blue bold) '
 
 [ruby]
-symbol = " "
+symbol = '🔺 '
 
 [rust]
-symbol = " "
+format = 'via [⚙️ $version](red bold)'
 
 [scala]
-symbol = " "
+# symbol = '🌟 '
 
 [spack]
 symbol = "🅢 "
+format = '[$symbol$environment](dimmed blue) '
+

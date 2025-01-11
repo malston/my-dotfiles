@@ -73,3 +73,4 @@ done
 
 find "$fonts_dir" -name '*Windows Compatible*' -delete
 fc-cache -fv
+
