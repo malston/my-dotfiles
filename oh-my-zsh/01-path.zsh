@@ -4,6 +4,13 @@ export PATH="$(brew --prefix)/bin:${PATH}"
 # Home bin
 export PATH="$HOME/bin:$PATH"
 
+# Java
+export PATH="/opt/homebrew/opt/openjdk/bin:$PATH"
+export CPPFLAGS="-I/opt/homebrew/opt/openjdk/include"
+
+# Created by `pipx` on 2024-01-04 03:26:13
+export PATH="$PATH:/Users/$USER/.local/bin"
+
 # Golang GOROOT
 # if [ -f ~/.asdf/plugins/golang/set-env.zsh ]; then
 #   . ~/.asdf/plugins/golang/set-env.zsh

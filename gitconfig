@@ -1,10 +1,12 @@
+[init]
+	defaultBranch = main
+	templateDir = /Users/ma001038/.git_templates
 [core]
 	editor = /opt/homebrew/bin/vim
-	hooksPath = /Users/malston/workspace/git-hooks-core
-	excludesfile = /Users/malston/.gitignore_global
+	excludesfile = /Users/ma001038/.gitignore_global
 	autocrlf = input
-	hooksPath = /Users/malston/workspace/git-hooks-core
 	pager = less -FRSX
+	hooksPath = /Users/ma001038/workspace/git-hooks-core
 [transfer]
 	fsckobjects = true
 [push]
@@ -36,22 +38,16 @@
 [user]
 	name = Mark Alston
 	email = malston@vmware.com
-[duet "env"]
-	git-author-initials = ma
-	git-author-name = Mark Alston
-	git-author-email = malston@vmware.com
-	mtime = 1522853808
-	git-committer-initials =
-	git-committer-name =
-	git-committer-email =
+	signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIVTjgZOX95mCyP9+zUE+a4+FjQLVAv8EThm5d+s1tcQ
+[gpg]
+	format = ssh
+[gpg "ssh"]
+	program = "/Applications/1Password.app/Contents/MacOS/op-ssh-sign"
+[commit]
+	gpgsign = true
 [credential]
 	credentialStore = cache
-	helper = 
 	helper = /usr/local/share/gcm-core/git-credential-manager
-	# helper = /usr/local/share/gcm-core/git-credential-manager
-[init]
-	defaultBranch = main
-    # templateDir = /Users/malston/.git_templates
 [credential "https://dev.azure.com"]
 	useHttpPath = true
 [protocol "file"]
