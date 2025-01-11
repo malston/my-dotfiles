@@ -1,5 +1,3 @@
-# echo "setting path"
-
 # homebrew
 export PATH="$(brew --prefix)/bin:${PATH}"
 
