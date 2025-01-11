@@ -2,10 +2,6 @@ autoload -U +X bashcompinit && bashcompinit
 
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
-if command -v starship &> /dev/null; then
-  eval "$(starship init zsh)"
-fi
-
 if command -v stern 1> /dev/null 2>&1; then
   source <(stern --completion=zsh)
 fi
