@@ -14,9 +14,9 @@ source $HOME/.zshrc
 #########################
 
 email="marktalston@gmail.com"
-workemail="malston@vmware.com"
+workemail="mark.alston@broadcom.com"
 username="malston"
-macusername="marsguitars"
+macusername="ma001038"
 
 #
 # Cache password

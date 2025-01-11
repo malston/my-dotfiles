@@ -37,7 +37,7 @@
 	amendit = commit --amend --no-edit
 [user]
 	name = Mark Alston
-	email = malston@vmware.com
+	email = mark.alston@broadcom.com
 	signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIVTjgZOX95mCyP9+zUE+a4+FjQLVAv8EThm5d+s1tcQ
 [gpg]
 	format = ssh

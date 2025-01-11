@@ -9,7 +9,7 @@ Host gitlab.com
 Host jumpbox
   HostName 192.168.10.12
   User ubuntu
-  IdentityFile /Users/malston/workspace/homelab/jumpbox/.ssh/id_rsa
+  IdentityFile /Users/ma001038/workspace/homelab/jumpbox/.ssh/id_rsa
   StrictHostKeyChecking no
   UserKnownHostsFile /dev/null
   ForwardAgent yes
@@ -18,5 +18,5 @@ Host jumpbox
 Host sivt
   HostName sivt.homelab.io
   User root
-  IdentityFile /Users/malston/.ssh/id_rsa_sivt
+  IdentityFile /Users/ma001038/.ssh/id_rsa_sivt
   ServerAliveInterval 10
