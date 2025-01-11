@@ -12,9 +12,10 @@ export CPPFLAGS="-I/opt/homebrew/opt/openjdk/include"
 export PATH="$PATH:/Users/$USER/.local/bin"
 
 # Golang GOROOT
-if [ -f ~/.asdf/plugins/golang/set-env.zsh ]; then
-  . ~/.asdf/plugins/golang/set-env.zsh
-fi
+# if [ -f ~/.asdf/plugins/golang/set-env.zsh ]; then
+#   . ~/.asdf/plugins/golang/set-env.zsh
+#   export ASDF_GOLANG_MOD_VERSION_ENABLED=true
+# fi
 
 # Go
 export PATH="$HOME/bin:$HOME/go/bin:$PATH"

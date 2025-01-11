@@ -81,7 +81,6 @@ export FZF_DEFAULT_OPTS='--height 40% --layout=reverse --border'
 # https://github.com/ohmyzsh/ohmyzsh/wiki/Plugins
 plugins=(
   autojump
-  asdf
   brew
   bundler
   colored-man-pages
@@ -93,11 +92,13 @@ plugins=(
   kubectx
   kube-ps1
   macos
+  mise
+  pip
+  python
+  pyenv
   rake
   rbenv
   ruby
-  pip
-  python
   zsh-syntax-highlighting
   zsh-autosuggestions
   zsh-z
