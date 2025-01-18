@@ -1,13 +1,12 @@
 #!/usr/bin/env bash
 
-LINK_DOTFILES=false
-INIT_VIM=false
+INIT_VIM_PLUGINS=false
 INSTALL_HOOKS=false
 INSTALL_ZSH_PLUGINS=false
-BACKUP_DOTFILES=false
 INSTALL_BREW=false
-ZSH_CUSTOM="$HOME/my-dotfiles/oh-my-zsh"
 INSTALL_POWERLINE=false
+LINK_DOTFILES=false
+ZSH_CUSTOM="$HOME/my-dotfiles/oh-my-zsh"
 
 flag=$1
 if [[ "$flag" = "" ]]; then
@@ -15,28 +14,25 @@ if [[ "$flag" = "" ]]; then
 fi
 
 if [[ "$flag" = "-a" ]]; then
+    INIT_VIM_PLUGINS=true
     LINK_DOTFILES=true
-    INIT_VIM=true
     INSTALL_HOOKS=true
     INSTALL_ZSH_PLUGINS=true
     INSTALL_BREW=true
     INSTALL_POWERLINE=true
-    BACKUP_DOTFILES=true
 elif [[ "$flag" = "-h" ]]; then
     INSTALL_HOOKS=true
-elif [[ "$flag" = "-b" ]]; then
-    BACKUP_DOTFILES=true
 elif [[ "$flag" = "-l" ]]; then
     LINK_DOTFILES=true
 elif [[ "$flag" = "-p" ]]; then
     INSTALL_POWERLINE=true
 elif [[ "$flag" = "-v" ]]; then
-    INIT_VIM=true
+    INIT_VIM_PLUGINS=true
 elif [[ "$flag" = "-z" ]]; then
     INSTALL_ZSH_PLUGINS=true
 fi
 
-all_dotfiles=(zprofile zshrc bashrc bash_darwin bash_profile common_profile tmux.conf vimrc vim aliases git-authors gitconfig ssh/config)
+all_dotfiles=(zprofile zshrc bashrc bash_darwin bash_profile bash_extras common_profile tmux.conf vimrc vim aliases git-authors gitconfig ssh/config)
 protected_repos=(homelab home-vpn)
 
 function link {
@@ -53,31 +49,37 @@ function die() {
     exit 1
 }
 
-function backup_dotfiles {
-    echo "Backing up dotfiles"
-    for dotfile in "${all_dotfiles[@]}"; do
-        echo "${dotfile}"
-        if [[ -f "$HOME/.$dotfile" && ! -L "$HOME/.$dotfile" ]]; then
-            # file exists
-            cp "$HOME/.$dotfile" "$HOME/.${dotfile}.bak"
-        fi
+function backup_dotfile {
+    dotfile=$1
+    if [[ -f "$HOME/.$dotfile" && ! -L "$HOME/.$dotfile" ]]; then
+        echo "Copying $dotfile to $HOME/.${dotfile}.bak"
+        cp "$HOME/.$dotfile" "$HOME/.${dotfile}.bak"
+    fi
+}
+
+function link_dotfile {
+    local dotfile=$1
+    backup_dotfile "$dotfile"
+    if [[ -L "$HOME/.$dotfile" ]]; then
+        # link exists
+        print_error "WARN: $dotfile already linked"
+    else
+        # link does not exist
+        link "$dotfile"
+    fi
+}
+
+function link_dotfiles {
+    local dotfiles=(zprofile zshrc aliases tmux.conf)
+    for dotfile in "${dotfiles[@]}"; do
+        link_dotfile "$dotfile"
     done
 }
 
 function link_all_dotfiles {
     for dotfile in "${all_dotfiles[@]}"; do
-        if [[ -L "$HOME/.$dotfile" ]]; then
-            # link exists
-            print_error "WARN: $dotfile already linked"
-        else
-            # link does not exist
-            link "$dotfile"
-        fi
+        link_dotfile "$dotfile"
     done
-    if [[ ! -f $HOME/.dir_colors ]]; then
-        git clone --recursive https://github.com/seebi/dircolors-solarized.git ~/dircolors-solarized
-        ln -is ~/dircolors-solarized/dircolors.256dark ~/.dir_colors
-    fi
 }
 
 function update_submodules {
@@ -164,21 +166,23 @@ EOF
 
 update_submodules
 
-if [[ "$BACKUP_DOTFILES" == "true" ]]; then
-    backup_dotfiles
-fi
 if [[ "$LINK_DOTFILES" == "true" ]]; then
+    # link_dotfiles
     link_all_dotfiles
 fi
-if [[ "$INIT_VIM" == "true" ]]; then
+
+if [[ "$INIT_VIM_PLUGINS" == "true" ]]; then
     initialize_vim_plugins
 fi
+
 if [[ "$INSTALL_POWERLINE" == "true" ]]; then
     install_powerline
 fi
+
 if [[ "$INSTALL_HOOKS" == "true" ]]; then
     install_hooks
 fi
+
 if [[ "$INSTALL_ZSH_PLUGINS" == "true" ]]; then
     initialize_zsh_plugins
 fi
@@ -205,6 +209,14 @@ if [[ $INSTALL_BREW == true ]]; then
     brew install --cask flycut
     brew install --cask rectangle
     brew install dockutil
+    dockutil --list | awk -F\t '{print "dockutil --remove \""$1"\" --no-restart"}' | sh
+    dockutil --add /Applications/Google\ Chrome.app --no-restart
+    dockutil --add /Applications/iTerm.app
+fi
+
+if [[ ! -f $HOME/.dir_colors ]]; then
+    git clone --recursive https://github.com/seebi/dircolors-solarized.git ~/dircolors-solarized
+    ln -is ~/dircolors-solarized/dircolors.256dark ~/.dir_colors
 fi
 
 if [ ! -f ~/.config/starship.toml ]; then
