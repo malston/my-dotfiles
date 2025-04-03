@@ -1,39 +1,23 @@
 #!/usr/bin/env bash
 
-INIT_VIM_PLUGINS=false
-INSTALL_HOOKS=false
-INSTALL_ZSH_PLUGINS=false
-INSTALL_BREW=false
-INSTALL_POWERLINE=false
-LINK_DOTFILES=false
-ZSH_CUSTOM="$HOME/my-dotfiles/oh-my-zsh"
+set -o errexit
+set -o pipefail
 
-flag=$1
-if [[ "$flag" = "" ]]; then
-    flag="-a"
-fi
+ALL_DOTFILES=(zprofile zshrc bashrc bash_darwin bash_profile bash_extras common_profile tmux.conf vimrc nvimrc vim nvim aliases git-authors gitconfig ssh/config)
+PROTECTED_REPOS=(homelab home-vpn)
+ZSH_CUSTOM="$PWD/oh-my-zsh"
 
-if [[ "$flag" = "-a" ]]; then
-    INIT_VIM_PLUGINS=true
-    LINK_DOTFILES=true
-    INSTALL_HOOKS=true
-    INSTALL_ZSH_PLUGINS=true
-    INSTALL_BREW=true
-    INSTALL_POWERLINE=true
-elif [[ "$flag" = "-h" ]]; then
-    INSTALL_HOOKS=true
-elif [[ "$flag" = "-l" ]]; then
-    LINK_DOTFILES=true
-elif [[ "$flag" = "-p" ]]; then
-    INSTALL_POWERLINE=true
-elif [[ "$flag" = "-v" ]]; then
-    INIT_VIM_PLUGINS=true
-elif [[ "$flag" = "-z" ]]; then
-    INSTALL_ZSH_PLUGINS=true
-fi
-
-all_dotfiles=(zprofile zshrc bashrc bash_darwin bash_profile bash_extras common_profile tmux.conf vimrc vim aliases git-authors gitconfig ssh/config)
-protected_repos=(homelab home-vpn)
+usage() {
+    cat <<EOF
+Usage: $0 [-a] [-h] [-l] [-p] [-v] [-z]
+  -a  Install all components
+  -h  Install hooks
+  -l  Link dotfiles
+  -p  Install powerline
+  -v  Initialize vim plugins
+  -z  Install zsh plugins
+EOF
+}
 
 function link {
     echo Attempting to link "$1"
@@ -41,11 +25,11 @@ function link {
 }
 
 function print_error {
-    2>&1 echo "$@"
+    echo "$@" >&2
 }
 
 function die() {
-    print_error
+    print_error "$@"
     exit 1
 }
 
@@ -53,78 +37,84 @@ function backup_dotfile {
     dotfile=$1
     if [[ -f "$HOME/.$dotfile" && ! -L "$HOME/.$dotfile" ]]; then
         echo "Copying $dotfile to $HOME/.${dotfile}.bak"
+        if [[ -f "$HOME/.${dotfile}.bak" ]]; then
+            rm -f "$HOME/.${dotfile}.bak"
+        fi
         cp "$HOME/.$dotfile" "$HOME/.${dotfile}.bak"
     fi
 }
 
+# Function to link dotfiles
 function link_dotfile {
-    local dotfile=$1
-    backup_dotfile "$dotfile"
-    if [[ -L "$HOME/.$dotfile" ]]; then
-        # link exists
-        print_error "WARN: $dotfile already linked"
+    if [[ -f "$HOME/.$1" && -L "$HOME/.$1" ]]; then
+        echo "$HOME/.$1 already exists, skipping."
     else
-        # link does not exist
-        link "$dotfile"
+        backup_dotfile "$1"
+        echo "Linking $1"
+        ln -is "$PWD/$1" "$HOME/.$1"
     fi
 }
 
-function link_dotfiles {
-    local dotfiles=(zprofile zshrc aliases tmux.conf)
-    for dotfile in "${dotfiles[@]}"; do
-        link_dotfile "$dotfile"
-    done
-}
-
+# Function to link all dotfiles
 function link_all_dotfiles {
-    for dotfile in "${all_dotfiles[@]}"; do
-        link_dotfile "$dotfile"
+    for dotfile in "${ALL_DOTFILES[@]}"; do
+        if [ -e "$PWD/$dotfile" ]; then
+            link_dotfile "$dotfile"
+        else
+            echo "File $dotfile does not exist, skipping."
+        fi
     done
 }
 
+# Function to update submodules
 function update_submodules {
     git submodule update --init --recursive
 }
 
+# Function to initialize vim plugins
 function initialize_vim_plugins {
-    git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
-    # install vim plugins with vundle
-    vim +PluginInstall +qall
+    if [ ! -f ~/.vim/autoload/plug.vim ]; then
+        curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
+            https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+        nvim +PlugInstall +qall
+    else
+        echo "Vim plugins already initialized, skipping."
+    fi
 }
 
+# Function to initialize zsh plugins
 function initialize_zsh_plugins {
-    sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-    if [ ! -d "${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/kubectx" ]; then
-        git clone https://github.com/unixorn/kubectx-zshplugin "${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/kubectx"
+    if [ ! -d ~/.oh-my-zsh ]; then
+        sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
     else
-        cd "${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/kubectx" && git pull &>/dev/null && cd - &>/dev/null
+        echo "Oh My Zsh already installed, skipping."
     fi
-    if [ ! -d "${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-z" ]; then
-        git clone https://github.com/agkozak/zsh-z "${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-z"
-    else
-        cd "${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-z" && git pull &>/dev/null && cd - &>/dev/null
-    fi
-    if [ ! -d "${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions" ]; then
-        git clone https://github.com/zsh-users/zsh-autosuggestions "${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions"
-    else
-        cd "${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions" && git pull &>/dev/null && cd - &>/dev/null
-    fi
-    if [ ! -d "${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting" ]; then
-        git clone https://github.com/zsh-users/zsh-syntax-highlighting.git "${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting"
-    else
-        cd "${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting" && git pull &>/dev/null && cd - &>/dev/null
-    fi
-    if [ ! -d "${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/fzf-zsh-plugin" ]; then
-        git clone --depth 1 https://github.com/unixorn/fzf-zsh-plugin.git "${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/fzf-zsh-plugin"
-    else
-        cd "${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/fzf-zsh-plugin" && git pull &>/dev/null && cd - &>/dev/null
-    fi
+
+    local plugins=(
+        "kubectx https://github.com/unixorn/kubectx-zshplugin"
+        "zsh-z https://github.com/agkozak/zsh-z"
+        "zsh-autosuggestions https://github.com/zsh-users/zsh-autosuggestions"
+        "zsh-syntax-highlighting https://github.com/zsh-users/zsh-syntax-highlighting.git"
+        "fzf-zsh-plugin https://github.com/unixorn/fzf-zsh-plugin.git"
+    )
+
+    for plugin in "${plugins[@]}"; do
+        local name="${plugin%% *}"
+        local url="${plugin##* }"
+        local plugin_dir="${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/$name"
+
+        if [ ! -d "$plugin_dir" ]; then
+            git clone "$url" "$plugin_dir"
+        else
+            cd "$plugin_dir" && git pull &>/dev/null && cd - &>/dev/null
+        fi
+    done
 }
 
 function install_hooks {
     hook=$(pwd)/hooks/no-push-master
     while IFS= read -r repo; do
-        for protected in "${protected_repos[@]}"; do
+        for protected in "${PROTECTED_REPOS[@]}"; do
             pushd "$repo" > /dev/null || exit 1
                 repo_url=$(git config --get remote.origin.url)
                 if [[ $repo_url = *"${protected}" || $repo_url = *"${protected}.git" ]]; then
@@ -164,37 +154,71 @@ fi
 EOF
 }
 
+while getopts "ahlpvz" opt; do
+  case ${opt} in
+    a )
+      INIT_VIM_PLUGINS=true
+      LINK_DOTFILES=true
+      INSTALL_HOOKS=true
+      INSTALL_ZSH_PLUGINS=true
+      INSTALL_BREW=true
+      INSTALL_POWERLINE=true
+      ;;
+    h )
+      INSTALL_HOOKS=true
+      ;;
+    l )
+      LINK_DOTFILES=true
+      ;;
+    p )
+      INSTALL_POWERLINE=true
+      ;;
+    v )
+      INIT_VIM_PLUGINS=true
+      ;;
+    z )
+      INSTALL_ZSH_PLUGINS=true
+      ;;
+    \? )
+      usage
+      exit 1
+      ;;
+  esac
+done
+shift $((OPTIND -1))
+
 update_submodules
 
-if [[ "$LINK_DOTFILES" == "true" ]]; then
-    # link_dotfiles
+# Main script execution
+if [ "$LINK_DOTFILES" = true ]; then
     link_all_dotfiles
 fi
 
-if [[ "$INIT_VIM_PLUGINS" == "true" ]]; then
+if [ "$INIT_VIM_PLUGINS" = true ]; then
     initialize_vim_plugins
+fi
+
+if [ "$INSTALL_ZSH_PLUGINS" = true ]; then
+    initialize_zsh_plugins
+fi
+
+if [ "$INSTALL_HOOKS" = true ]; then
+    install_hooks
 fi
 
 if [[ "$INSTALL_POWERLINE" == "true" ]]; then
     install_powerline
 fi
 
-if [[ "$INSTALL_HOOKS" == "true" ]]; then
-    install_hooks
-fi
-
-if [[ "$INSTALL_ZSH_PLUGINS" == "true" ]]; then
-    initialize_zsh_plugins
-fi
-
 if [[ $INSTALL_BREW == true ]]; then
-    (echo; echo 'eval "$(/opt/homebrew/bin/brew shellenv)"') >> "$HOME/.zprofile"
-    eval "$(/opt/homebrew/bin/brew shellenv)"
+    (echo; echo "eval \"$("$(brew --prefix)/bin/brew" shellenv)\"") >> "$HOME/.zprofile"
+    eval "$("$(brew --prefix)/bin/brew" shellenv)"
 
     brew install --cask iterm2
     brew install fzf
     brew install eza
     brew install kubectx
+    brew install tree
 
     # Install all nerd fonts
     brew tap homebrew/cask-fonts
@@ -205,7 +229,7 @@ if [[ $INSTALL_BREW == true ]]; then
     brew tap microsoft/git
     brew install --cask git-credential-manager
     brew install --cask visual-studio-code
-    brew install vim
+    brew install neovim
     brew install --cask flycut
     brew install --cask rectangle
     brew install dockutil
@@ -219,7 +243,7 @@ if [[ ! -f $HOME/.dir_colors ]]; then
     ln -is ~/dircolors-solarized/dircolors.256dark ~/.dir_colors
 fi
 
-if [ ! -f ~/.config/starship.toml ]; then
-    mkdir -p ~/.config
-    cp "$HOME/my-dotfiles/starship.toml" ~/.config/starship.toml
+if [ ! -f "$HOME/.config/starship.toml" ]; then
+    mkdir -p "$HOME/.config"
+    cp "$PWD/starship.toml" "$HOME/.config/starship.toml"
 fi
