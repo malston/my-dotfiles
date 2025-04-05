@@ -1,6 +1,5 @@
 [init]
 defaultBranch = main
-templateDir = /Users/malston/.git_templates
 [core]
 editor = /opt/homebrew/bin/vim
 excludesfile = /Users/malston/.gitignore_global
