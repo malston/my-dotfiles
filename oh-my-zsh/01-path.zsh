@@ -25,20 +25,7 @@ export PATH="${GOBIN:-$(brew --prefix)/opt/go/bin}:$PATH"
 # Krew
 export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
 
-# GNU sed
-if [ -d "$(brew --prefix)/opt/gnu-sed/libexec/gnubin" ]; then
-  PATH="$(brew --prefix)/opt/gnu-sed/libexec/gnubin:$PATH"
-fi
-
-# GNU grep
-if [ -d "$(brew --prefix)/opt/grep/libexec/gnubin" ]; then
-  PATH="$(brew --prefix)/opt/grep/libexec/gnubin:$PATH"
-fi
-
-# GNU find
-if [ -d "$(brew --prefix)/opt/findutils/libexec/gnubin" ]; then
-  PATH="$(brew --prefix)/opt/findutils/libexec/gnubin:$PATH"
-fi
+[[ -s "$HOME/my-dotfiles/gnubin-init.sh" ]] && source "$HOME/my-dotfiles/gnubin-init.sh"
 
 # My scripts
 export PATH="$HOME/workspace/my-scripts:$PATH"

@@ -127,8 +127,6 @@ if command -v starship &> /dev/null; then
   eval "$(starship init zsh)"
 fi
 
-[[ -s "$HOME/my-dotfiles/gnubin-init.sh" ]] && source "$HOME/my-dotfiles/gnubin-init.sh"
-
 if command -v mise 1> /dev/null 2>&1; then
   eval "$($(brew --prefix)/bin/mise activate zsh)"
 fi
