@@ -120,10 +120,14 @@ else
   export EDITOR='mvim'
 fi
 
+[[ -s "$HOME/.config/op/plugins.sh" ]] && source "$HOME/.config/op/plugins.sh"
+
 # Must be init before any other customizations are made
 if command -v starship &> /dev/null; then
   eval "$(starship init zsh)"
 fi
+
+[[ -s "$HOME/my-dotfiles/gnubin-init.sh" ]] && source "$HOME/my-dotfiles/gnubin-init.sh"
 
 if command -v mise 1> /dev/null 2>&1; then
   eval "$($(brew --prefix)/bin/mise activate zsh)"
@@ -133,4 +137,3 @@ fi
 export SDKMAN_DIR="$HOME/.sdkman"
 [[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
 
-[[ -s "$HOME/.config/op/plugins.sh" ]] && source "$HOME/.config/op/plugins.sh"
