@@ -109,13 +109,11 @@ if command -v pyenv 1> /dev/null 2>&1; then
   eval "$(pyenv virtualenv-init -)"
 fi
 
+if command -v op 1> /dev/null 2>&1; then
+  source <(op completion bash)
+fi
+
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="$HOME/.sdkman"
 [[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
 
-if command -v op 1> /dev/null 2>&1; then
-  source <(op completion bash)
-fi
-if command -v mise 1> /dev/null 2>&1; then
-  eval "$(mise activate bash)"
-fi
