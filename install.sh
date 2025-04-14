@@ -10,11 +10,11 @@ ZSH_CUSTOM="$HOME/my-dotfiles/oh-my-zsh"
 INSTALL_POWERLINE=false
 
 flag=$1
-if [[ "$flag" = "" ]]; then
+if [[ $flag == "" ]]; then
     flag="-a"
 fi
 
-if [[ "$flag" = "-a" ]]; then
+if [[ $flag == "-a" ]]; then
     LINK_DOTFILES=true
     INIT_VIM=true
     INSTALL_HOOKS=true
@@ -22,17 +22,17 @@ if [[ "$flag" = "-a" ]]; then
     INSTALL_BREW=true
     INSTALL_POWERLINE=true
     BACKUP_DOTFILES=true
-elif [[ "$flag" = "-h" ]]; then
+elif [[ $flag == "-h" ]]; then
     INSTALL_HOOKS=true
-elif [[ "$flag" = "-b" ]]; then
+elif [[ $flag == "-b" ]]; then
     BACKUP_DOTFILES=true
-elif [[ "$flag" = "-l" ]]; then
+elif [[ $flag == "-l" ]]; then
     LINK_DOTFILES=true
-elif [[ "$flag" = "-p" ]]; then
+elif [[ $flag == "-p" ]]; then
     INSTALL_POWERLINE=true
-elif [[ "$flag" = "-v" ]]; then
+elif [[ $flag == "-v" ]]; then
     INIT_VIM=true
-elif [[ "$flag" = "-z" ]]; then
+elif [[ $flag == "-z" ]]; then
     INSTALL_ZSH_PLUGINS=true
 fi
 
@@ -95,27 +95,27 @@ function initialize_zsh_plugins {
     if [ ! -d "${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/kubectx" ]; then
         git clone https://github.com/unixorn/kubectx-zshplugin "${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/kubectx"
     else
-        cd "${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/kubectx" && git pull &>/dev/null && cd - &>/dev/null
+        cd "${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/kubectx" && git pull &> /dev/null && cd - &> /dev/null
     fi
     if [ ! -d "${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-z" ]; then
         git clone https://github.com/agkozak/zsh-z "${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-z"
     else
-        cd "${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-z" && git pull &>/dev/null && cd - &>/dev/null
+        cd "${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-z" && git pull &> /dev/null && cd - &> /dev/null
     fi
     if [ ! -d "${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions" ]; then
         git clone https://github.com/zsh-users/zsh-autosuggestions "${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions"
     else
-        cd "${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions" && git pull &>/dev/null && cd - &>/dev/null
+        cd "${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions" && git pull &> /dev/null && cd - &> /dev/null
     fi
     if [ ! -d "${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting" ]; then
         git clone https://github.com/zsh-users/zsh-syntax-highlighting.git "${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting"
     else
-        cd "${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting" && git pull &>/dev/null && cd - &>/dev/null
+        cd "${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting" && git pull &> /dev/null && cd - &> /dev/null
     fi
     if [ ! -d "${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/fzf-zsh-plugin" ]; then
         git clone --depth 1 https://github.com/unixorn/fzf-zsh-plugin.git "${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/fzf-zsh-plugin"
     else
-        cd "${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/fzf-zsh-plugin" && git pull &>/dev/null && cd - &>/dev/null
+        cd "${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/fzf-zsh-plugin" && git pull &> /dev/null && cd - &> /dev/null
     fi
 }
 
@@ -124,25 +124,25 @@ function install_hooks {
     while IFS= read -r repo; do
         for protected in "${protected_repos[@]}"; do
             pushd "$repo" > /dev/null || exit 1
-                repo_url=$(git config --get remote.origin.url)
-                if [[ $repo_url = *"${protected}" || $repo_url = *"${protected}.git" ]]; then
-                    echo "Installing pre-push hook in $repo..."
-                    cp "$hook" hooks/pre-push
-                    chmod 700 hooks/pre-push
-                fi
+            repo_url=$(git config --get remote.origin.url)
+            if [[ $repo_url == *"${protected}" || $repo_url == *"${protected}.git" ]]; then
+                echo "Installing pre-push hook in $repo..."
+                cp "$hook" hooks/pre-push
+                chmod 700 hooks/pre-push
+            fi
             popd > /dev/null || exit 1
         done
-    done <   <(find ~/workspace -name .git -type d)
+    done < <(find ~/workspace -name .git -type d)
 }
 
 function install_powerline {
     python3 -m pip install powerline-shell
     git clone https://github.com/powerline/fonts.git
     pushd fonts > /dev/null || exit 1
-      ./install.sh
+    ./install.sh
     popd > /dev/null || exit 1
     rm -rf fonts
-    cat >> ~/.zshrc <<EOF
+    cat >> ~/.zshrc << EOF
 function powerline_precmd() {
     PS1="$(powerline-shell --shell zsh $?)"
 }
@@ -164,27 +164,30 @@ EOF
 
 update_submodules
 
-if [[ "$BACKUP_DOTFILES" == "true" ]]; then
+if [[ $BACKUP_DOTFILES == "true" ]]; then
     backup_dotfiles
 fi
-if [[ "$LINK_DOTFILES" == "true" ]]; then
+if [[ $LINK_DOTFILES == "true" ]]; then
     link_all_dotfiles
 fi
-if [[ "$INIT_VIM" == "true" ]]; then
+if [[ $INIT_VIM == "true" ]]; then
     initialize_vim_plugins
 fi
-if [[ "$INSTALL_POWERLINE" == "true" ]]; then
+if [[ $INSTALL_POWERLINE == "true" ]]; then
     install_powerline
 fi
-if [[ "$INSTALL_HOOKS" == "true" ]]; then
+if [[ $INSTALL_HOOKS == "true" ]]; then
     install_hooks
 fi
-if [[ "$INSTALL_ZSH_PLUGINS" == "true" ]]; then
+if [[ $INSTALL_ZSH_PLUGINS == "true" ]]; then
     initialize_zsh_plugins
 fi
 
 if [[ $INSTALL_BREW == true ]]; then
-    (echo; echo 'eval "$(/opt/homebrew/bin/brew shellenv)"') >> "$HOME/.zprofile"
+    (
+        echo
+        echo 'eval "$(/opt/homebrew/bin/brew shellenv)"'
+    ) >> "$HOME/.zprofile"
     eval "$(/opt/homebrew/bin/brew shellenv)"
 
     brew install --cask iterm2
@@ -202,6 +205,7 @@ if [[ $INSTALL_BREW == true ]]; then
     brew install --cask git-credential-manager
     brew install --cask visual-studio-code
     brew install vim
+    brew install neovim
     brew install --cask flycut
     brew install --cask rectangle
     brew install dockutil
