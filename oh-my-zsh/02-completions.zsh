@@ -1,36 +1,37 @@
 autoload -U +X bashcompinit && bashcompinit
+setopt completealiases
 
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
-if command -v stern 1> /dev/null 2>&1; then
+if command -v stern 1>/dev/null 2>&1; then
   source <(stern --completion=zsh)
 fi
 
-if command -v kubectl 1> /dev/null 2>&1; then
+if command -v kubectl 1>/dev/null 2>&1; then
   source <(kubectl completion zsh)
 fi
 
-if command -v flux 1> /dev/null 2>&1; then
+if command -v flux 1>/dev/null 2>&1; then
   . <(flux completion zsh)
 fi
 
-if command -v terraform 1> /dev/null 2>&1; then
+if command -v terraform 1>/dev/null 2>&1; then
   # complete -C /opt/homebrew/bin/terraform terraform
   complete -o nospace -C /opt/homebrew/bin/terraform terraform
 fi
 
-if command -v op 1> /dev/null 2>&1; then
+if command -v op 1>/dev/null 2>&1; then
   eval "$(op completion zsh)"
   compdef _op op
 fi
 
-if [[ -f "$HOME/.config/op/plugins.sh" ]]; then
-  # shellcheck disable=SC1091
-  source "$HOME/.config/op/plugins.sh"
+if command -v gh 1>/dev/null 2>&1; then
+  eval "$(gh completion -s zsh)"
+  compdef _gh gh
 fi
 
 # Setup autocomplete for kubectl commands
-if command -v kubectl &> /dev/null; then
+if command -v kubectl &>/dev/null; then
   source <(kubectl completion zsh)
   alias k=kubectl
   complete -F __start_kubectl k
@@ -46,7 +47,7 @@ function print_current_foundation() {
   fi
 }
 
-if command -v direnv 1> /dev/null 2>&1; then
+if command -v direnv 1>/dev/null 2>&1; then
   export PS1='$(print_current_foundation)'$PS1
   eval "$(direnv hook zsh)"
 fi
@@ -65,7 +66,7 @@ fi
 # Python
 # See https://github.com/pyenv/pyenv
 # See https://github.com/pyenv/pyenv-virtualenv
-if command -v pyenv 1> /dev/null 2>&1; then
+if command -v pyenv 1>/dev/null 2>&1; then
   eval "$(pyenv init -)"
   # We want to regularly go to our virtual environment directory
   # export WORKON_HOME=~/.virtualenvs

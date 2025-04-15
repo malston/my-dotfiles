@@ -121,16 +121,25 @@ else
 fi
 
 # Must be init before any other customizations are made
-if command -v starship &> /dev/null; then
+if command -v starship &>/dev/null; then
   eval "$(starship init zsh)"
 fi
 
-if command -v mise 1> /dev/null 2>&1; then
+if command -v mise 1>/dev/null 2>&1; then
   eval "$($(brew --prefix)/bin/mise activate zsh)"
 fi
+
+# [[ -s "$HOME/.config/op/plugins.sh" ]] && source "$HOME/.config/op/plugins.sh"
+
+# Create a function instead of an alias
+gh() {
+  if [[ $1 == "copilot" ]]; then
+    command gh "$@" # Run the original gh command without the alias
+  else
+    op plugin run -- gh "$@" # Run your aliased version
+  fi
+}
 
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="$HOME/.sdkman"
 [[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
-
-[[ -s "$HOME/.config/op/plugins.sh" ]] && source "$HOME/.config/op/plugins.sh"
