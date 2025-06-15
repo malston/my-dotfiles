@@ -80,3 +80,7 @@ if command -v pyenv 1>/dev/null 2>&1; then
   # test -e "${HOME}/.pyenv/versions/$(pyenv version-name)/bin/virtualenvwrapper.sh" && source "${HOME}/.pyenv/versions/$(pyenv version-name)/bin/virtualenvwrapper.sh"
   eval "$(pyenv virtualenv-init -)"
 fi
+
+if command -v fzf 1>/dev/null 2>&1; then
+  source <(fzf --zsh)
+fi

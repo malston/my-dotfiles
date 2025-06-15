@@ -1,30 +1,15 @@
 # Use ANSI color sequences to distinguish file types
 export CLICOLOR=1
 
+# homebrew
+export PATH="$(brew --prefix)/bin:${PATH}"
+export PATH="$(brew --prefix)/sbin:${PATH}"
 
-export PATH="/opt/homebrew/opt/go@1.17/bin:$PATH"
+export PATH="$(brew --prefix)/opt/go@1.17/bin:$PATH"
 export PATH="$HOME/bin:$HOME/go/bin:$PATH"
 export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
 export PATH="$HOME/workspace/my-scripts:$PATH"
 export PATH="$HOME/workspace/k8s-scripts:$PATH"
-
-ARM_HOMEBREW_PREFIX="/opt/homebrew"
-INTEL_HOMEBREW_PREFIX="/usr/local"
-case "$(uname -m)" in
-  "arm64")
-    HOMEBREW_PREFIX=${ARM_HOMEBREW_PREFIX}
-    # echo "Start Home Brew as ARM64 M1/M2 Silicon ✅"
-  ;;
-  "i386"|"x86_64")
-    HOMEBREW_PREFIX=${INTEL_HOMEBREW_PREFIX}
-    echo "Start Home Brew under Rosetta 2 Intel Emulation x86_64 🤔"
-  ;;
-  *)
-    echo "Which Processor Architecture is that? [$(uname -m)]"
-  ;;
-esac
-export PATH=${HOMEBREW_PREFIX}/bin:${PATH}
-export HOMEBREW_GITHUB_API_TOKEN=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
 
 export GIT_DUET_GLOBAL=true
 export GIT_DUET_ROTATE_AUTHOR=1

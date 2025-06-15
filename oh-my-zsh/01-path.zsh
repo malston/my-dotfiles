@@ -1,5 +1,6 @@
 # homebrew
 export PATH="$(brew --prefix)/bin:${PATH}"
+export PATH="$(brew --prefix)/sbin:${PATH}"
 
 # Home bin
 export PATH="$HOME/bin:$PATH"

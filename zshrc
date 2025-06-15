@@ -117,7 +117,7 @@ source $ZSH/oh-my-zsh.sh
 if [[ -n $SSH_CONNECTION ]]; then
   export EDITOR='vim'
 else
-  export EDITOR='mvim'
+  export EDITOR='vim'
 fi
 
 # Must be init before any other customizations are made
@@ -143,3 +143,7 @@ gh() {
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="$HOME/.sdkman"
 [[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
+alias copilot="gh copilot"
+alias gcs="gh copilot suggest"
+alias gce="gh copilot explain"
+alias claude="/Users/markalston/.claude/local/claude"

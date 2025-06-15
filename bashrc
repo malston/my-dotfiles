@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-__DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" &> /dev/null && pwd)"
+__DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" &>/dev/null && pwd)"
 
 # platform specific script comes first!
 platform_script=~/.bash_$(uname | awk '{ print tolower($0) }')
@@ -34,7 +34,7 @@ bind 'set enable-bracketed-paste off'
 
 source "${__DIR}/completions"
 
-if command -v starship &> /dev/null; then
+if command -v starship &>/dev/null; then
   eval "$(starship init bash)"
 fi
 
@@ -47,7 +47,7 @@ if [ -d "$HOME/.jenv/bin" ]; then
   eval "$(jenv init -)"
 fi
 
-if command -v rbenv &> /dev/null; then
+if command -v rbenv &>/dev/null; then
   eval "$(rbenv init -)"
 fi
 
@@ -62,7 +62,7 @@ function print_current_foundation() {
 }
 
 # enable direnv
-if command -v direnv &> /dev/null; then
+if command -v direnv &>/dev/null; then
   export PS1='$(print_current_foundation)'$PS1
   eval "$(direnv hook bash)"
 fi
@@ -94,7 +94,7 @@ fi
 # Python
 # See https://github.com/pyenv/pyenv
 # See https://github.com/pyenv/pyenv-virtualenv
-if command -v pyenv 1> /dev/null 2>&1; then
+if command -v pyenv 1>/dev/null 2>&1; then
   eval "$(pyenv init -)"
   # We want to regularly go to our virtual environment directory
   # export WORKON_HOME=~/.virtualenvs
@@ -113,9 +113,14 @@ fi
 export SDKMAN_DIR="$HOME/.sdkman"
 [[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
 
-if command -v op 1> /dev/null 2>&1; then
+if command -v op 1>/dev/null 2>&1; then
   source <(op completion bash)
 fi
-if command -v mise 1> /dev/null 2>&1; then
+
+if command -v mise 1>/dev/null 2>&1; then
   eval "$(mise activate bash)"
+fi
+
+if command -v fzf 1>/dev/null 2>&1; then
+  eval "$(fzf --bash)"
 fi
