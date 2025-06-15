@@ -47,7 +47,7 @@ gpgsign = true
 [credential]
 credentialStore = cache
 helper = /usr/local/share/gcm-core/git-credential-manager
-[credential "https://dev.azure.com"]
-useHttpPath = true
 [protocol "file"]
 allow = always
+[credential "https://dev.azure.com"]
+useHttpPath = true
