@@ -32,7 +32,9 @@ bind '"\e[B": history-search-forward'
 # Turn off bracketed paste
 bind 'set enable-bracketed-paste off'
 
-source "${__DIR}/completions"
+if [[ -f "${__DIR}/completions" ]]; then
+    source "${__DIR}/completions"
+fi
 
 if command -v starship &>/dev/null; then
   eval "$(starship init bash)"
