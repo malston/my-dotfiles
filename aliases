@@ -5,14 +5,16 @@ else
   alias ls="ls --color=auto"
 fi
 
+alias powershell='pwsh'
+
 # https://github.com/direnv/direnv/wiki/Tmux
 alias tmux='direnv exec / tmux'
 
 # Vscode fix for: https://github.com/microsoft/vscode/issues/60579
-alias code='open -b com.microsoft.VSCode "$@"'
+#alias code='open -b com.microsoft.VSCode "$@"'
 
 # Fix path issues with Python on macOS Big Sur
-alias python=/usr/local/bin/python3
+#alias python=/usr/local/bin/python3
 
 # Move files to the Trash rather than removing permanently
 alias del="trash"

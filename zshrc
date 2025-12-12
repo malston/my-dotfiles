@@ -146,4 +146,8 @@ export SDKMAN_DIR="$HOME/.sdkman"
 alias copilot="gh copilot"
 alias gcs="gh copilot suggest"
 alias gce="gh copilot explain"
+
 alias claude="/Users/markalston/.claude/local/claude"
+
+# Added by `rbenv init` on Wed Dec  3 20:20:35 MST 2025
+eval "$(rbenv init - --no-rehash zsh)"

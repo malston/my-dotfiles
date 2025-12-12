@@ -84,3 +84,13 @@ fi
 if command -v fzf 1>/dev/null 2>&1; then
   source <(fzf --zsh)
 fi
+
+if command -v claudeup 1>/dev/null 2>&1; then
+  source <(claudeup completion zsh)
+
+  clup() { claudeup "$@"; }
+  cup() { claudeup "$@"; }
+
+  compdef _claudeup clup
+  compdef _claudeup cup
+fi

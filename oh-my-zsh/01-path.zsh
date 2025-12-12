@@ -41,6 +41,10 @@ if [ -d "$(brew --prefix)/opt/findutils/libexec/gnubin" ]; then
   PATH="$(brew --prefix)/opt/findutils/libexec/gnubin:$PATH"
 fi
 
+# VMware OVF Tool
+export PATH="/Applications/VMware OVF Tool:$PATH"
+
 # My scripts
 export PATH="$HOME/workspace/my-scripts:$PATH"
 export PATH="$HOME/workspace/k8s-scripts:$PATH"
+export PATH="$HOME/workspace/homelab/scripts:$PATH"

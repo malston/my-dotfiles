@@ -126,3 +126,4 @@ fi
 if command -v fzf 1>/dev/null 2>&1; then
   eval "$(fzf --bash)"
 fi
+. "$HOME/.cargo/env"

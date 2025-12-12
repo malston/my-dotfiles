@@ -4,6 +4,9 @@ else
   alias ls="ls --color=auto"
 fi
 
+alias clup='claudeup'
+alias cup='claudeup'
+
 # https://github.com/direnv/direnv/wiki/Tmux
 alias tmux='direnv exec / tmux'
 
@@ -55,10 +58,10 @@ alias nocaps='/usr/bin/setxkbmap -layout us -option ctrl:nocaps'
 alias fp="fzf --preview 'bat --style=numbers --color=always --line-range :500 {}'"
 alias gt='starship toggle gcloud disabled'
 
-alias eza='eza --color=auto --group-directories-first'
-alias ls='eza --icons -F -H --group-directories-first --git -1'
-alias ll="eza -l -g --icons"
-alias lt="eza --tree --icons -a -I '.git|__pycache__|.mypy_cache|.ipynb_checkpoints'"
+# alias eza='eza --color=auto --group-directories-first'
+# alias ls='eza --icons -F -H --group-directories-first --git -1'
+# alias ll="eza -l -g --icons"
+# alias lt="eza --tree --icons -a -I '.git|__pycache__|.mypy_cache|.ipynb_checkpoints'"
 alias ll='ls -l -b -g -m --color-scale --time-style=long-iso'
 alias ll='ls -alF'
 alias la='ll -a'
