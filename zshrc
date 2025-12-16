@@ -151,3 +151,10 @@ alias claude="/Users/markalston/.claude/local/claude"
 
 # Added by `rbenv init` on Wed Dec  3 20:20:35 MST 2025
 eval "$(rbenv init - --no-rehash zsh)"
+
+# bun completions
+[ -s "/Users/markalston/.bun/_bun" ] && source "/Users/markalston/.bun/_bun"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
