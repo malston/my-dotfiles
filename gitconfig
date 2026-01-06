@@ -1,53 +1,53 @@
 [init]
-defaultBranch = main
+  defaultBranch = main
 [core]
-editor = /opt/homebrew/bin/vim
-excludesfile = /Users/malston/.gitignore_global
-autocrlf = input
-pager = less -FRSX
-hooksPath = /Users/malston/workspace/git-hooks-core
+  editor = /opt/homebrew/bin/vim
+  excludesfile = /Users/malston/.gitignore_global
+  autocrlf = input
+  pager = less -FRSX
+  hooksPath = /Users/malston/workspace/git-hooks-core
 [transfer]
-fsckobjects = true
+  fsckobjects = true
 [push]
-default = simple
+  default = simple
 [alias]
-pu = push
-st = status
-di = diff
-co = checkout
-ci = commit
-br = branch
-sta = stash
-llog = log --date=local
-flog = log --pretty=fuller --decorate
-lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
-lol = log --graph --decorate --oneline
-lola = log --graph --decorate --oneline --all
-blog = log origin/master... --left-right
-ds = diff --staged
-fixup = commit --fixup
-squash = commit --squash
-unstage = reset HEAD
-rum = rebase master@{u}
-sur="submodule update --init --recursive"
-cr = clone --recursive
-gst = git
-cp = cherry-pick
-amendit = commit --amend --no-edit
+  pu = push
+  st = status
+  di = diff
+  co = checkout
+  ci = commit
+  br = branch
+  sta = stash
+  llog = log --date=local
+  flog = log --pretty=fuller --decorate
+  lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
+  lol = log --graph --decorate --oneline
+  lola = log --graph --decorate --oneline --all
+  blog = log origin/master... --left-right
+  ds = diff --staged
+  fixup = commit --fixup
+  squash = commit --squash
+  unstage = reset HEAD
+  rum = rebase master@{u}
+  sur="submodule update --init --recursive"
+  cr = clone --recursive
+  gst = git
+  cp = cherry-pick
+  amendit = commit --amend --no-edit
 [user]
-name = Mark Alston
-email = marktalston@gmail.com
-signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIVTjgZOX95mCyP9+zUE+a4+FjQLVAv8EThm5d+s1tcQ
+  name = Mark Alston
+  email = marktalston@gmail.com
+  signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIVTjgZOX95mCyP9+zUE+a4+FjQLVAv8EThm5d+s1tcQ
 [gpg]
-format = ssh
+  format = ssh
 [gpg "ssh"]
-program = "/Applications/1Password.app/Contents/MacOS/op-ssh-sign"
+  program = "/Applications/1Password.app/Contents/MacOS/op-ssh-sign"
 [commit]
-gpgsign = true
+  gpgsign = true
 [credential]
-credentialStore = cache
-helper = /usr/local/share/gcm-core/git-credential-manager
+  credentialStore = cache
+  helper = /usr/local/share/gcm-core/git-credential-manager
 [protocol "file"]
-allow = always
+  allow = always
 [credential "https://dev.azure.com"]
-useHttpPath = true
+  useHttpPath = true
