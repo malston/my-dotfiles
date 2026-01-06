@@ -88,9 +88,11 @@ fi
 if command -v claudeup 1>/dev/null 2>&1; then
   source <(claudeup completion zsh)
 
-  clup() { claudeup "$@"; }
+  cu() { claudeup "$@"; }
   cup() { claudeup "$@"; }
+  clup() { claudeup "$@"; }
 
-  compdef _claudeup clup
+  compdef _claudeup cu
   compdef _claudeup cup
+  compdef _claudeup clup
 fi

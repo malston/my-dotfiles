@@ -4,8 +4,10 @@ else
   alias ls="ls --color=auto"
 fi
 
-alias clup='claudeup'
+alias c='claude'
+alias cu='claudeup'
 alias cup='claudeup'
+alias clup='claudeup'
 
 # https://github.com/direnv/direnv/wiki/Tmux
 alias tmux='direnv exec / tmux'
