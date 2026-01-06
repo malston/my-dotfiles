@@ -1,43 +1,45 @@
 [core]
-     editor = /usr/bin/vim
+  editor = /usr/bin/vim
+  autocrlf = input
 [transfer]
-    fsckobjects = true
+  fsckobjects = true
 [push]
-    default = simple
+  default = simple
 [alias]
-    pu = push
-    st = status
-    di = diff
-    co = checkout
-    ci = commit
-    br = branch
-    sta = stash
-    llog = log --date=local
-    flog = log --pretty=fuller --decorate
-    lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
-    lol = log --graph --decorate --oneline
-    lola = log --graph --decorate --oneline --all
-    blog = log origin/master... --left-right
-    ds = diff --staged
-    fixup = commit --fixup
-    squash = commit --squash
-    unstage = reset HEAD
-    rum = rebase master@{u}
-    sur="submodule update --init --recursive"
-    cr = clone --recursive
-    rename = branch -m
+  pu = push
+  st = status
+  di = diff
+  co = checkout
+  ci = commit
+  br = branch
+  sta = stash
+  llog = log --date=local
+  flog = log --pretty=fuller --decorate
+  lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
+  lol = log --graph --decorate --oneline
+  lola = log --graph --decorate --oneline --all
+  blog = log origin/main... --left-right
+  ds = diff --staged
+  fixup = commit --fixup
+  squash = commit --squash
+  unstage = reset HEAD
+  rum = rebase main@{u}
+  sur="submodule update --init --recursive"
+  cr = clone --recursive
+  rename = branch -m
 [user]
-    name = Mark T Alston
-    email = Mark.T.Alston@company.com
+  name = Mark Alston
+  email = marktalston@gmail.com
 [init]
-    defaultBranch = master
-[credential]
-    credentialStore = cache
+  defaultBranch = main
 [filter "lfs"]
-    smudge = git-lfs smudge -- %f
-    process = git-lfs filter-process
-    required = true
-    clean = git-lfs clean -- %f
-[http]
-    sslVerify = false
-    proxy = http://proxy.company.com:8080
+  smudge = git-lfs smudge -- %f
+  process = git-lfs filter-process
+  required = true
+  clean = git-lfs clean -- %f
+[protocol "file"]
+  allow = always
+[credential]
+  credentialStore = cache
+[credential "https://dev.azure.com"]
+  useHttpPath = true
