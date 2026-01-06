@@ -11,7 +11,7 @@ esac
 # Use ANSI color sequences to distinguish file types
 export CLICOLOR=1
 
-DOT_FILES="$HOME/my-dotfiles"
+DOT_FILES="$PWD"
 
 function enable_completions() {
   source "${DOT_FILES}/completions"

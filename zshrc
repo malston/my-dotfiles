@@ -65,7 +65,7 @@ ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=244"
 # HIST_STAMPS="mm/dd/yyyy"
 
 # Would you like to use another custom folder than $ZSH/custom?
-ZSH_CUSTOM="$HOME/my-dotfiles/oh-my-zsh"
+ZSH_CUSTOM="$PWD/oh-my-zsh"
 
 # Use fzf to search your command history and do file searches.
 FZF_BASE="$HOME/.fzf"

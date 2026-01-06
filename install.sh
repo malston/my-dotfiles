@@ -6,7 +6,7 @@ INSTALL_HOOKS=false
 INSTALL_ZSH_PLUGINS=false
 BACKUP_DOTFILES=false
 INSTALL_BREW=false
-ZSH_CUSTOM="$HOME/my-dotfiles/oh-my-zsh"
+ZSH_CUSTOM="$PWD/oh-my-zsh"
 INSTALL_POWERLINE=false
 
 flag=$1
@@ -213,6 +213,6 @@ fi
 
 if [ ! -f ~/.config/starship.toml ]; then
     mkdir -p ~/.config
-    cp "$HOME/my-dotfiles/starship.toml" ~/.config/starship.toml
+    cp "$PWD/starship.toml" ~/.config/starship.toml
 fi
 
