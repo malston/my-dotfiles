@@ -20,8 +20,12 @@ export PATH="$PATH:/Users/$USER/.local/bin"
 
 # Go
 export PATH="$HOME/bin:$HOME/go/bin:$PATH"
-export GOPATH=$HOME/workspace/go
 export PATH="${GOBIN:-$(brew --prefix)/opt/go/bin}:$PATH"
+if [ -d "$HOME/workspace" ]; then
+  GOPATH=$HOME/workspace/go
+else
+  GOPATH=$HOME/go
+fi
 
 # Krew
 export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
@@ -41,10 +45,31 @@ if [ -d "$(brew --prefix)/opt/findutils/libexec/gnubin" ]; then
   PATH="$(brew --prefix)/opt/findutils/libexec/gnubin:$PATH"
 fi
 
-# VMware OVF Tool
-export PATH="/Applications/VMware OVF Tool:$PATH"
+# ged
+# GNU ed (ged) is a line-oriented text editor.
+if [ -d "$(brew --prefix)/opt/ed/bin" ]; then
+  PATH="/opt/homebrew/opt/ed/bin:$PATH"
+fi
 
-# My scripts
-export PATH="$HOME/workspace/my-scripts:$PATH"
-export PATH="$HOME/workspace/k8s-scripts:$PATH"
-export PATH="$HOME/workspace/homelab/scripts:$PATH"
+# VMware OVF Tool
+if [ -d "/Applications/VMware OVF Tool" ]; then
+  PATH="/Applications/VMware OVF Tool:$PATH"
+fi
+
+if [ -d "$HOME/workspace/my-scripts" ]; then
+  PATH="$HOME/workspace/my-scripts:$PATH"
+fi
+
+if [ -d "$HOME/workspace/k8s-scripts" ]; then
+  PATH="$HOME/workspace/k8s-scripts:$PATH"
+fi
+
+if [ -d "$HOME/workspace/homelab/scripts" ]; then
+  PATH="$HOME/workspace/homelab/scripts:$PATH"
+fi
+
+# bun
+if [ -d "$HOME/.bun" ]; then
+  export BUN_INSTALL="$HOME/.bun"
+  export PATH="$BUN_INSTALL/bin:$PATH"
+fi

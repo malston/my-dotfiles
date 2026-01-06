@@ -132,22 +132,20 @@ fi
 # [[ -s "$HOME/.config/op/plugins.sh" ]] && source "$HOME/.config/op/plugins.sh"
 
 # Create a function instead of an alias
-gh() {
-  if [[ $1 == "copilot" ]]; then
-    command gh "$@" # Run the original gh command without the alias
-  else
-    op plugin run -- gh "$@" # Run your aliased version
-  fi
-}
+# gh() {
+#   if [[ $1 == "copilot" || $1 == "auth" ]]; then
+#     command gh "$@" # Run the original gh command without the alias
+#   else
+#     op plugin run -- gh "$@" # Run your aliased version
+#   fi
+# }
+# alias copilot="gh copilot"
+# alias gcs="gh copilot suggest"
+# alias gce="gh copilot explain"
 
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="$HOME/.sdkman"
 [[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
-alias copilot="gh copilot"
-alias gcs="gh copilot suggest"
-alias gce="gh copilot explain"
-
-alias claude="/Users/markalston/.claude/local/claude"
 
 # Added by `rbenv init` on Wed Dec  3 20:20:35 MST 2025
 eval "$(rbenv init - --no-rehash zsh)"
@@ -155,6 +153,8 @@ eval "$(rbenv init - --no-rehash zsh)"
 # bun completions
 [ -s "/Users/markalston/.bun/_bun" ] && source "/Users/markalston/.bun/_bun"
 
-# bun
-export BUN_INSTALL="$HOME/.bun"
-export PATH="$BUN_INSTALL/bin:$PATH"
+# The following lines have been added by Docker Desktop to enable Docker CLI completions.
+fpath=(/Users/markalston/.docker/completions $fpath)
+autoload -Uz compinit
+compinit
+# End of Docker CLI completions
