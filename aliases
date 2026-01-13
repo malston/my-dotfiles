@@ -27,6 +27,7 @@ alias weather='curl wttr.in/Denver'
 # home
 alias homelab="cd ~/workspace/homelab"
 alias maintain-claude='~/.claude/scripts/maintain-claude-projects.sh'
+alias claude-config='~/.claude/scripts/claude-config'
 
 # replicated
 alias r="replicated"
