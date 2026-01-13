@@ -80,9 +80,11 @@ export FZF_DEFAULT_OPTS='--height 40% --layout=reverse --border'
 # Add wisely, as too many plugins slow down shell startup.
 # https://github.com/ohmyzsh/ohmyzsh/wiki/Plugins
 plugins=(
+  1password
   autojump
   brew
   bundler
+  cloudfoundry
   colored-man-pages
   colorize
   dotenv
@@ -153,8 +155,11 @@ eval "$(rbenv init - --no-rehash zsh)"
 # bun completions
 [ -s "/Users/markalston/.bun/_bun" ] && source "/Users/markalston/.bun/_bun"
 
+# Enable claude-config completions.
+fpath=(~/.claude/completions $fpath)
+
 # The following lines have been added by Docker Desktop to enable Docker CLI completions.
-fpath=(/Users/markalston/.docker/completions $fpath)
+fpath=(~/.docker/completions $fpath)
 autoload -Uz compinit
 compinit
 # End of Docker CLI completions
