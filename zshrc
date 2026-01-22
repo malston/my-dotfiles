@@ -154,7 +154,7 @@ export SDKMAN_DIR="$HOME/.sdkman"
 eval "$(rbenv init - --no-rehash zsh)"
 
 # bun completions
-[ -s "/Users/markalston/.bun/_bun" ] && source "/Users/markalston/.bun/_bun"
+[ -s "~/.bun/_bun" ] && source "~/.bun/_bun"
 
 # Enable claude-config completions.
 fpath=(~/.claude/completions $fpath)
@@ -164,3 +164,16 @@ fpath=(~/.docker/completions $fpath)
 autoload -Uz compinit
 compinit
 # End of Docker CLI completions
+
+# Added by Antigravity
+export PATH="~/.antigravity/antigravity/bin:$PATH"
+
+alias claude-mem='bun "~/.claude/plugins/marketplaces/thedotmack/plugin/scripts/worker-service.cjs"'
+
+# pnpm
+export PNPM_HOME="~/Library/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+# pnpm end

@@ -136,4 +136,4 @@ if command -v fzf 1>/dev/null 2>&1; then
 fi
 . "$HOME/.cargo/env"
 
-alias claude-mem='bun "/Users/markalston/.claude/plugins/marketplaces/thedotmack/plugin/scripts/worker-service.cjs"'
+alias claude-mem='bun "~/.claude/plugins/marketplaces/thedotmack/plugin/scripts/worker-service.cjs"'
