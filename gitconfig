@@ -12,6 +12,7 @@
   default = simple
 [alias]
   pu = push
+  pp = pull --prune
   st = status
   di = diff
   co = checkout

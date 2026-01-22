@@ -127,8 +127,9 @@ if command -v starship &>/dev/null; then
   eval "$(starship init zsh)"
 fi
 
+# Mise activation (should be early)
 if command -v mise 1>/dev/null 2>&1; then
-  eval "$($(brew --prefix)/bin/mise activate zsh)"
+  eval "$(mise activate zsh)"
 fi
 
 # [[ -s "$HOME/.config/op/plugins.sh" ]] && source "$HOME/.config/op/plugins.sh"

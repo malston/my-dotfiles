@@ -1,6 +1,14 @@
 #!/usr/bin/env bash
 
-__DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" &>/dev/null && pwd)"
+# Resolve symlinks to find actual dotfiles directory
+__SOURCE="${BASH_SOURCE[0]}"
+while [[ -L "$__SOURCE" ]]; do
+    __DIR="$(cd -P "$(dirname "$__SOURCE")" &>/dev/null && pwd)"
+    __SOURCE="$(readlink "$__SOURCE")"
+    [[ $__SOURCE != /* ]] && __SOURCE="$__DIR/$__SOURCE"
+done
+__DIR="$(cd -P "$(dirname "$__SOURCE")" &>/dev/null && pwd)"
+unset __SOURCE
 
 # platform specific script comes first!
 platform_script=~/.bash_$(uname | awk '{ print tolower($0) }')
@@ -127,3 +135,5 @@ if command -v fzf 1>/dev/null 2>&1; then
   eval "$(fzf --bash)"
 fi
 . "$HOME/.cargo/env"
+
+alias claude-mem='bun "/Users/markalston/.claude/plugins/marketplaces/thedotmack/plugin/scripts/worker-service.cjs"'

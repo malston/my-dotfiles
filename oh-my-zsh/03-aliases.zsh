@@ -1,3 +1,4 @@
+#!/usr/bin/env bash
 if [[ "$(uname -s)" == 'Darwin' ]]; then
   alias ls="ls -G"
 else
@@ -8,6 +9,7 @@ alias c='claude'
 alias cu='claudeup'
 alias cup='claudeup'
 alias clup='claudeup'
+alias powershell='pwsh'
 
 # https://github.com/direnv/direnv/wiki/Tmux
 alias tmux='direnv exec / tmux'
@@ -25,6 +27,8 @@ alias weather='curl wttr.in/Denver'
 
 # home
 alias homelab="cd ~/workspace/homelab"
+alias maintain-claude='~/.claude/scripts/maintain-claude-projects.sh'
+alias claude-config='~/.claude/scripts/claude-config'
 
 # replicated
 alias r="replicated"
@@ -49,9 +53,6 @@ alias mat="cd ~/workspace/dishcicd/cnf/matrixx-chf"
 # boeing projects
 alias boe="cd ~/workspace/boeing-tam-engagement"
 
-# python (use pyenv and pyenv-virtualenv)
-# alias python=python3
-
 # system
 alias ll="ls -la"
 alias grep='grep --color=auto'
@@ -64,7 +65,7 @@ alias gt='starship toggle gcloud disabled'
 # alias ls='eza --icons -F -H --group-directories-first --git -1'
 # alias ll="eza -l -g --icons"
 # alias lt="eza --tree --icons -a -I '.git|__pycache__|.mypy_cache|.ipynb_checkpoints'"
-alias ll='ls -l -b -g -m --color-scale --time-style=long-iso'
+# alias ll='ls -l -b -g -m --color-scale --time-style=long-iso'
 alias ll='ls -alF'
 alias la='ll -a'
 alias lh='ll --reverse --sort=size'
