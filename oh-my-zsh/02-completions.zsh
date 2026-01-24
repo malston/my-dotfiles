@@ -85,6 +85,9 @@ if command -v fzf 1>/dev/null 2>&1; then
   source <(fzf --zsh)
 fi
 
+unalias cu 2>/dev/null
+unalias cup 2>/dev/null
+unalias clup 2>/dev/null
 if command -v claudeup 1>/dev/null 2>&1; then
   source <(claudeup completion zsh)
 

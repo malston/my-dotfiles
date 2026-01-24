@@ -177,3 +177,9 @@ case ":$PATH:" in
   *) export PATH="$PNPM_HOME:$PATH" ;;
 esac
 # pnpm end
+
+repo() {
+  local dir
+  dir="$(gro find --path "$@")"
+  [ -n "$dir" ] && cd "$dir"
+}

@@ -10,6 +10,7 @@ alias cu='claudeup'
 alias cup='claudeup'
 alias clup='claudeup'
 alias powershell='pwsh'
+alias cdcode='cd ~/code'
 
 # https://github.com/direnv/direnv/wiki/Tmux
 alias tmux='direnv exec / tmux'
@@ -66,7 +67,7 @@ alias gt='starship toggle gcloud disabled'
 # alias ll="eza -l -g --icons"
 # alias lt="eza --tree --icons -a -I '.git|__pycache__|.mypy_cache|.ipynb_checkpoints'"
 # alias ll='ls -l -b -g -m --color-scale --time-style=long-iso'
-alias ll='ls -alF'
+alias ll='ls -alFL'
 alias la='ll -a'
 alias lh='ll --reverse --sort=size'
 alias lha='lh -a'
