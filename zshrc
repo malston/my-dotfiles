@@ -128,9 +128,8 @@ if command -v starship &>/dev/null; then
 fi
 
 # Mise activation (should be early)
-if command -v /Users/malston/.local/bin/mise 1>/dev/null 2>&1; then
-  # eval "$(mise activate zsh)"
-  eval "$(/Users/malston/.local/bin/mise activate zsh)"
+if command -v ~/.local/bin/mise 1>/dev/null 2>&1; then
+  eval "$(~/.local/bin/mise activate zsh)"
 fi
 
 # [[ -s "$HOME/.config/op/plugins.sh" ]] && source "$HOME/.config/op/plugins.sh"
@@ -158,7 +157,7 @@ eval "$(rbenv init - --no-rehash zsh)"
 [ -s "~/.bun/_bun" ] && source "~/.bun/_bun"
 
 # Enable claude-config completions.
-fpath=(~/.claude/completions $fpath)
+#fpath=(~/.claude/completions $fpath)
 
 # The following lines have been added by Docker Desktop to enable Docker CLI completions.
 fpath=(~/.docker/completions $fpath)
@@ -168,6 +167,8 @@ compinit
 
 # Added by Antigravity
 export PATH="~/.antigravity/antigravity/bin:$PATH"
+
+#export GITHUB_PERSONAL_ACCESS_TOKEN=$(op read "op://Private/GitHub Personal Access Token/token")
 
 alias claude-mem='bun "~/.claude/plugins/marketplaces/thedotmack/plugin/scripts/worker-service.cjs"'
 
