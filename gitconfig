@@ -11,6 +11,7 @@
 [push]
   default = simple
 [alias]
+  rv = remote -v
   pu = push
   pp = pull --prune
   st = status
@@ -18,6 +19,7 @@
   co = checkout
   ci = commit
   br = branch
+  bra = br -a
   sta = stash
   llog = log --date=local
   flog = log --pretty=fuller --decorate

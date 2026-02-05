@@ -128,8 +128,9 @@ if command -v starship &>/dev/null; then
 fi
 
 # Mise activation (should be early)
-if command -v mise 1>/dev/null 2>&1; then
-  eval "$(mise activate zsh)"
+if command -v /Users/malston/.local/bin/mise 1>/dev/null 2>&1; then
+  # eval "$(mise activate zsh)"
+  eval "$(/Users/malston/.local/bin/mise activate zsh)"
 fi
 
 # [[ -s "$HOME/.config/op/plugins.sh" ]] && source "$HOME/.config/op/plugins.sh"
@@ -183,3 +184,11 @@ repo() {
   dir="$(gro find --path "$@")"
   [ -n "$dir" ] && cd "$dir"
 }
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"

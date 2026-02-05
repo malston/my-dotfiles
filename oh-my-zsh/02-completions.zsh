@@ -39,6 +39,10 @@ fi
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
+if command -v sinesync 1>/dev/null 2>&1; then
+  . <(sinesync completion zsh)
+fi
+
 function print_current_foundation() {
   lt_blue='\e[1;34m'
   clear='\e[0m'
