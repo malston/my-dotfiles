@@ -4,4 +4,5 @@ vim/bundle/
 *~
 .envrc
 oh-my-zsh/plugins/
-ssh/
+ssh/*
+!ssh/config.example
