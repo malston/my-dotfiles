@@ -2,10 +2,10 @@
 	defaultBranch = main
 [core]
 	editor = /opt/homebrew/bin/vim
-	excludesfile = /Users/malston/.gitignore_global
+	excludesfile = ~/.gitignore_global
 	autocrlf = input
 	pager = less -FRSX
-	hooksPath = /Users/malston/workspace/git-hooks-core
+	hooksPath = ~/workspace/git-hooks-core
 [transfer]
 	fsckobjects = true
 [push]
