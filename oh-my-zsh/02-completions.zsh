@@ -60,7 +60,6 @@ fi
 # shellcheck source=/dev/null
 if [ -d "$(brew --prefix)/opt/asdf" ]; then
   . "$(brew --prefix)/opt/asdf/libexec/asdf.sh"
-  . "$(brew --prefix)/opt/asdf/etc/bash_completion.d/asdf.bash"
 fi
 
 # autojump
