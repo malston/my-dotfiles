@@ -52,6 +52,6 @@
 	helper = /usr/local/share/gcm-core/git-credential-manager
 	helper = osxkeychain
 [protocol "file"]
-  allow = always
+	allow = always
 [credential "https://dev.azure.com"]
 	useHttpPath = true
