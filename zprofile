@@ -17,3 +17,8 @@ fi
 if [ -d "$HOME/Library/Application Support/multipass/bin" ]; then
   PATH="$PATH:$HOME/Library/Application Support/multipass/bin"
 fi
+
+# Added by Obsidian
+if [ -d "/Applications/Obsidian.app/Contents/MacOS" ]; then
+  PATH="$PATH:/Applications/Obsidian.app/Contents/MacOS"
+fi
