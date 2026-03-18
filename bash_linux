@@ -14,7 +14,9 @@ export CLICOLOR=1
 DOT_FILES="$PWD"
 
 function enable_completions() {
-  source "${DOT_FILES}/completions"
+  if [[ -f "${DOT_FILES}/completions" ]]; then
+    source "${DOT_FILES}/completions"
+  fi
 }
 
 export -f enable_completions
