@@ -190,8 +190,6 @@ fi
 
 eval $(dircolors ~/.dir_colors)
 
-export GIT_TOKEN=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
-
 function powerline_precmd() {
     PS1="$(powerline-shell --shell zsh 0)"
 }
