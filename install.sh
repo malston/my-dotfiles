@@ -41,7 +41,7 @@ protected_repos=(homelab home-vpn)
 
 function link {
     echo Attempting to link "$1"
-    ln -is "$PWD/$1" "$HOME/.$1"
+    ln -isf "$PWD/$1" "$HOME/.$1"
 }
 
 function print_error {
