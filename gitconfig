@@ -49,7 +49,6 @@
 	gpgsign = true
 [credential]
 	credentialStore = cache
-	helper = /usr/local/share/gcm-core/git-credential-manager
 	helper = osxkeychain
 [protocol "file"]
 	allow = always
