@@ -132,7 +132,11 @@ if command -v ~/.local/bin/mise 1>/dev/null 2>&1; then
   eval "$(~/.local/bin/mise activate zsh)"
 fi
 
-# [[ -s "$HOME/.config/op/plugins.sh" ]] && source "$HOME/.config/op/plugins.sh"
+# if command -v op &>/dev/null; then
+#   export GITHUB_PERSONAL_ACCESS_TOKEN="$(op read "op://Private/GitHub Personal Access Token/token")"
+# fi
+
+[[ -s "$HOME/.config/op/plugins.sh" ]] && source "$HOME/.config/op/plugins.sh"
 
 # Create a function instead of an alias
 # gh() {
@@ -146,18 +150,11 @@ fi
 # alias gcs="gh copilot suggest"
 # alias gce="gh copilot explain"
 
-#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
-export SDKMAN_DIR="$HOME/.sdkman"
-[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
-
 # Added by `rbenv init` on Wed Dec  3 20:20:35 MST 2025
 eval "$(rbenv init - --no-rehash zsh)"
 
 # bun completions
 [ -s "~/.bun/_bun" ] && source "~/.bun/_bun"
-
-# Enable claude-config completions.
-#fpath=(~/.claude/completions $fpath)
 
 # The following lines have been added by Docker Desktop to enable Docker CLI completions.
 fpath=(~/.docker/completions $fpath)
@@ -167,8 +164,6 @@ compinit
 
 # Added by Antigravity
 export PATH="~/.antigravity/antigravity/bin:$PATH"
-
-#export GITHUB_PERSONAL_ACCESS_TOKEN=$(op read "op://Private/GitHub Personal Access Token/token")
 
 alias claude-mem='bun "~/.claude/plugins/marketplaces/thedotmack/plugin/scripts/worker-service.cjs"'
 
@@ -190,6 +185,13 @@ repo() {
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
 
-# bun
-export BUN_INSTALL="$HOME/.bun"
-export PATH="$BUN_INSTALL/bin:$PATH"
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+export SDKMAN_DIR="$HOME/.sdkman"
+[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
+
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/Users/markalston/Downloads/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/markalston/Downloads/google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/Users/markalston/Downloads/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/markalston/Downloads/google-cloud-sdk/completion.zsh.inc'; fi
