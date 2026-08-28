@@ -22,13 +22,15 @@ Plug 'tpope/vim-vinegar'             " Use `minus` to access netrw and navigate 
 Plug 'fatih/vim-go'                  " Helpful plugin for Golang dev
 Plug 'AndrewRadev/splitjoin.vim'     " Enable vim-go to split structs into multi lines
 Plug 'ervandew/supertab'             " Perform all completions with Tab
-Plug 'scrooloose/nerdtree'           " Directory tree explorer
+Plug 'preservim/nerdtree'            " Directory tree explorer
 Plug 'vim-airline/vim-airline'       " Status line improvements
 Plug 'cappyzawa/starlark.vim'
 Plug 'vmware-tanzu/ytt.vim'
 Plug 'vim-airline/vim-airline-themes'
+Plug 'Vimjas/vim-python-pep8-indent' " Perfect PEP8 indents
+Plug 'dense-analysis/ale'            " Async code linting
+Plug 'davidhalter/jedi-vim'          " Fast Python autocomplete
 call plug#end()                      " Complete vim-plug initialization
-
 "-----------------------------------------------------------------------------
 " VIM-GO CONFIG
 "-----------------------------------------------------------------------------
@@ -86,6 +88,12 @@ autocmd Filetype go command! -bang AT call go#alternate#Switch(<bang>0, 'tabe')
 autocmd FileType ruby setlocal expandtab shiftwidth=2 tabstop=2
 
 "-----------------------------------------------------------------------------
+" PYTHON CONFIG
+"-----------------------------------------------------------------------------
+autocmd FileType python setlocal expandtab shiftwidth=2 tabstop=4 shiftwidth=4 softtabstop=4
+let g:ale_enabled = 0
+
+"-----------------------------------------------------------------------------
 " CTRL-P CONFIG
 "-----------------------------------------------------------------------------
 let g:ctrlp_show_hidden = 1
@@ -127,7 +135,7 @@ set t_Co=256            " set 256 color
 set colorcolumn=80      " highlight col 80
 highlight ColorColumn ctermbg=235
 set listchars=tab:▸\ ,eol:¬,trail:· " show whitespace characters
-set list                " enable display of invisible characters
+set nolist              " disable display of invisible characters
 
 " invisible character colors
 highlight NonText ctermfg=239

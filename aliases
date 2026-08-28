@@ -5,12 +5,14 @@ else
   alias ls="ls --color=auto"
 fi
 
+alias claude='caveman claude'
 alias c='claude'
 alias cu='claudeup'
 alias cup='claudeup'
 alias clup='claudeup'
 alias cdcode='cd ~/code'
 alias powershell='pwsh'
+alias screen-recorder='/Users/markalston/.claude/skills/screen-recorder/.venv/bin/screen-recorder'
 
 # https://github.com/direnv/direnv/wiki/Tmux
 alias tmux='direnv exec / tmux'

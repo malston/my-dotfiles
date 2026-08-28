@@ -132,9 +132,10 @@ if command -v ~/.local/bin/mise 1>/dev/null 2>&1; then
   eval "$(~/.local/bin/mise activate zsh)"
 fi
 
-# if command -v op &>/dev/null; then
-#   export GITHUB_PERSONAL_ACCESS_TOKEN="$(op read "op://Private/GitHub Personal Access Token/token")"
-# fi
+#if command -v op &>/dev/null; then
+#  export GITHUB_PERSONAL_ACCESS_TOKEN="$(op read "op://Private/GitHub Personal Access Token/token")"
+#  export GITHUB_TOKEN="$GITHUB_PERSONAL_ACCESS_TOKEN"
+#fi
 
 [[ -s "$HOME/.config/op/plugins.sh" ]] && source "$HOME/.config/op/plugins.sh"
 
@@ -191,7 +192,12 @@ export SDKMAN_DIR="$HOME/.sdkman"
 
 
 # The next line updates PATH for the Google Cloud SDK.
-if [ -f "$HOME/Downloads/google-cloud-sdk/path.zsh.inc" ]; then . "$HOME/Downloads/google-cloud-sdk/path.zsh.inc"; fi
+if [ -f "$HOME/google-cloud-sdk/path.zsh.inc" ]; then . "$HOME/google-cloud-sdk/path.zsh.inc"; fi
 
 # The next line enables shell command completion for gcloud.
-if [ -f "$HOME/Downloads/google-cloud-sdk/completion.zsh.inc" ]; then . "$HOME/Downloads/google-cloud-sdk/completion.zsh.inc"; fi
+if [ -f "$HOME/google-cloud-sdk/completion.zsh.inc" ]; then . "$HOME/google-cloud-sdk/completion.zsh.inc"; fi
+
+#export CODEX_GITHUB_PERSONAL_ACCESS_TOKEN="$(op read 'op://Private/GitHub Personal Access Token/token')"
+export CODEX_GITHUB_PERSONAL_ACCESS_TOKEN="$(security find-generic-password -a "$USER" -s github-pat -w)"
+export CLAUDISH_ANTHROPIC_KEY="$(security find-generic-password -a "$USER" -s claudish-anthropic-key -w)"
+export CLAUDISH_OPENAI_KEY="$(security find-generic-password -a "$USER" -s claudish-openai-key -w)"

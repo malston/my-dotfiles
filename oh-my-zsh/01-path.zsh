@@ -73,3 +73,8 @@ if [ -d "$HOME/.bun" ]; then
   export BUN_INSTALL="$HOME/.bun"
   export PATH="$BUN_INSTALL/bin:$PATH"
 fi
+
+# LibreOffice
+if [ -f "/Applications/LibreOffice.app/Contents/MacOS/soffice" ]; then
+  export PATH="/Applications/LibreOffice.app/Contents/MacOS/soffice:$PATH"
+fi
