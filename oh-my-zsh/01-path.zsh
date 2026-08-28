@@ -78,3 +78,8 @@ fi
 if [ -f "/Applications/LibreOffice.app/Contents/MacOS/soffice" ]; then
   export PATH="/Applications/LibreOffice.app/Contents/MacOS/soffice:$PATH"
 fi
+
+# Caveman CLI (real binaries, not the mise-managed node global install)
+if [ -d "$HOME/.caveman/bin" ]; then
+  export PATH="$HOME/.caveman/bin:$PATH"
+fi
