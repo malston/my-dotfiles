@@ -108,6 +108,11 @@ plugins=(
 
 source $ZSH/oh-my-zsh.sh
 
+# source aliases if present
+if [ -f ~/.aliases ]; then
+  source ~/.aliases
+fi
+
 # User configuration
 
 # export MANPATH="/usr/local/man:$MANPATH"
