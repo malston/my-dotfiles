@@ -66,18 +66,6 @@ function link_all_dotfiles {
     done
 }
 
-# Function to link bin/ onto PATH
-# ~/.local/bin is already on PATH (see oh-my-zsh/01-path.zsh), so the scripts
-# live here under version control and are reached through a symlink.
-function link_bin {
-    local target="$HOME/.local/bin" script
-    mkdir -p "$target"
-    for script in "$PWD"/bin/*; do
-        [ -x "$script" ] || continue
-        ln -is "$script" "$target/$(basename "$script")"
-    done
-}
-
 # Function to update submodules
 function update_submodules {
     git submodule update --init --recursive
@@ -204,7 +192,6 @@ update_submodules
 # Main script execution
 if [ "$LINK_DOTFILES" = true ]; then
     link_all_dotfiles
-    link_bin
 fi
 
 if [ "$INIT_VIM_PLUGINS" = true ]; then
