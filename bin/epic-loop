@@ -47,6 +47,25 @@ readonly DEFAULT_LOG_DIR="${HOME}/.local/state/epic-loop"
 # Denied during the goal-arming call so it cannot start work. See arm_cmd.
 readonly ARM_DENIED_TOOLS="Bash,Edit,Write,NotebookEdit,Task,Agent"
 
+# Both calls run from inside the target repo, and a repo that exports an
+# Anthropic key for its own tooling (a direnv .envrc, a sourced .env) hands it
+# to claude too, where it outranks the claude.ai login. The run then bills a
+# pay-as-you-go account instead of the subscription and dies on "Credit balance
+# is too low" before it works a single bead. Set EPIC_LOOP_KEEP_API_KEY=1 to
+# keep the key when that account is the one you mean to spend.
+readonly AUTH_VARS=(ANTHROPIC_API_KEY ANTHROPIC_AUTH_TOKEN)
+
+# Prefix for both claude calls: drops the repo's key unless asked to keep it.
+claude_env() {
+    if [[ -n "${EPIC_LOOP_KEEP_API_KEY:-}" ]]; then
+        printf 'env'
+    else
+        printf 'env'
+        local var
+        for var in "${AUTH_VARS[@]}"; do printf ' -u %s' "$var"; done
+    fi
+}
+
 usage() {
     cat <<EOF
 Usage: $PROG BEAD-ID [options]
@@ -267,7 +286,11 @@ main() {
     # model starts satisfying the goal in this very call -- it would begin
     # working beads before /epic-loop's protocol is loaded. The goal is still
     # recorded, and it survives both the turn cap and the denial.
+    local -a claude_prefix
+    read -r -a claude_prefix <<<"$(claude_env)"
+
     local -a arm_cmd=(
+        "${claude_prefix[@]}"
         claude -p "/goal ${condition}"
         --session-id "$session_id"
         --permission-mode bypassPermissions
@@ -282,6 +305,7 @@ main() {
     # resumed session, and the goal survives the resume, so /epic-loop runs
     # with the completion condition already driving it.
     local -a work_cmd=(
+        "${claude_prefix[@]}"
         claude -p "/epic-loop ${epic}${hold:+ $hold}"
         --resume "$session_id"
         --permission-mode bypassPermissions
