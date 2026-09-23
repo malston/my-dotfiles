@@ -202,7 +202,7 @@ if [ -f "$HOME/google-cloud-sdk/path.zsh.inc" ]; then . "$HOME/google-cloud-sdk/
 # The next line enables shell command completion for gcloud.
 if [ -f "$HOME/google-cloud-sdk/completion.zsh.inc" ]; then . "$HOME/google-cloud-sdk/completion.zsh.inc"; fi
 
-#export CODEX_GITHUB_PERSONAL_ACCESS_TOKEN="$(op read 'op://Private/GitHub Personal Access Token/token')"
-export CODEX_GITHUB_PERSONAL_ACCESS_TOKEN="$(security find-generic-password -a "$USER" -s github-pat -w)"
-export CLAUDISH_ANTHROPIC_KEY="$(security find-generic-password -a "$USER" -s claudish-anthropic-key -w)"
-export CLAUDISH_OPENAI_KEY="$(security find-generic-password -a "$USER" -s claudish-openai-key -w)"
+# export CODEX_GITHUB_PERSONAL_ACCESS_TOKEN="$(op read 'op://Private/GitHub Personal Access Token/token')"
+# export CODEX_GITHUB_PERSONAL_ACCESS_TOKEN="$(security find-generic-password -a "$USER" -s github-pat -w)"
+# export CLAUDISH_ANTHROPIC_KEY="$(security find-generic-password -a "$USER" -s claudish-anthropic-key -w)"
+# export CLAUDISH_OPENAI_KEY="$(security find-generic-password -a "$USER" -s claudish-openai-key -w)"
