@@ -51,5 +51,5 @@
 	helper = osxkeychain
 [protocol "file"]
 	allow = always
-[credential "https://dev.azure.com"]
-	useHttpPath = true
+[beads]
+	role = maintainer
