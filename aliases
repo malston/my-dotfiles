@@ -35,6 +35,12 @@ alias homelab="cd ~/workspace/homelab"
 alias maintain-claude='~/.claude/scripts/maintain-claude-projects.sh'
 alias claude-config='~/.claude/scripts/claude-config'
 
+# ECC
+alias cecc='CLAUDE_CONFIG_DIR=~/.claude-ecc claude'
+
+# Gas City
+alias cgc='CLAUDE_CONFIG_DIR=~/.claude-gc-worker claude --dangerously-skip-permissions'
+
 # replicated
 alias r="replicated"
 
