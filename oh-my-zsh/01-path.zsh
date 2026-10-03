@@ -6,8 +6,14 @@ export PATH="$(brew --prefix)/sbin:${PATH}"
 export PATH="$HOME/bin:$PATH"
 
 # Java
-export PATH="/opt/homebrew/opt/openjdk/bin:$PATH"
-export CPPFLAGS="-I/opt/homebrew/opt/openjdk/include"
+export JAVA_HOME="/opt/homebrew/opt/openjdk"
+if [ -f "/opt/homebrew/opt/openjdk@25/libexec/openjdk.jdk" ]; then
+  export JAVA_HOME=/opt/homebrew/opt/openjdk@25
+fi
+# point the java wrappers and IDEs at it
+# sudo ln -sfn /opt/homebrew/opt/openjdk@25/libexec/openjdk.jdk /Library/Java/JavaVirtualMachines/openjdk-25.jdk
+# or put it first on your PATH
+export PATH="$JAVA_HOME/bin:$PATH"
 
 # Created by `pipx` on 2024-01-04 03:26:13
 export PATH="$PATH:/Users/$USER/.local/bin"
