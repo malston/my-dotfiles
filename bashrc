@@ -96,11 +96,6 @@ if [ -d "$(brew --prefix)/opt/grep/libexec/gnubin" ]; then
   PATH="$(brew --prefix)/opt/grep/libexec/gnubin:$PATH"
 fi
 
-# GNU find
-if [ -d "$(brew --prefix)/opt/findutils/libexec/gnubin" ]; then
-  PATH="$(brew --prefix)/opt/findutils/libexec/gnubin:$PATH"
-fi
-
 # Python
 # See https://github.com/pyenv/pyenv
 # See https://github.com/pyenv/pyenv-virtualenv

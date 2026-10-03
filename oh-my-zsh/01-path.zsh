@@ -46,11 +46,6 @@ if [ -d "$(brew --prefix)/opt/grep/libexec/gnubin" ]; then
   PATH="$(brew --prefix)/opt/grep/libexec/gnubin:$PATH"
 fi
 
-# GNU find
-if [ -d "$(brew --prefix)/opt/findutils/libexec/gnubin" ]; then
-  PATH="$(brew --prefix)/opt/findutils/libexec/gnubin:$PATH"
-fi
-
 # ged
 # GNU ed (ged) is a line-oriented text editor.
 if [ -d "$(brew --prefix)/opt/ed/bin" ]; then

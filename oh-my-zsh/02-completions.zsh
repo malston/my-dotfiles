@@ -56,6 +56,12 @@ if command -v direnv 1>/dev/null 2>&1; then
   eval "$(direnv hook zsh)"
 fi
 
+# asdf
+# shellcheck source=/dev/null
+if "$(brew --prefix)/opt/asdf" 1>/dev/null 2>&1; then
+  . "$(brew --prefix)/opt/asdf/libexec/asdf.sh"
+fi
+
 # autojump
 # shellcheck source=/dev/null
 [ -f "$(brew --prefix)/etc/profile.d/autojump.sh" ] && . "$(brew --prefix)/etc/profile.d/autojump.sh"

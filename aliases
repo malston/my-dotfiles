@@ -68,7 +68,7 @@ alias boe="cd ~/workspace/boeing-tam-engagement"
 alias python=python3
 
 # system
-alias ll="ls -la"
+alias ll="ls -Gla"
 alias grep='grep --color=auto'
 alias nocaps='/usr/bin/setxkbmap -layout us -option ctrl:nocaps'
 

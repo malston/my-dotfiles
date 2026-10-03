@@ -39,16 +39,18 @@
 [user]
 	name = Mark Alston
 	email = marktalston@gmail.com
-	signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIVTjgZOX95mCyP9+zUE+a4+FjQLVAv8EThm5d+s1tcQ
+    # signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIVTjgZOX95mCyP9+zUE+a4+FjQLVAv8EThm5d+s1tcQ
 [gpg]
 	format = ssh
-[gpg "ssh"]
-	program = "/Applications/1Password.app/Contents/MacOS/op-ssh-sign"
+# [gpg "ssh"]
+# 	program = "/Applications/1Password.app/Contents/MacOS/op-ssh-sign"
 [commit]
-	gpgsign = true
+	gpgsign = false
 [credential]
 	credentialStore = cache
 	helper = osxkeychain
+	helper =
+	helper = /usr/local/share/gcm-core/git-credential-manager
 [protocol "file"]
 	allow = always
 [beads]
