@@ -22,6 +22,7 @@
 	sta = stash
 	llog = log --date=local
 	flog = log --pretty=fuller --decorate
+	nlog = log --name-only --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset'
 	lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
 	lol = log --graph --decorate --oneline
 	lola = log --graph --decorate --oneline --all
